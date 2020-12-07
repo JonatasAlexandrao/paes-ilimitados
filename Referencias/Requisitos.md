@@ -9,8 +9,9 @@ A tabela deve ter:
   - Pão
   - valor
   - cliente
-  - preço
   - total preço
   - total quantidade
   - check de se foi pago
   - valor de entrega
+  - troco
+  - desconto 
