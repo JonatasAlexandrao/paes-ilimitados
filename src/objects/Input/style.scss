@@ -1,0 +1,34 @@
+
+.input {
+
+  font-size: 1.6rem;
+  /*width: 90%;*/
+  height: 3.5rem;
+  margin: 0.3rem;
+  padding: 1rem;
+
+  box-sizing: border-box;
+}
+
+.-id {
+  width: 90%;
+  
+}
+.-name {
+  width: 90%;
+}
+.-street {
+  grid-area: street;
+}
+.-num {
+  grid-area: num;
+}
+.-neighborhood {
+  grid-area: neighborhood;
+}
+.-city {
+  grid-area: city;
+}
+.-value {
+  grid-area: value;
+}

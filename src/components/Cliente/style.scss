@@ -1,0 +1,48 @@
+
+@import "@/assets/scss/_colors.scss";
+
+
+.backgroundDiv {
+  max-width: 40rem;
+  width: 95%;
+  padding: 3rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+
+
+}
+
+.customerRegistration {
+  background-color: $color-background-div;
+}
+
+.endereco {
+  border: $color-fonts-white 1px solid;
+  padding: 1rem;
+  margin-top: 2rem;
+
+  position: relative;
+  /*box-sizing: border-box;*/
+  display: grid;
+  grid-template-columns: 50% 10% 10% 30%;
+  grid-template-areas: 
+    "street street street num"
+    "neighborhood neighborhood city city"
+    "value value . ."
+  ;
+
+}
+
+.endereco > p {
+
+  font-size: 1.6rem;
+
+  margin: 0;
+  padding: 0 0.8rem;
+  position: absolute;
+  top: -1rem;
+  left: 0.5rem;
+  background-color: $color-background-div;
+
+}
+
