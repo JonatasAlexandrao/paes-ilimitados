@@ -26,9 +26,9 @@
   display: grid;
   grid-template-columns: 50% 10% 10% 30%;
   grid-template-areas: 
-    "street street street num"
-    "neighborhood neighborhood city city"
-    "value value . ."
+    "rua rua rua num"
+    "bairro bairro cidade cidade"
+    "valor valor . ."
   ;
 
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="div">
+  <div class="divInput" :class="classInput">
     <input class="input" 
       :name="name"  
       :type="type" 
@@ -24,10 +24,3 @@ export default {
 </script>
 
 <style src="./style.scss" lang="scss"/>
-
-<style>
-  .div {
-    background-color: #555555;
-
-  }
-</style>

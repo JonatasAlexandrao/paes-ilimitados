@@ -1,6 +1,7 @@
 
 @import "@/assets/scss/_colors.scss";
 
+// ------ GLOBAL ------
 
 :root {
   font-size: 62.5%; //10px
@@ -15,7 +16,6 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   
-  
 }
 
 #app {
@@ -28,6 +28,13 @@ body {
   min-height: 100vh;
 
 }
+
+
+
+
+
+
+
 
 .menu {
   display: grid;

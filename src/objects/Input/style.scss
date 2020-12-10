@@ -2,33 +2,36 @@
 .input {
 
   font-size: 1.6rem;
-  /*width: 90%;*/
+  width: 100%;
   height: 3.5rem;
-  margin: 0.3rem;
+  /*margin: 0.3rem;*/
   padding: 1rem;
 
   box-sizing: border-box;
 }
 
-.-id {
-  width: 90%;
-  
+.divInput {
+  margin: 0.3rem;
 }
-.-name {
-  width: 90%;
+
+.divInput.-id, .divInput.-nome {
+  /*width: 90%;*/
+  margin-left: 0;
+  margin-right: 0;
 }
-.-street {
-  grid-area: street;
+
+.-rua {
+  grid-area: rua;
 }
 .-num {
   grid-area: num;
 }
-.-neighborhood {
-  grid-area: neighborhood;
+.-bairro {
+  grid-area: bairro;
 }
-.-city {
-  grid-area: city;
+.-cidade {
+  grid-area: cidade;
 }
-.-value {
-  grid-area: value;
+.-valor {
+  grid-area: valor;
 }
