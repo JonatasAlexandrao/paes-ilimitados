@@ -1,12 +1,14 @@
 <template>
   <div class="divInput" :class="classInput">
-    <input class="input" 
+    <input 
       :name="name"  
       :type="type" 
-      :value="text" 
       :placeholder="placeholder"
+      @focus="animatedLabelFocus()"
+      @blur="animatedLabelBlur(name)"     
     >
-    <label :for="name">{{ text2 }}</label>
+
+    <label :class="classLabel()" :for="name">{{ text }}</label>
   </div>
 </template>
 
@@ -18,8 +20,42 @@ export default {
     type: String,
     placeholder: String,
     text: String,
-    text2: String,
-  }
+  },
+  data() {
+    return {
+      test: false,
+    }
+  },
+
+  methods: {
+    classLabel() {
+
+      if(this.test)
+        return this.name + ' -m'    
+      else
+        return this.name
+    },
+
+    animatedLabelFocus() {
+      this.test = true
+
+      if(this.test)
+        return this.name + ' -m' 
+      else
+        return this.name
+    },
+    animatedLabelBlur(name) {
+      const input = document.getElementsByName(name)
+ 
+      if(input[0].value == '')
+        this.test = false  
+      else
+        this.test = true
+
+    }
+
+  },
+
 }
 </script>
 

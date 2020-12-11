@@ -5,9 +5,11 @@
 
 :root {
   font-size: 62.5%; //10px
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {
+
   background-color: $color-background;
   margin: 0;
   padding: 0;
@@ -19,8 +21,6 @@ body {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-
   text-align: center;
 
   background-color: $color-background-app;
