@@ -32,10 +32,6 @@ body {
 
 
 
-
-
-
-
 .menu {
   display: grid;
   grid-template-columns: 1fr 5rem;
@@ -45,9 +41,12 @@ body {
   
 }
 
-.descktop {
+.desktop {
   display: flex;
-  justify-content: center;
+  //justify-content: center;
+  flex-direction: column;
+  //flex-wrap: wrap;
+  align-items: center;
 }
 
 .tabs {

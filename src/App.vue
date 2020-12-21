@@ -10,8 +10,9 @@
       <div class="option">°°°</div>
     </nav>
 
-    <div class="descktop">
-     <Cliente />
+    <div class="desktop">
+     <!-- <Cliente /> -->
+     <Cliente11 />
     </div>
 
   </div>
@@ -20,11 +21,12 @@
 
 <script>
 
-import Cliente from '@/components/Cliente/Cliente.vue'
+//import Cliente from '@/components/Cliente/Cliente.vue'
+import Cliente11 from '@/components/Cliente/Cliente11.vue'
 
 export default {
   name: 'App',
-  components: { Cliente },
+  components: { /*Cliente,*/ Cliente11 },
   data(){
     return {
       active: "",
