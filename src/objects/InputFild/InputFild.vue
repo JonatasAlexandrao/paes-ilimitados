@@ -55,8 +55,12 @@ export default {
     },
     localValue() {
       this.localValue = this.maskFilter(this.localValue)
-      if(this.localValue)
+
+      if(this.value)
         this.test = true
+      else 
+        this.test = false
+      
     }
   },
 

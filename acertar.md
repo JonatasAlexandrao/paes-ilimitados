@@ -26,8 +26,11 @@ Probelmas com o input:
   - SOLUÇÃO (não gostei): criar o input no pai usando slot, tudo funciona colocando os methods juntos ali.
   -------------- SOLUCIONADA ---------------------
 
-  - criar evento para limpar inputs
+  - (OK) criar evento para limpar inputs
   - criar componente botão
-  
+
+  Problemas:
+    - quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
+
 
   

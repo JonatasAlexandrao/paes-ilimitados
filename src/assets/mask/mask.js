@@ -11,6 +11,10 @@ const mask = (function() {
   module.money = (value) => {
     let num = value.replace('R$ ', '').replace(',', '')
 
+    
+
+    if(num == '')
+      num = '0'
     if(parseFloat(num) && num.length < 3)
         num = '0,0' + num     
     

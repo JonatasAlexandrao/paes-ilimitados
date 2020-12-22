@@ -18,6 +18,7 @@
 
     <button @click="saveBD">Gravar</button>
     <button @click="searchBD">Buscar</button>
+    <button @click="clearFilds">Limpar</button>
 
   </div>
 </template>
@@ -54,6 +55,21 @@ export default {
    },
 
   methods: {
+
+    clearFilds() {
+      this.clienteId=''
+      this.clienteNome=''
+      this.clienteRua='',
+      this.clienteNum=''
+      this.clienteBairro=''
+      this.clienteCidade=''
+      this.clienteValor=''
+
+      const input = document.getElementsByTagName('input')
+
+      input[0].focus()
+
+    },
 
     getInf() {
       
