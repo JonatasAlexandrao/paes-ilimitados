@@ -7,10 +7,10 @@
       :placeholder="placeholder"
 
       @focus="animatedLabelFocus()"
-      @blur="animatedLabelBlur(name)" 
-
+      @blur="animatedLabelBlur(name)"  
       @input="updateData($event.target.value)"
-      v-model="localValue"
+
+      :value="value"
 
     >
 
@@ -31,34 +31,34 @@ export default {
     id: String,
     inputmode: String,
     value: String,
-    //clienteId: String,
+  },
+
+  watch: {
+    value() {
+      //this.$emit('input', this.value)
+      //console.log(this.value)
+      /*this.$emit('input', mask.noLetter(this.value))
+      console.log(mask.noLetter(this.value))*/
+    }
   },
 
   data() {
     return {
       test: false,
-      localValue: '',
       //value: null,
     }
-  }, 
-  watch: {
-    localValue() {
-      this.localValue = this.maskFilter(this.localValue)
-      
-    }
-  },
-
-  created() {
-    this.localValue = this.value
   },
 
   methods: {
-
     updateData(value) {
-      this.$emit('input', value)   
+      /*let teste = value
+      teste = mask.noLetter(teste)*/
+      this.$emit('input', value)
+      console.log(value)
     },
 
     classLabel() {
+
       if(this.test)
         return this.name + ' -m'    
       else
@@ -72,6 +72,7 @@ export default {
         return this.name + ' -m' 
       else
         return this.name
+
       
     },
     animatedLabelBlur(name) {
@@ -83,16 +84,16 @@ export default {
         this.test = true
     },
 
-    maskFilter(value) { 
-
+    maskFilter() { 
       if(this.mask == 'noString'){
-       return value = mask.noLetter(value)
-      }  
-      else if(this.mask == 'money'){
-        return value = mask.money(value)
+        document.getElementById('id').value = mask.noLetter(this.value)
+        console.log(this.value)
+        //this.value = mask.noLetter(this.value)
+        //console.log('noString')
       }
-      else{
-        return value
+        
+      else if(this.mask == 'maskMoney'){
+        this.value = mask.money(this.value)
       }
     },
 

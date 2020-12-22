@@ -23,5 +23,11 @@ Probelmas com o input:
 
   X - Event Bus ????
   --> vuex -> video: melhor gerenciamento de estado com vuex -> usando estado centralizado
+  - SOLUÇÃO (não gostei): criar o input no pai usando slot, tudo funciona colocando os methods juntos ali.
+  -------------- SOLUCIONADA ---------------------
 
-- SOLUÇÃO (não gostei): criar o input no pai usando slot, tudo funciona colocando os methods juntos ali.  
+  - criar evento para limpar inputs
+  - criar componente botão
+  
+
+  

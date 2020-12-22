@@ -1,9 +1,8 @@
 <template>
   <div class="backgroundDiv customerRegistration">
 
-    <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="ClienteId"/>
-    {{ClienteId}}
-    <!-- <InputFild classInput="-nome" name="nome" label="Nome Cliente" />
+    <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="cliente.id"/>
+    <InputFild classInput="-nome" name="nome" label="Nome Cliente" />
 
     <div class="endereco">
       <p>Endereço</p>
@@ -12,9 +11,9 @@
       <InputFild classInput="-num" name="num" label="Nº" mask="noString" inputmode="numeric" />
       <InputFild classInput="-bairro" name="bairro" label="Bairro" />
       <InputFild classInput="-cidade" name="cidade" label="Cidade" />
-      <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" />   
+      <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='maskMoney' inputmode="numeric" />   
       
-    </div> -->
+    </div>
 
     <input type="text" v-model="fildCliente.id">
     <button @click="saveBD">Gravar</button>
@@ -24,7 +23,7 @@
 </template>
 
 <script>
-import InputFild from '@/objects/InputFild/InputFild11.vue'
+import InputFild from '@/objects/InputFild/InputFild.vue'
 import mask from '@/assets/mask/mask'
 
 export default {
@@ -32,7 +31,7 @@ export default {
   
   data() {
     return {
-      /*cliente: {
+      cliente: {
         id:'', 
         nome:'', 
         rua:'', 
@@ -40,14 +39,8 @@ export default {
         bairro:'',
         cidade:'',
         valor:''
-      },*/
-      ClienteId:'', 
-      ClienteNome:'', 
-      ClienteRua:'', 
-      ClienteNum:'',
-      ClienteBairro:'',
-      ClienteCidade:'',
-      ClienteValor:''
+      },
+      idd: '',
     }
   },
 
@@ -60,14 +53,29 @@ export default {
     }
   },
 
-  watch: {
-    ClienteId() {
-      this.ClienteId = mask.noLetter(this.ClienteId)
-      console.log(this.ClienteId)
-     },
-     id() {
-       console.log('teste')
+  /*filters: {
+    noLetter(valor) {
+      const v = valor.replace(/\D/g, '')
+      //const v = valor.splice(3, 0, '.')
+      //let v = valor.splice(3, 0, '.')
 
+      return v
+    },
+    cpf() {
+
+    }
+  },*/
+
+  /*computed: {
+    iddd() {
+      return this.iddd
+    }
+  },*/
+
+  watch: {
+    idd() {
+      this.idd = mask.noLetter(this.idd)
+      console.log(this.idd)
      }
    },
 
@@ -94,21 +102,19 @@ export default {
       document.getElementById('cidade').value = this.cliente.cidade
       document.getElementById('valor').value = this.cliente.valor
 
-
+      //console.log(document.getElementById('nome').value)
+      //document.getElementById('nome').value = 'testes'
       console.log(this.cliente)
     },
     
     saveBD() {
-      //this.getInf()
+      this.getInf()
 
       //this.cliente.id = 2222
 
-      console.log(this.cliente)
-      console.log(this.idd)
-
-      /*console.log(this.fildCliente.id)
+      console.log(this.fildCliente.id)
       this.fildCliente.id = this.fildCliente.id.replace(/\D/g, '')
-      console.log(this.fildCliente.id)*/
+      console.log(this.fildCliente.id)
       //console.log(this.testeF)
       //console.log(this.idd)
       //console.log(this.cliente.id)

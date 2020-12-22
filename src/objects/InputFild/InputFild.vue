@@ -4,17 +4,16 @@
       :id="name"
       :name="name"  
       :inputmode="inputmode"
-      :placeholder="placeholder"
 
-      @focus="animatedLabelFocus()"
-      @blur="animatedLabelBlur(name)"  
+      @focus="test=true"
+      @blur="$event.target.value ? test=true : test=false" 
+
       @input="updateData($event.target.value)"
-
-      :value="value"
+      v-model="localValue"
 
     >
 
-    <label :class="classLabel()" :for="name">{{ label }}</label>
+    <label :class="smallLabel" :for="name">{{ label }}</label>
   </div>
 </template>
 
@@ -23,77 +22,64 @@
 
 export default {
   props: {
-    classInput: String,
-    name: String,
-    placeholder: String,
-    label: String,
-    mask: String,
-    id: String,
-    inputmode: String,
-    value: String,
-  },
+    classInput: { type: String, required: true },
+    name: { type: String, required: true },
+    label: { type: String, required: true },
+    value: { type: String, required: true },
 
-  watch: {
-    value() {
-      //this.$emit('input', this.value)
-      //console.log(this.value)
-      /*this.$emit('input', mask.noLetter(this.value))
-      console.log(mask.noLetter(this.value))*/
-    }
+    mask: String,
+    inputmode: String,
+    
   },
 
   data() {
     return {
       test: false,
-      //value: null,
+      localValue: '',
+    }
+  },
+  computed: {
+    smallLabel() {
+         
+      if(this.test)
+        return this.name + ' -small'    
+      else
+        return this.name
+    },
+  },
+  watch: {
+    value() {
+      this.localValue = this.value 
+      this.localValue = this.maskFilter(this.localValue) 
+    
+    },
+    localValue() {
+      this.localValue = this.maskFilter(this.localValue)
+      if(this.localValue)
+        this.test = true
     }
   },
 
+  created() {
+    this.localValue = this.value
+  },
+
   methods: {
+
     updateData(value) {
-      /*let teste = value
-      teste = mask.noLetter(teste)*/
-      this.$emit('input', value)
-      console.log(value)
+      this.$emit('input', value)   
     },
 
-    classLabel() {
+    maskFilter(value) { 
 
-      if(this.test)
-        return this.name + ' -m'    
-      else
-        return this.name
-    },
-
-    animatedLabelFocus() {
-      this.test = true
-
-      if(this.test)
-        return this.name + ' -m' 
-      else
-        return this.name
-
-      
-    },
-    animatedLabelBlur(name) {
-      const input = document.getElementsByName(name) 
- 
-      if(input[0].value == '')
-        this.test = false  
-      else
-        this.test = true
-    },
-
-    maskFilter() { 
       if(this.mask == 'noString'){
-        document.getElementById('id').value = mask.noLetter(this.value)
-        console.log(this.value)
-        //this.value = mask.noLetter(this.value)
-        //console.log('noString')
+       return value = mask.noLetter(value)
+      }  
+      else if(this.mask == 'money'){
+        return value = mask.money(value)
       }
-        
-      else if(this.mask == 'maskMoney'){
-        this.value = mask.money(this.value)
+      else{
+        return value
       }
     },
 
