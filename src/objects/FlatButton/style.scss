@@ -1,0 +1,34 @@
+@import "@/assets/scss/_colors.scss";
+
+.btn {
+  width: 15rem;
+  height: 4.5rem;
+  margin: .5rem;
+  border-style: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  outline: none;
+
+  background-color: $color-background-div;
+  color: $color-white;
+  border: .2rem solid $color-white;
+  border-radius: .5rem;
+}
+
+.btn.-save:focus, .btn.-save:hover{
+  background-color: $color-save-button-bc;
+  color: $color-save-button;
+  border: .2rem solid $color-save-button;
+}
+
+.btn.-search:focus, .btn.-search:hover{
+  background-color: $color-search-button-bc;
+  color: $color-search-button;
+  border: .2rem solid $color-search-button;
+}
+
+.btn.-clean:focus, .btn.-clean:hover{
+  background-color: $color-clean-button-bc;
+  color: $color-clean-button;
+  border: .2rem solid $color-clean-button;
+}

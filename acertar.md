@@ -1,20 +1,38 @@
 
 410x750
 
-OK - quando troca o tipo de input muda o teclado no celular.
-OK - quando uso type number no input o replace para de funcionar, então as mascaras não estão funcionando em campos não text
+(OK) - quando troca o tipo de input muda o teclado no celular.
+(OK)- quando uso type number no input o replace para de funcionar, então as mascaras não estão funcionando em campos não text
+(OK) criar evento para limpar inputs
+
+- criar componente botão
+
+--> Tela cliente:
+  - validar campos antes de gravar no BD
+  - não permitir gravar completamente em branco
+  - povoar o campo ID automaticamente
+  - Exibir mensagem de confirmação de save
+
+--> Button
+  - escolher cores para os botões
+
+- Seria o certo separar em um arquivo as functions que mexem com o banco e só chamalas no componente passando um obj...
+
 
 
 - como fazer para q no celular já passe direto para o proximo campo depois (tab)
 
 - Pesquisar sobre scolp da tag style do vue 
 
-Pensamentos:
+# Pensamentos:
   - campo cliente como combo box ?
 
+# Problemas:
+    - quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
 
 
-Probelmas com o input:
+
+(OK) Probelmas com o input:
 - quando busco as inf no banco e coloco elas nos inputs ao clicar elas somem.
   - solução: passando a variavel por prop e salvando a busca nela.
   - Problema 2: usando props o replace da mascara para de funcionar pq ele não pode alterar essa variavel.
@@ -26,11 +44,9 @@ Probelmas com o input:
   - SOLUÇÃO (não gostei): criar o input no pai usando slot, tudo funciona colocando os methods juntos ali.
   -------------- SOLUCIONADA ---------------------
 
-  - (OK) criar evento para limpar inputs
-  - criar componente botão
 
-  Problemas:
-    - quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
+
+ 
 
 
   

@@ -9,25 +9,24 @@ const mask = (function() {
   }
 
   module.money = (value) => {
-    let num = value.replace('R$ ', '').replace(',', '')
 
-    
+    if(value){
+      let num = value.replace('R$ ', '').replace(',', '')
 
-    if(num == '')
-      num = '0'
-    if(parseFloat(num) && num.length < 3)
-        num = '0,0' + num     
-    
-    value = num
-      .replace(/\D/g, '')
-      .replace(/(\d)(\d{2}$)/, '$1,$2')
-      //.replace(/^00,00/, '0,00')
-      .replace(/^00$/, '0,00')
-      .replace(/^0$/, '0,00')
-      .replace(/(^0)(\d{1},)(\d)/, '$2$3')
-      .replace(/\d{0}/, 'R$ ')
-
+      if(parseFloat(num) && num.length < 3)
+          num = '0,0' + num     
+      
+      value = num
+        .replace(/\D/g, '')
+        .replace(/(\d)(\d{2}$)/, '$1,$2')
+        .replace(/^00$/, '0,00')
+        .replace(/^0$/, '0,00')
+        .replace(/(^0)(\d{1},)(\d)/, '$2$3')
+        .replace(/\d{0}/, 'R$ ')
+      
+    }
     return value
+    
   }
 
 

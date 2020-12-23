@@ -16,19 +16,21 @@
       
     </div>
 
-    <button @click="saveBD">Gravar</button>
-    <button @click="searchBD">Buscar</button>
-    <button @click="clearFilds">Limpar</button>
+    <FlatButton classButton="-save" :handleclick="saveBD" title="Gravar" />
+    <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" />
+    <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
+
 
   </div>
 </template>
 
 <script>
 import InputFild from '@/objects/InputFild/InputFild.vue'
+import FlatButton from '@/objects/FlatButton/FlatButton'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { InputFild },
+  components: { InputFild, FlatButton },
   
   data() {
     return {
@@ -56,10 +58,10 @@ export default {
 
   methods: {
 
-    clearFilds() {
+    cleanFilds() {
       this.clienteId=''
       this.clienteNome=''
-      this.clienteRua='',
+      this.clienteRua=''
       this.clienteNum=''
       this.clienteBairro=''
       this.clienteCidade=''
@@ -100,7 +102,7 @@ export default {
     
     saveBD() {
      this.$http.put('cliente.json', this.getInf())
-        .then(console.log('gravado'))
+        .then(this.cleanFilds())
     },
 
     searchBD() {
