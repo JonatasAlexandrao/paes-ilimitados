@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 
 //import store from '@/store/store'
-import '@/plugin/axios'
+//import '@/plugin/axios'
+import '@/database/firebase'
+
 
 
 Vue.config.productionTip = false

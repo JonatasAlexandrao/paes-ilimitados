@@ -1,7 +1,8 @@
 <template>
   <div class="backgroundDiv customerRegistration">
 
-    <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" />
+    <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
+    <p class="id">ID: {{clienteId}}</p>
 
     <InputFild classInput="-nome" name="nome" label="Nome Cliente" v-model="clienteNome" />
 
@@ -28,13 +29,14 @@
 import InputFild from '@/objects/InputFild/InputFild.vue'
 import FlatButton from '@/objects/FlatButton/FlatButton'
 import mask from '@/assets/mask/mask'
+import { db } from '@/database/firebase'
 
 export default {
   components: { InputFild, FlatButton },
   
   data() {
     return {
-      clienteId:'', 
+      clienteId:'1', 
       clienteNome:'', 
       clienteRua:'', 
       clienteNum:'',
@@ -101,15 +103,40 @@ export default {
     },
     
     saveBD() {
-     this.$http.put('cliente.json', this.getInf())
-        .then(this.cleanFilds())
+     /*this.$http.put('cliente.json', this.getInf())
+        .then(this.cleanFilds())*/
+      
+      /*db.ref('clientes/').push( { nomeDoFilme: this.nomeDoFilme })
+      .then( (data) => { console.log(data)})
+      .catch( (error) => { console.log(error) })*/
+
+      console.log('teste')
+
+
+      let filmes = []
+      db.ref('clientes/').on('value', (snapshot) => {
+      
+        snapshot.forEach(item => {
+          let chave = item.key
+          let dado = item.val()
+
+          //console.log(chave, dado)
+          console.log(chave)
+
+          if(dado.id == '2')
+          console.log('if', dado)
+        })
+
+      })
+      console.log(filmes)
+      
     },
 
     searchBD() {
-      this.$http.get('cliente.json')
+     /* this.$http.get('cliente.json')
         .then(res => {  
           this.showInf(res.data)    
-        })
+        })*/
     },
 
   },
