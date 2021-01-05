@@ -8,10 +8,12 @@
 - criar componente botão
 
 --> Tela cliente:
+  - campo cliente como combo box
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco
   - povoar o campo ID automaticamente
   - Exibir mensagem de confirmação de save
+  
 
 --> Button
   - escolher cores para os botões
@@ -25,7 +27,7 @@
 - Pesquisar sobre scolp da tag style do vue 
 
 # Pensamentos:
-  - campo cliente como combo box ?
+  
 
 # Problemas:
     - quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido

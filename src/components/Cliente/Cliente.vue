@@ -29,7 +29,7 @@
 import InputFild from '@/objects/InputFild/InputFild.vue'
 import FlatButton from '@/objects/FlatButton/FlatButton'
 import mask from '@/assets/mask/mask'
-import { db } from '@/database/firebase'
+import data from '@/database/data'
 
 export default {
   components: { InputFild, FlatButton },
@@ -103,40 +103,14 @@ export default {
     },
     
     saveBD() {
-     /*this.$http.put('cliente.json', this.getInf())
-        .then(this.cleanFilds())*/
-      
-      /*db.ref('clientes/').push( { nomeDoFilme: this.nomeDoFilme })
-      .then( (data) => { console.log(data)})
-      .catch( (error) => { console.log(error) })*/
-
-      console.log('teste')
-
-
-      let filmes = []
-      db.ref('clientes/').on('value', (snapshot) => {
-      
-        snapshot.forEach(item => {
-          let chave = item.key
-          let dado = item.val()
-
-          //console.log(chave, dado)
-          console.log(chave)
-
-          if(dado.id == '2')
-          console.log('if', dado)
-        })
-
-      })
-      console.log(filmes)
+      data.save('clientes/', this.getInf())
       
     },
 
-    searchBD() {
-     /* this.$http.get('cliente.json')
-        .then(res => {  
-          this.showInf(res.data)    
-        })*/
+    searchBD() {   
+      let idCliente = 3
+      data.search('clientes/', idCliente)
+      
     },
 
   },
