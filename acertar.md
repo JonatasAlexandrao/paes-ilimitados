@@ -8,6 +8,7 @@
 - criar componente botão
 
 --> Tela cliente:
+  - foi trocado a div por um form e agora o "enter" está enviando o formulario e recarregando a pagina
   - campo cliente como combo box
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco

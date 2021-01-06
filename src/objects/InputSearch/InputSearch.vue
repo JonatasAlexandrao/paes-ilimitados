@@ -1,9 +1,16 @@
 <template>
-<div class="combo">
+<div>
+
   <InputFild classInput="-nome" name="nome" inputmode="search" label="Nome Cliente" v-model="localValue" />
 
-  <select class="list" v-model="localValue" tabindex=-1>
-    
+  <input type="search" list="teste" autocomplete = "none" class="divInput -nome">
+
+    <datalist id="teste">
+      <option value="Chrome">Chrome</option>
+      <option value="Firefox">Firefox</option>
+      <option value="Internet Explorer">Internet Explorer</option>
+      <option value="Opera">Opera</option>
+      <option value="Safari">Safari</option>
       <option value="Select">Select....</option>
       <option value="html">HTML 5</option>
       <option value="css">CSS 3</option>
@@ -22,12 +29,12 @@
       <option value="dom">DOM scripting</option>
       <option value="preprocessors">Saas, Less</option>
       <option value="api">HTML 5 API</option>
-    </select>
+    </datalist>
 </div>
 </template>
 
 <script>
-import InputFild from '@/objects/InputFild/InputFild.vue'
+  import InputFild from '@/objects/InputFild/InputFild.vue'
 export default {
   components: { InputFild },
 
@@ -41,12 +48,15 @@ export default {
   },
   watch: {
     value() {
-      this.localValue = this.value
+      //this.localValue = this.value
     },
-    
+
   }
 
 }
 </script>
 
-<style src="./style.scss" lang="scss"/>
+<style>
+
+
+</style>

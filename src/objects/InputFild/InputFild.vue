@@ -4,6 +4,7 @@
       :id="name"
       :name="name"  
       :inputmode="inputmode"
+ 
 
       @focus="test=true"
       @blur="$event.target.value ? test=true : test=false" 

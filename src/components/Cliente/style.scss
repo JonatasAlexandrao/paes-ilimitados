@@ -23,12 +23,12 @@
 }
 
 .endereco {
-  border: $color-white 1px solid;
-  padding: 1rem;
-  margin-top: 2rem;
-  margin-bottom: .5rem;
+  // border: $color-white 1px solid;
+  //padding: .5rem;
+  //margin-top: 2rem;
+  // margin-bottom: .5rem;
 
-  position: relative;
+  //position: relative;
   /*box-sizing: border-box;*/
   display: grid;
   grid-template-columns: 50% 10% 10% 30%;
@@ -40,7 +40,12 @@
 
 }
 
-.endereco > legend {
+.backgroundDiv > fieldset {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.backgroundDiv > fieldset > legend {
   font-size: 1.6rem;
   padding: 0 0.8rem;
 }

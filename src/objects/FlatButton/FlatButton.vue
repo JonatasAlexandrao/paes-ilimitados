@@ -9,6 +9,12 @@ export default {
     handleclick: { type: Function, required: true },
     title: { type: String, required: true },
   },
+  methods: {
+    /*click(event) {
+      event.preventDefault();
+      console.log(event)
+    }*/
+  }
 
 }
 </script>
