@@ -58,6 +58,21 @@
 
 }
 
+.divInput > input:focus ~ label {
+  font-size: $font-small;
+  text-align: left;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: $color-select-input;
+
+  padding-left: 1rem;
+  
+  box-sizing: border-box;
+}
+
 .divInput.-nome {
   /**padding-top: 0.5rem;
   box-sizing: border-box;*/

@@ -1,5 +1,5 @@
 <template>
-  <div class="divInput" :class="classInput">
+  <!-- <div class="divInput" :class="classInput">
     <input 
       :id="name"
       :name="name"  
@@ -8,6 +8,20 @@
 
       @focus="test=true"
       @blur="$event.target.value ? test=true : test=false" 
+
+      @input="updateData($event.target.value)"
+      v-model="localValue"
+
+    >
+
+    <label :class="smallLabel" :for="name">{{ label }}</label>
+  </div>-->
+  <div class="divInput" :class="classInput">
+    <input 
+      :id="name"
+      :name="name"  
+      :inputmode="inputmode"
+      :type="type"
 
       @input="updateData($event.target.value)"
       v-model="localValue"
@@ -27,6 +41,7 @@ export default {
     name: { type: String, required: true },
     label: { type: String, required: true },
     value: { type: String, required: true },
+    type: { type: String, defaul: 'text'},
 
     mask: String,
     inputmode: String,
@@ -35,18 +50,17 @@ export default {
 
   data() {
     return {
-      test: false,
       localValue: '',
     }
   },
   computed: {
     smallLabel() {
          
-      if(this.test)
+      if(this.value)
         return this.name + ' -small'    
       else
         return this.name
-    },
+    }
   },
   watch: {
     value() {
@@ -55,13 +69,7 @@ export default {
     
     },
     localValue() {
-      this.localValue = this.maskFilter(this.localValue)
-
-      if(this.value)
-        this.test = true
-      else 
-        this.test = false
-      
+      this.localValue = this.maskFilter(this.localValue)      
     }
   },
 

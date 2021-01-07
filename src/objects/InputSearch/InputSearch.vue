@@ -1,9 +1,9 @@
 <template>
 <div>
 
-  <InputFild classInput="-nome" name="nome" inputmode="search" label="Nome Cliente" v-model="localValue" />
+  <!-- <InputFild classInput="-nome" name="nome" inputmode="search" label="Nome Cliente"  /> -->
 
-  <input type="search" list="teste" autocomplete = "none" class="divInput -nome">
+  <input type="search" list="teste" autocomplete = "none" class="divInput -nome" v-model="localValue" @input="updateData($event.target.value)">
 
     <datalist id="teste">
       <option value="Chrome">Chrome</option>
@@ -34,9 +34,9 @@
 </template>
 
 <script>
-  import InputFild from '@/objects/InputFild/InputFild.vue'
+  //import InputFild from '@/objects/InputFild/InputFild.vue'
 export default {
-  components: { InputFild },
+ // components: { InputFild },
 
   props: {
     value: { type: String, required: true },
@@ -48,7 +48,15 @@ export default {
   },
   watch: {
     value() {
-      //this.localValue = this.value
+      this.localValue = this.value
+    },
+  },
+  created() {
+    this.localValue = this.value
+  },
+  methods: {
+    updateData(value) {
+      this.$emit('input', value)   
     },
 
   }

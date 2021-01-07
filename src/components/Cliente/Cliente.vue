@@ -9,7 +9,7 @@
 
     <h1>teste: {{clienteNome}}</h1>
 
-    <input type="tel" placeholder="celular">
+    <InputFild classInput="-tel" name="celular" label="Celular" v-model="clienteCelular" />
 
     <fieldset>
       <legend>Endereço</legend>
@@ -46,7 +46,8 @@ export default {
   data() {
     return {
       clienteId:'1', 
-      clienteNome:'aaa', 
+      clienteNome:'aaa',
+      clienteCelular:'', 
       clienteRua:'', 
       clienteNum:'',
       clienteBairro:'',
@@ -76,6 +77,7 @@ export default {
     cleanFilds() {
       this.clienteId=''
       this.clienteNome=''
+      this.clienteCelular=''
       this.clienteRua=''
       this.clienteNum=''
       this.clienteBairro=''
@@ -93,6 +95,7 @@ export default {
       let clienteObj = {}
       clienteObj.id = this.clienteId
       clienteObj.nome = this.clienteNome
+      clienteObj.celular = this.clienteCelular
       clienteObj.rua = this.clienteRua
       clienteObj.num = this.clienteNum
       clienteObj.bairro = this.clienteBairro
@@ -107,6 +110,7 @@ export default {
 
       this.clienteId = obj.id
       this.clienteNome = obj.nome
+      this.clienteCelular = obj.celular
       this.clienteRua = obj.rua
       this.clienteNum = obj.num
       this.clienteBairro = obj.bairro
