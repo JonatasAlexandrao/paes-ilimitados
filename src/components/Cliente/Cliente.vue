@@ -6,6 +6,21 @@
 
     <!-- <InputFild classInput="-nome" name="nome" label="Nome Cliente" v-model="clienteNome" /> -->
     <InputSearch v-model="clienteNome"></InputSearch>
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search">
+      <div class="selectList">
+        <div class="optionList" v-for="(item, index) in teste" :key="index" >
+          <input type="radio" name="radioClientes" :id="index">
+          <label :for="index">{{ item.nome }}</label>
+        </div>     
+      </div>
+    </InputFild>
+
+    <!-- <input type="search" list="eee" autocomplete = "none" class="divInput -nome" @click="testeAqui('input')">
+    <datalist id="eee">
+      <option v-for="(item, index) in teste" :key="index" :value="item.id" @click="testeAqui('option')" :id=index class="optionnn">{{item.nome}}</option>
+    </datalist>
+      <option v-for="(item, index) in teste" :key="index" :value="item.id" @click="testeAqui('option')" :id=index class="optionnn">{{item.nome}}</option> -->
+
 
     <h1>teste: {{clienteNome}}</h1>
 
@@ -45,8 +60,10 @@ export default {
   
   data() {
     return {
+      teste: data.obj(),
+
       clienteId:'1', 
-      clienteNome:'aaa',
+      clienteNome:'',
       clienteCelular:'', 
       clienteRua:'', 
       clienteNum:'',
@@ -70,9 +87,11 @@ export default {
    },
 
   methods: {
-    // testeAqui(){
-    //   console.log(event)
-    // },
+     testeAqui(t){
+       console.log(t)
+       const d = document.getElementById('0')
+       console.log(d)
+     },
 
     cleanFilds() {
       this.clienteId=''
@@ -121,7 +140,7 @@ export default {
     
     saveBD() {
       //data.save('clientes/', this.getInf())
-      console.log(this.getInf())
+      console.log(data.obj())
       
     },
 

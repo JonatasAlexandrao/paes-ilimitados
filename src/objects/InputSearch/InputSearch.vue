@@ -1,10 +1,7 @@
 <template>
 <div>
-
-  <!-- <InputFild classInput="-nome" name="nome" inputmode="search" label="Nome Cliente"  /> -->
-
+  
   <input type="search" list="teste" autocomplete = "none" class="divInput -nome" v-model="localValue" @input="updateData($event.target.value)">
-
     <datalist id="teste">
       <option value="Chrome">Chrome</option>
       <option value="Firefox">Firefox</option>

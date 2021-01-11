@@ -5,6 +5,7 @@
 .divInput {
   position: relative;
   margin: .3rem;
+  //width: 100%;
 }
 
 .divInput.-id, .divInput.-nome {
@@ -12,45 +13,37 @@
   margin-right: 0;
   margin-top: 0.5rem;
 }
+.divInput.-rua {
+  grid-area: rua;
+}
+.divInput.-num {
+  grid-area: num;
+}
+.divInput.-bairro {
+  grid-area: bairro;
+}
+.divInput.-cidade {
+  grid-area: cidade;
+}
+.divInput.-valor {
+  grid-area: valor;
+}
 
 .divInput > input {
 
   font-size: $font-standard;
-
   text-align: right;
 
   width: 100%;
-  height: 3.8rem;
+  height: 4rem;
   padding: 1rem 1rem 0rem 1rem;
 
   background-color: $color-white;
   border: none;
+  border-radius: 0.4rem;
+
   box-sizing: border-box;
-}
-
-.divInput > label {
-  font-size: $font-standard;
-
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  pointer-events: none; /*é como se o elemento estivesse por baixo assim da pra clicar no input mesmo por cima dele*/
-  
-}
-
-.divInput > label.-small {
-  font-size: $font-small;
-  text-align: left;
-
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: $color-select-input;
-
-  padding-left: 1rem;
-  
-  box-sizing: border-box;
+  outline: none;
 }
 
 .divInput > input:focus {
@@ -73,22 +66,108 @@
   box-sizing: border-box;
 }
 
-.divInput.-nome {
-  /**padding-top: 0.5rem;
-  box-sizing: border-box;*/
+
+
+
+
+
+.divInput > .selectList {
+  position: absolute;
+  width: 100%;
+  height: 18rem;
+
+  margin-top: 0.8rem;
+  background-color: brown;
+  ;
+  max-height: 0;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+
+  //opacity: 0;
+
 }
-.divInput.-rua {
-  grid-area: rua;
+
+.divInput > .selectList.-active {
+  overflow-y: scroll;
+  max-height: 18rem;
+  scrollbar-width: thin;
+  scrollbar-color:rgb(87, 23, 23) rgb(146, 37, 37);
 }
-.divInput.-num {
-  grid-area: num;
+
+.divInput > .selectList::-webkit-scrollbar {
+  width: 0.8rem;
+  background: rgb(87, 23, 23);
+  border-radius: 0.4rem;
 }
-.divInput.-bairro {
-  grid-area: bairro;
+.divInput > .selectList::-webkit-scrollbar-thumb {
+  width: 0.8rem;
+  background: rgb(146, 37, 37);
+  border-radius: 0 0.4rem 0.4rem 0;
 }
-.divInput.-cidade {
-  grid-area: cidade;
+
+.divInput > .selectList .optionList {
+
+  width: 100%;
+  background-color: brown;
+  font-size: $font-standard;
+  text-align: left;
+  //padding: 1rem;
+  box-sizing: border-box;
+  
+
 }
-.divInput.-valor {
-  grid-area: valor;
+
+.divInput > .selectList .optionList:hover {
+  background-color: rgb(63, 84, 92);
 }
+
+.divInput > .selectList .optionList > input {
+  position: absolute;
+  display: none;
+}
+
+.divInput > .selectList .optionList > label {
+  width: 100%;
+  display: inline-block;
+  //background-color: cornflowerblue;
+
+  padding: 1rem 0  1rem 2rem;
+
+  cursor: pointer;
+
+
+}
+
+
+
+
+
+.divInput > label {
+  font-size: $font-standard;
+  color: $color-description;
+
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  pointer-events: none; /*é como se o elemento estivesse por baixo assim da pra clicar no input mesmo por cima dele*/
+  
+}
+
+.divInput > label.-small {
+  font-size: $font-small;
+  text-align: left;
+
+  left: 0;
+  top: 0.2rem;
+  width: 100%;
+  height: 100%;
+  color: $color-select-input;
+
+  padding-left: 1rem;
+  
+  box-sizing: border-box;
+}
+
+

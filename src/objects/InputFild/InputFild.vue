@@ -1,32 +1,19 @@
 <template>
-  <!-- <div class="divInput" :class="classInput">
-    <input 
-      :id="name"
-      :name="name"  
-      :inputmode="inputmode"
- 
-
-      @focus="test=true"
-      @blur="$event.target.value ? test=true : test=false" 
-
-      @input="updateData($event.target.value)"
-      v-model="localValue"
-
-    >
-
-    <label :class="smallLabel" :for="name">{{ label }}</label>
-  </div>-->
   <div class="divInput" :class="classInput">
     <input 
       :id="name"
       :name="name"  
       :inputmode="inputmode"
       :type="type"
+      :list="list"
 
       @input="updateData($event.target.value)"
       v-model="localValue"
 
+      autocomplete="off"
+
     >
+    <slot></slot>
 
     <label :class="smallLabel" :for="name">{{ label }}</label>
   </div>
@@ -41,7 +28,8 @@ export default {
     name: { type: String, required: true },
     label: { type: String, required: true },
     value: { type: String, required: true },
-    type: { type: String, defaul: 'text'},
+    type: { type: String, default: 'text'},
+    list: String,
 
     mask: String,
     inputmode: String,
@@ -55,7 +43,7 @@ export default {
   },
   computed: {
     smallLabel() {
-         
+         //this.value ? this.name + ' -small' : this.name
       if(this.value)
         return this.name + ' -small'    
       else
