@@ -8,6 +8,31 @@ const data = (function() {
     db.ref(ref).push().set(obj)
   }
 
+  module.searchList = (ref) => {
+    let dado = []
+    db.ref(ref).on('value', (snapshot) => { 
+      /*snapshot.forEach(item => {
+        dado = item.val()
+      })*/  
+      //console.log(snapshot.val())
+      dado = snapshot.val()  
+      /*snapshot.map((item, index) => {
+        dado[index] = item.val()
+      })/*
+    //dado = snapshot.val()*/
+    let i = 0
+      snapshot.forEach((item) => {
+        console.log(item.val())
+        console.log(i)
+        dado[i] = item.val()
+        i++
+      })
+    })
+    console.log('----------')
+    console.log(dado)
+    return dado
+  }
+
   module.search = (ref, id) => {
 
     db.ref(ref).on('value', (snapshot) => {
@@ -48,7 +73,8 @@ const data = (function() {
   return {
     save: module.save,
     search: module.search,
-    obj: module.objCliente
+    obj: module.objCliente,
+    searchList: module.searchList
   }
 
 })()

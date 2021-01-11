@@ -1,0 +1,71 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+
+.selectList {
+  position: absolute;
+  width: 100%;
+  height: 18rem;
+
+  margin-top: 0.8rem;
+  background-color: brown;
+  ;
+  max-height: 0;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+
+  //opacity: 0;
+
+}
+
+.selectList.-active {
+  overflow-y: scroll;
+  max-height: 18rem;
+  scrollbar-width: thin;
+  scrollbar-color:rgb(87, 23, 23) rgb(146, 37, 37);
+}
+
+.selectList::-webkit-scrollbar {
+  width: 0.8rem;
+  background: rgb(87, 23, 23);
+  border-radius: 0.4rem;
+}
+.selectList::-webkit-scrollbar-thumb {
+  width: 0.8rem;
+  background: rgb(146, 37, 37);
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+.selectList .optionList {
+
+  width: 100%;
+  background-color: brown;
+  font-size: $font-standard;
+  text-align: left;
+  //padding: 1rem;
+  box-sizing: border-box;
+  
+
+}
+
+.selectList .optionList:hover {
+  background-color: rgb(63, 84, 92);
+}
+
+.selectList .optionList > input {
+  position: absolute;
+  display: none;
+}
+
+.selectList .optionList > label {
+  width: 100%;
+  display: inline-block;
+  //background-color: cornflowerblue;
+
+  padding: 1rem 0  1rem 2rem;
+
+  cursor: pointer;
+
+
+}

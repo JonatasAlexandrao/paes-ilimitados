@@ -5,15 +5,20 @@
     <p class="id">ID: {{clienteId}}</p>
 
     <!-- <InputFild classInput="-nome" name="nome" label="Nome Cliente" v-model="clienteNome" /> -->
-    <InputSearch v-model="clienteNome"></InputSearch>
+  
     <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search">
-      <div class="selectList">
+
+      <SelectList :activeList="activeList" :itens="lista" />
+      
+      <!-- <div class="selectList">
         <div class="optionList" v-for="(item, index) in teste" :key="index" >
           <input type="radio" name="radioClientes" :id="index">
           <label :for="index">{{ item.nome }}</label>
         </div>     
-      </div>
+      </div> -->
     </InputFild>
+
+    
 
     <!-- <input type="search" list="eee" autocomplete = "none" class="divInput -nome" @click="testeAqui('input')">
     <datalist id="eee">
@@ -50,17 +55,18 @@
 <script>
 import InputFild from '@/objects/InputFild/InputFild.vue'
 import FlatButton from '@/objects/FlatButton/FlatButton'
-import InputSearch from '@/objects/InputSearch/InputSearch'
+import SelectList from '@/objects/SelectList/SelectList'
 
 import mask from '@/assets/mask/mask'
 import data from '@/database/data'
 
 export default {
-  components: { InputFild, FlatButton, InputSearch },
+  components: { InputFild, FlatButton, SelectList },
   
   data() {
     return {
-      teste: data.obj(),
+      lista: data.obj(),
+      activeList: true,
 
       clienteId:'1', 
       clienteNome:'',
@@ -140,8 +146,9 @@ export default {
     
     saveBD() {
       //data.save('clientes/', this.getInf())
-      console.log(data.obj())
-      
+      //console.log(data.obj())
+      //let teste = data.searchList('clientes/')
+      //console.log(teste)
     },
 
     searchBD() {   
