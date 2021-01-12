@@ -5,10 +5,11 @@
       :name="name"  
       :inputmode="inputmode"
       :type="type"
-      :list="list"
 
       @input="updateData($event.target.value)"
       v-model="localValue"
+      @click="clickInputSearch('click')"
+      @blur="clickInputSearch('blur')"
 
       autocomplete="off"
 
@@ -29,7 +30,6 @@ export default {
     label: { type: String, required: true },
     value: { type: String, required: true },
     type: { type: String, default: 'text'},
-    list: String,
 
     mask: String,
     inputmode: String,
@@ -66,6 +66,11 @@ export default {
   },
 
   methods: {
+
+    clickInputSearch(action) {
+      if(this.type == 'search')
+        this.$store.dispatch('activeListClient', action)
+    },
 
     updateData(value) {
       this.$emit('input', value)   

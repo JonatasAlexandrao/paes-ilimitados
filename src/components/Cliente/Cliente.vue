@@ -8,7 +8,7 @@
   
     <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search">
 
-      <SelectList :activeList="activeList" :itens="lista" />
+      <SelectList :itens="lista" />
       
       <!-- <div class="selectList">
         <div class="optionList" v-for="(item, index) in teste" :key="index" >
@@ -17,15 +17,6 @@
         </div>     
       </div> -->
     </InputFild>
-
-    
-
-    <!-- <input type="search" list="eee" autocomplete = "none" class="divInput -nome" @click="testeAqui('input')">
-    <datalist id="eee">
-      <option v-for="(item, index) in teste" :key="index" :value="item.id" @click="testeAqui('option')" :id=index class="optionnn">{{item.nome}}</option>
-    </datalist>
-      <option v-for="(item, index) in teste" :key="index" :value="item.id" @click="testeAqui('option')" :id=index class="optionnn">{{item.nome}}</option> -->
-
 
     <h1>teste: {{clienteNome}}</h1>
 
@@ -41,6 +32,7 @@
       <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />     
       </div>
     </fieldset>
+
 
     <FlatButton classButton="-save" :handleclick="saveBD" title="Gravar" />
     <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" />
@@ -62,11 +54,20 @@ import data from '@/database/data'
 
 export default {
   components: { InputFild, FlatButton, SelectList },
+
+  computed: {
+    produtoVuex() {
+      return this.$store.state.produtos
+    },
+    activeList() {
+      return this.$store.state.activeListClient
+    },
+
+  },
   
   data() {
     return {
       lista: data.obj(),
-      activeList: true,
 
       clienteId:'1', 
       clienteNome:'',
@@ -75,7 +76,7 @@ export default {
       clienteNum:'',
       clienteBairro:'',
       clienteCidade:'',
-      clienteValor:''
+      clienteValor:'',
     }
   },
 
@@ -148,7 +149,10 @@ export default {
       //data.save('clientes/', this.getInf())
       //console.log(data.obj())
       //let teste = data.searchList('clientes/')
-      //console.log(teste)
+      //console.log(this.produtoVuex)
+
+      /*this.$store.commit('activeClientMutations')
+      console.log(this.$store.state.activeListClient)*/
     },
 
     searchBD() {   

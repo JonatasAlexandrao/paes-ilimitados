@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
+import store from '@/store/store'
 
-//import store from '@/store/store'
 //import '@/plugin/axios'
 import '@/database/firebase'
 
@@ -10,6 +10,6 @@ import '@/database/firebase'
 Vue.config.productionTip = false
 
 new Vue({
-  //store,
+  store,
   render: h => h(App),
 }).$mount('#app')

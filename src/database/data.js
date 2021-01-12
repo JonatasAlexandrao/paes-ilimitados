@@ -58,12 +58,12 @@ const data = (function() {
       {id: 1,nome: "Jonatas",celular: "(19)99876-5432",valor: "100,00"},
       {id: 2,nome: "Pamela",celular: "(19)99876-5432",valor: "100,00"},
       {id: 3,nome: "Diego",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 1,nome: "Jon",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 2,nome: "Carinha ai",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 3,nome: "Teste",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 1,nome: "Jorge",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 2,nome: "Malu",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 3,nome: "Tos",celular: "(19)99876-5432",valor: "100,00"}
+      {id: 4,nome: "Jon",celular: "(19)99876-5432",valor: "100,00"},
+      {id: 5,nome: "Carinha ai",celular: "(19)99876-5432",valor: "100,00"},
+      {id: 6,nome: "Teste",celular: "(19)99876-5432",valor: "100,00"},
+      {id: 7,nome: "Jorge",celular: "(19)99876-5432",valor: "100,00"},
+      {id: 8,nome: "Malu",celular: "(19)99876-5432",valor: "100,00"},
+      {id: 9,nome: "Tos",celular: "(19)99876-5432",valor: "100,00"}
     ]
       
     
