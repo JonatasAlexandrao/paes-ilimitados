@@ -3,22 +3,13 @@
 
     <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
     <p class="id">ID: {{clienteId}}</p>
-
-    <!-- <InputFild classInput="-nome" name="nome" label="Nome Cliente" v-model="clienteNome" /> -->
   
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search">
-
-      <SelectList :itens="lista" />
-      
-      <!-- <div class="selectList">
-        <div class="optionList" v-for="(item, index) in teste" :key="index" >
-          <input type="radio" name="radioClientes" :id="index">
-          <label :for="index">{{ item.nome }}</label>
-        </div>     
-      </div> -->
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :itens="lista" >
+      <DropDownList :itens="lista" />
     </InputFild>
 
     <h1>teste: {{clienteNome}}</h1>
+    <h1>ID: {{idCli}}</h1>
 
     <InputFild classInput="-tel" name="celular" label="Celular" v-model="clienteCelular" />
 
@@ -38,7 +29,7 @@
     <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" />
     <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
     <input type="reset">
-    <!-- <button @click="testeAqui(event)">teste</button> -->
+    
 
 
   </form>
@@ -47,13 +38,13 @@
 <script>
 import InputFild from '@/objects/InputFild/InputFild.vue'
 import FlatButton from '@/objects/FlatButton/FlatButton'
-import SelectList from '@/objects/SelectList/SelectList'
+import DropDownList from '@/objects/DropDownList/DropDownList'
 
 import mask from '@/assets/mask/mask'
 import data from '@/database/data'
 
 export default {
-  components: { InputFild, FlatButton, SelectList },
+  components: { InputFild, FlatButton, DropDownList},
 
   computed: {
     produtoVuex() {
@@ -62,6 +53,9 @@ export default {
     activeList() {
       return this.$store.state.activeListClient
     },
+    idCli() {
+      return this.$store.state.cliente.id
+    }
 
   },
   
@@ -94,11 +88,6 @@ export default {
    },
 
   methods: {
-     testeAqui(t){
-       console.log(t)
-       const d = document.getElementById('0')
-       console.log(d)
-     },
 
     cleanFilds() {
       this.clienteId=''
@@ -115,7 +104,7 @@ export default {
       input[0].focus()
 
     },
-
+  
     getInf() {
       
       let clienteObj = {}
@@ -146,6 +135,8 @@ export default {
     },
     
     saveBD() {
+      this.$store.state.cliente.id = '111'
+      console.log(this.$store.state.cliente.id)
       //data.save('clientes/', this.getInf())
       //console.log(data.obj())
       //let teste = data.searchList('clientes/')

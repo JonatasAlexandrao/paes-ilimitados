@@ -15,7 +15,7 @@
 
     >
     <slot></slot>
-
+    
     <label :class="smallLabel" :for="name">{{ label }}</label>
   </div>
 </template>

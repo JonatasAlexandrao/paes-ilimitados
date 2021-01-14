@@ -1,4 +1,13 @@
 OPTIONS.CLASSLIST.TOGGLE("ACTIVE")
+----------------------------------------
+document.getElementById("meu-input").onkeypress = function(e) {
+    // 13 é a tecla <ENTER>. Se ela for pressionada, mostrar o valor
+    if (e.keyCode == 13) {
+        mostrarValor();
+        e.preventDefault();
+    }
+}
+----------------------------------------
 410x750
 
 (OK) - quando troca o tipo de input muda o teclado no celular.

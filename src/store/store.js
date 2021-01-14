@@ -5,7 +5,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     cliente: {
-      id: '',
+      id: '999',
       nome: '',
       celular: '',
       rua: '',
