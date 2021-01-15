@@ -1,9 +1,9 @@
 <template>
   <div class="selectList" :class="active">
-    <div class="optionList" v-for="(item, index) in lista" :key="index" >
-      <input type="radio" name="radioClientes" :id="index">
-      <label :for="index" @click="handleclick($event.target.attributes.value.value)" :value="item.id">{{ item.nome }}</label>
-    </div>     
+    <ul class="optionList" v-for="(item, index) in lista" :key="index" >
+      <!-- <input type="radio" name="radioClientes" :id="index"> -->
+      <li :for="index" @click="handleclick($event.target.attributes.value.value)" :value="item.id">{{ item.nome }}</li>
+    </ul>     
   </div>
 </template>
 
@@ -31,9 +31,12 @@ export default {
     }
   },
   methods: {
-    handleclick(ev) {
-      console.log(ev)
+    handleclick(id) {
+      //console.log(id)
       //this.$store.state.cliente.id = ev
+      //this.$store.commit('selectedItemId', id)
+      this.$store.dispatch('selectedItemId', id)
+      console.log(this.$store.state.idCliente)
     }
 
   }

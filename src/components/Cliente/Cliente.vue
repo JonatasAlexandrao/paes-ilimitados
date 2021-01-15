@@ -9,7 +9,6 @@
     </InputFild>
 
     <h1>teste: {{clienteNome}}</h1>
-    <h1>ID: {{idCli}}</h1>
 
     <InputFild classInput="-tel" name="celular" label="Celular" v-model="clienteCelular" />
 
@@ -53,9 +52,6 @@ export default {
     activeList() {
       return this.$store.state.activeListClient
     },
-    idCli() {
-      return this.$store.state.cliente.id
-    }
 
   },
   
@@ -135,8 +131,8 @@ export default {
     },
     
     saveBD() {
-      this.$store.state.cliente.id = '111'
-      console.log(this.$store.state.cliente.id)
+      //this.$store.state.cliente.id = '111'
+      //console.log(this.$store.state.cliente.id)
       //data.save('clientes/', this.getInf())
       //console.log(data.obj())
       //let teste = data.searchList('clientes/')
@@ -144,6 +140,22 @@ export default {
 
       /*this.$store.commit('activeClientMutations')
       console.log(this.$store.state.activeListClient)*/
+
+      const l = this.lista
+
+
+      let testePesquisa 
+      l.forEach(obj => {
+        //console.log(obj.id)
+        if(obj.id == '1')
+          testePesquisa = obj
+      });
+      
+      //const testePes = l.filter(function(obj){ obj });
+      //const testePesquisa = l.reduce((obj) =>{obj.id == '1'})
+
+      //console.log(l)
+      console.log(testePesquisa)
     },
 
     searchBD() {   
