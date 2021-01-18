@@ -29,10 +29,23 @@ const mask = (function() {
     
   }
 
+  module.maskFilter = (filter, value) => {
+
+    if(filter == 'noString'){
+      value = module.noLetter(value)
+     }  
+     else if(filter == 'money'){
+      value = module.money(value)
+     }
+    
+     return value
+
+
+  }
+
 
   return {
-    noLetter: module.noLetter,
-    money: module.money
+    maskFilter: module.maskFilter
   }
 
 })()

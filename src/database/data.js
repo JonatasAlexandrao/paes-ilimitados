@@ -33,10 +33,10 @@ const data = (function() {
     return dado
   }
 
-  module.search = (ref, id) => {
+  module.searchById = (ref, id) => {
+    let obj
 
-    db.ref(ref).on('value', (snapshot) => {
-      
+    db.ref(ref).on('value', (snapshot) => {     
       snapshot.forEach(item => {
         //let chave = item.key
         let dado = item.val()
@@ -45,11 +45,40 @@ const data = (function() {
         //console.log(chave)
 
         if(dado.id == id)
-        console.log('if', dado)
-        else
-        console.log('else', dado)
+        return obj = dado
+    
       })
+      //console.log(2,obj)
     })
+    
+    return obj
+
+  }
+
+  module.searchById2 = (ref, id) => {
+    let obj
+
+    db.ref(ref).on('value', (snapshot) => {     
+      snapshot.forEach(item => {
+        //let chave = item.key
+        let dado = item.val()
+
+        //console.log(chave, dado) 
+        //console.log(chave)
+
+        if(dado.id == id)
+         obj = dado
+        //console.log('if', dado)
+        //return dado
+        //else
+       // return 'vazio'
+        //console.log('else', dado)
+        //console.log(1,obj)
+      })
+      //console.log(2,obj)
+    })
+    
+    return obj
 
   }
 
@@ -70,9 +99,10 @@ const data = (function() {
     return obj
   }
 
+
   return {
     save: module.save,
-    search: module.search,
+    searchById: module.searchById,
     obj: module.objCliente,
     searchList: module.searchList
   }

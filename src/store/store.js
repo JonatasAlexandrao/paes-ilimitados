@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+//import data from '@/database/data'
+
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     cliente: {
-      id: '',
+      id: '1',
       nome: '',
       celular: '',
       rua: '',
@@ -15,7 +17,8 @@ const store = new Vuex.Store({
       valor: ''
     },
     idCliente: '',
-    idProduto: '',
+
+    //idProduto: '',
     activeListClient: false
   },
   
@@ -35,9 +38,11 @@ const store = new Vuex.Store({
     idCliente(state, id) {
       state.idCliente = id
     },
-    idProduto(state, id) {
-      state.idProduto = id
+    idNum(state, num) {
+      state.idNum = num
     }
+    
+
   },
   actions: {
     /*adicionarProduto(context, payload) {
@@ -45,12 +50,15 @@ const store = new Vuex.Store({
         context.commit('adicionarProduto', payload)
       }, 1000)
     }*/
-    selectedItemId(context, item) {
+    selectedItemId(context, id) {
      /* if(item[0] == 'cliente')
         context.commit('idCliente', item)
       else if(item[0] == 'produto')
         context.commit('idProduto', item)*/
-        context.commit('idCliente', item)
+
+      //const obj = data.searchById('clientes/', id)
+
+        context.commit('idCliente', id)
     },
 
     activeListClient(context, action) {

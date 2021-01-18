@@ -53,11 +53,14 @@ export default {
   watch: {
     value() {
       this.localValue = this.value 
-      this.localValue = this.maskFilter(this.localValue) 
+     /* let teste = this.localValue
+      teste = this.maskFilter(teste)
+      this.localValue = teste*/
+      this.localValue = mask.maskFilter(this.mask, this.localValue) 
     
     },
     localValue() {
-      this.localValue = this.maskFilter(this.localValue)      
+      this.localValue = mask.maskFilter(this.mask, this.localValue)      
     }
   },
 
