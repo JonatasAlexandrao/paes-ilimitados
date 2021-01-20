@@ -16,7 +16,7 @@ const store = new Vuex.Store({
       cidade: '',
       valor: ''
     },
-    idCliente: '',
+    //idCliente: '33',
 
     //idProduto: '',
     activeListClient: false
@@ -35,11 +35,40 @@ const store = new Vuex.Store({
     activeListClient(state, active) {
       state.activeListClient = active
     },
-    idCliente(state, id) {
-      state.idCliente = id
+    setIdCliente(state, id) {
+      state.cliente.id = id
     },
-    idNum(state, num) {
-      state.idNum = num
+    setNomeCliente(state, nome) {
+      state.cliente.nome = nome
+    },
+    setCelularCliente(state, celular) {
+      state.cliente.celular = celular
+    },
+    setRuaCliente(state, rua) {
+      state.cliente.rua = rua
+    },
+    setNumCliente(state, num) {
+      state.cliente.num = num
+    },
+    setBairroCliente(state, bairro) {
+      state.cliente.bairro = bairro
+    },
+    setCidadeCliente(state, cidade) {
+      state.cliente.cidade = cidade
+    },
+    setValorCliente(state, valor) {
+      state.cliente.valor = valor
+    },
+
+    cleanAll(state) {
+      state.cliente.id = ''
+      state.cliente.nome = ''
+      state.cliente.celular = ''
+      state.cliente.rua = ''
+      state.cliente.num = ''
+      state.cliente.bairro = ''
+      state.cliente.cidade = ''
+      state.cliente.valor = ''
     }
     
 
@@ -62,9 +91,9 @@ const store = new Vuex.Store({
     },
 
     activeListClient(context, action) {
-      if(action == 'click')
+      if(action == 'clickInput')
         context.commit('activeListClient', !context.state.activeListClient)
-      else if(action == 'blur')
+      else if(action == 'clickList' || action == 'blur')
       context.commit('activeListClient', false)
     }
   }

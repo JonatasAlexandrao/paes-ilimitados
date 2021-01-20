@@ -4,13 +4,13 @@
     <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
     <p class="id">ID: {{clienteId}}</p>
   
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :itens="lista" >
-      <DropDownList :itens="lista" :selectClient="selectClient" />
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :itens="lista" inputmode="text">
+      <DropDownList :itens="lista" :selectClient="selectClient" slot="list"/>
     </InputFild>
 
     <h1>teste: {{clienteNum}}</h1>
 
-    <InputFild classInput="-tel" name="celular" label="Celular" v-model="clienteCelular" />
+    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" />
 
     <fieldset>
       <legend>Endereço</legend>
@@ -28,7 +28,6 @@
     <!-- Não Parece fazer sentido ---
     <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" /> -->
     <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
-    <input type="reset">
     
 
 
@@ -47,21 +46,38 @@ import data from '@/database/data'
 export default {
   components: { InputFild, FlatButton, DropDownList},
 
+  created: function() { this.nextId() },
+
   computed: {
-    activeList() {
-      return this.$store.state.activeListClient
+    activeList() { return this.$store.state.activeListClient },
+    clienteId() { return this.$store.state.cliente.id },
+    clienteNome: {
+      get(){ return this.$store.state.cliente.nome },
+      set(value){ this.$store.commit('setNomeCliente', value) }
     },
-    clienteId() {
-      return this.$store.state.idCliente
+    clienteCelular: {
+      get(){ return this.$store.state.cliente.celular },
+      set(value){ this.$store.commit('setCelularCliente', value) }
     },
-    clienteNum() {
-      /*get(){
-        return this.$store.state.idCliente
-      },
-      set(value){
-        this.$store.commit('idNum', value)  
-      }*/
-      return this.$store.state.idCliente
+    clienteRua: {
+      get(){ return this.$store.state.cliente.rua },
+      set(value){ this.$store.commit('setRuaCliente', value) }
+    },
+    clienteNum: {
+      get(){ return this.$store.state.cliente.num },
+      set(value){ this.$store.commit('setNumCliente', value) }
+    },
+    clienteBairro: {
+      get(){ return this.$store.state.cliente.bairro },
+      set(value){ this.$store.commit('setBairroCliente', value) }
+    },
+    clienteCidade: {
+      get(){ return this.$store.state.cliente.cidade },
+      set(value){ this.$store.commit('setCidadeCliente', value) }
+    },
+    clienteValor: {
+      get(){ return this.$store.state.cliente.valor },
+      set(value){ this.$store.commit('setValorCliente', value) }
     }
 
   },
@@ -69,49 +85,48 @@ export default {
   data() {
     return {
       lista: data.obj(),
-
+      /*
       //clienteId:'1', 
-      clienteNome:'',
+      //clienteNome:'',
       clienteCelular:'', 
       clienteRua:'', 
       //clienteNum:'',
       clienteBairro:'',
       clienteCidade:'',
-      clienteValor:'',
+      clienteValor:'',*/
     }
   },
 
-
-  watch: {
-    /* clienteNum() {
-       this.clienteNum = mask.noLetter(this.clienteNum)
-     },
-    /* clienteValor() {
-       this.clienteValor = mask.money(this.clienteValor)
-     }*/
-   },
-
   methods: {
 
+    nextId(){
+      /*console.log(this.lista)
+      console.log(this.lista.length)
+      console.log(this.lista[this.lista.length-1].id)*/
+      const ultimoId = (this.lista[this.lista.length-1].id) +1
+      //console.log(ultimoID)
+      this.$store.commit('setIdCliente', ultimoId)
+      
+    },
+
     selectClient(client) {
-      this.$store.commit('idCliente', client.id)
-      this.clienteNome = client.nome
+      this.$store.commit('setIdCliente', client.id)
+      this.$store.commit('setNomeCliente', client.nome)
+      this.$store.commit('setCelularCliente', client.celular)
+      this.$store.commit('setRuaCliente', client.rua)
+      this.$store.commit('setNumCliente', client.num)
+      this.$store.commit('setBairroCliente', client.bairro)
+      this.$store.commit('setCidadeCliente', client.cidade)
+      this.$store.commit('setValorCliente', client.valor)
+      //this.clienteNome = client.nome
     },
 
     cleanFilds() {
-      this.clienteId=''
-      this.clienteNome=''
-      this.clienteCelular=''
-      this.clienteRua=''
-      this.clienteNum=''
-      this.clienteBairro=''
-      this.clienteCidade=''
-      this.clienteValor=''
+      this.$store.commit('cleanAll')
+      this.nextId()
 
       const input = document.getElementsByTagName('input')
-
       input[0].focus()
-
     },
   
     getInf() {
@@ -144,7 +159,9 @@ export default {
     },
     
     saveBD() {
-      this.$store.commit('idCliente', 10)
+      //this.$store.commit('setIdCliente', 10)
+      this.proximoID()
+      console.log('Salvar no banco?')
       /* forEach ---------------
       const l = this.lista
       let testePesquisa 
@@ -158,7 +175,7 @@ export default {
 
 
      //data.save('clientes/', this.getInf())
-     console.log('Salvar no banco?')
+     
 
 
       //this.$store.state.cliente.id = '111'

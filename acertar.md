@@ -10,29 +10,28 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
-(OK) - quando troca o tipo de input muda o teclado no celular.
-(OK)- quando uso type number no input o replace para de funcionar, então as mascaras não estão funcionando em campos não text
-(OK) criar evento para limpar inputs
+
 
 - criar componente botão
 
 --> Tela cliente:
-  - foi trocado a div por um form e agora o "enter" está enviando o formulario e recarregando a pagina
-  - campo cliente como combo box
+  - criar mascara para o input celular
+
+  -->Imput com lista de nomes
+  - quando usado o evento blur para sumir a lista no celular o click não está pegando os valores e adicionando nos inputs.
+
+ --> Banco 
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco
-  - povoar o campo ID automaticamente
   - Exibir mensagem de confirmação de save
   
 
 --> Button
   - escolher cores para os botões
+  - quando todos os inputs estiverem com valores o gravar pode ficar colorido
 
 - Seria o certo separar em um arquivo as functions que mexem com o banco e só chamalas no componente passando um obj...
 
-
-
-- como fazer para q no celular já passe direto para o proximo campo depois (tab)
 
 - Pesquisar sobre scolp da tag style do vue 
 
@@ -40,9 +39,15 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
 
 # Problemas:
-    - quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
-
-
+    
+(ok) povoar o campo ID automaticamente
+(ok) como fazer para q no celular já passe direto para o proximo campo depois (tab)
+(ok) quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
+(OK) - quando troca o tipo de input muda o teclado no celular.
+(OK)- quando uso type number no input o replace para de funcionar, então as mascaras não estão funcionando em campos não text
+(OK) criar evento para limpar inputs
+(ok) foi trocado a div por um form e agora o "enter" está enviando o formulario e recarregando a pagina
+(ok) campo cliente como combo box
 
 (OK) Probelmas com o input:
 - quando busco as inf no banco e coloco elas nos inputs ao clicar elas somem.

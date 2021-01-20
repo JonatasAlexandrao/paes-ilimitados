@@ -84,15 +84,15 @@ const data = (function() {
 
   module.objCliente = () => {
     let obj = [
-      {id: 1,nome: "Jonatas",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 2,nome: "Pamela",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 3,nome: "Diego",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 4,nome: "Jon",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 5,nome: "Carinha ai",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 6,nome: "Teste",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 7,nome: "Jorge",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 8,nome: "Malu",celular: "(19)99876-5432",valor: "100,00"},
-      {id: 9,nome: "Tos",celular: "(19)99876-5432",valor: "100,00"}
+      {id: 1,nome: "Jonatas",celular: "(19)99876-5432",valor: "100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 2,nome: "Pamela",celular: "(19)99999-5499",valor: "1880,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 3,nome: "Diego",celular: "(19)99888-8888",valor: "140,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 4,nome: "Jon",celular: "(19)99877-7777",valor: "16,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 5,nome: "Carinha ai",celular: "(19)99566-5656",valor: "1080,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 6,nome: "Teste",celular: "(19)99444-5444",valor: "150,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 7,nome: "Jorge",celular: "(19)99833-3333",valor: "1000,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 8,nome: "Malu",celular: "(19)99876-2222",valor: "110,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXVVVVVVV', cidade: 'Amparo'},
+      {id: 9,nome: "Tos",celular: "(19)99876-1111",valor: "100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tirrrrrra dentes XXV', cidade: 'Amparo'}
     ]
       
     

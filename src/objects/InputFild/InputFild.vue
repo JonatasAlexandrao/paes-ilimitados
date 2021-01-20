@@ -7,14 +7,17 @@
       :type="type"
 
       @input="updateData($event.target.value)"
+      
       v-model="localValue"
-      @click="clickInputSearch('click')"
-      @blur="clickInputSearch('blur')"
+      @click="clickInput('clickInput')"
+      
 
       autocomplete="off"
+      
 
     >
-    <slot></slot>
+    <!-- @blur="deFocus('blur')" -->
+    <slot name="list"></slot>
     
     <label :class="smallLabel" :for="name">{{ label }}</label>
   </div>
@@ -52,15 +55,10 @@ export default {
   },
   watch: {
     value() {
-      this.localValue = this.value 
-     /* let teste = this.localValue
-      teste = this.maskFilter(teste)
-      this.localValue = teste*/
-      this.localValue = mask.maskFilter(this.mask, this.localValue) 
-    
+      this.localValue = this.value     
     },
     localValue() {
-      this.localValue = mask.maskFilter(this.mask, this.localValue)      
+     this.localValue = mask.maskFilter(this.mask, this.localValue)      
     }
   },
 
@@ -70,13 +68,26 @@ export default {
 
   methods: {
 
-    clickInputSearch(action) {
+    clickInput(active) {
+      //event.target.select()
+      //console.log(event.target)
+     // event.target.select()
+      //if(event.target.value)
+       // event.target.select()
+        //console.log(event.target.value)
+
       if(this.type == 'search')
-        this.$store.dispatch('activeListClient', action)
+        this.$store.dispatch('activeListClient', active)
+    },
+    deFocus() {
+      if(this.type == 'search')
+        this.$store.dispatch('activeListClient', 'blur')
     },
 
     updateData(value) {
-      this.$emit('input', value)   
+      //this.$emit('input', value) 
+      console.log(this.$emit)
+      this.$emit('input', mask.maskFilter(this.mask, value))
     },
 
     maskFilter(value) { 

@@ -4,13 +4,12 @@ const mask = (function() {
 
   module.noLetter = (value) => {
     value = value.replace(/\D/g, '')
-    //console.log(value)
     return value
   }
 
   module.money = (value) => {
 
-    if(value){
+    //if(value){
       let num = value.replace('R$ ', '').replace(',', '')
 
       if(parseFloat(num) && num.length < 3)
@@ -24,23 +23,36 @@ const mask = (function() {
         .replace(/(^0)(\d{1},)(\d)/, '$2$3')
         .replace(/\d{0}/, 'R$ ')
       
-    }
+    //}
     return value
     
   }
 
-  module.maskFilter = (filter, value) => {
+  module.cellPhone = (value) => {
+    value = value.replace(/\D/g, '')
+      .replace(/(^\d)/, '($1')
+      .replace(/(^.{3})(\d)/, '$1) $2')
+      .replace(/(^.{9})(\d)/, '$1-$2')
+      .replace(/(^.{9})-(\d)(\d{4})/, '$1$2-$3')
+      .replace(/(^.{6})(\d{4}-\d{4})/, '$1 $2')
+      .replace(/(-\d{4})\d+?$/, '$1')
 
+    return value
+  }
+
+  module.maskFilter = (filter, value) => {
     if(filter == 'noString'){
       value = module.noLetter(value)
      }  
      else if(filter == 'money'){
       value = module.money(value)
      }
+     else if(filter == 'cellPhone')
+     {
+       value = module.cellPhone(value)
+     }
     
      return value
-
-
   }
 
 

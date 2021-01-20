@@ -34,12 +34,10 @@ export default {
   },
   methods: {
     handleclick(id) {
-
-      /*this.$store.dispatch('selectedItemId', id)
-      console.log(this.$store.state.idCliente)*/
-
       const client = this.lista.filter(l => l.id == id)
       this.selectClient(...client)
+
+      this.$store.dispatch('activeListClient', 'clickList')
     }
 
   }
