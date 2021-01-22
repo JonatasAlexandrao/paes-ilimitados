@@ -1,7 +1,7 @@
 <template>
   <div class="selectList" :class="active">
   <!-- <div class="selectList" v-if="activeList"> -->
-    <ul class="optionList" v-for="(item, index) in lista" :key="index" >
+    <ul class="optionList" v-for="(item, index) in list" :key="index" >
       <!-- <input type="radio" name="radioClientes" :id="index"> -->
       <li :for="index" @click="handleclick($event.target.attributes.value.value)" :value="item.id">{{ item.nome }}</li>
     </ul>     
@@ -15,12 +15,6 @@ export default {
     itens: { type: Array, required: true},
     selectClient: { type: Function}
   },
-
-  data() {
-    return {
-      lista: this.itens,
-    }
-  },
   computed: {
     activeList() {
       return this.$store.state.activeListClient
@@ -30,11 +24,16 @@ export default {
         return '-active'
       else  
         return ''
+    },
+    list() {
+      return this.itens
     }
   },
   methods: {
     handleclick(id) {
-      const client = this.lista.filter(l => l.id == id)
+      console.log('list ',this.list)
+      console.log('itens ',this.itens)
+      const client = this.list.filter(l => l.id == id)
       this.selectClient(...client)
 
       this.$store.dispatch('activeListClient', 'clickList')

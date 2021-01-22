@@ -4,8 +4,8 @@
     <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
     <p class="id">ID: {{clienteId}}</p>
   
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :itens="lista" inputmode="text">
-      <DropDownList :itens="lista" :selectClient="selectClient" slot="list"/>
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" inputmode="text" :filterList="filterList">
+      <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
     </InputFild>
 
     <h1>teste: {{clienteNum}}</h1>
@@ -78,13 +78,15 @@ export default {
     clienteValor: {
       get(){ return this.$store.state.cliente.valor },
       set(value){ this.$store.commit('setValorCliente', value) }
-    }
+    },
+
 
   },
   
   data() {
     return {
       lista: data.obj(),
+      filteredList: data.obj(),
       /*
       //clienteId:'1', 
       //clienteNome:'',
@@ -98,6 +100,28 @@ export default {
   },
 
   methods: {
+
+    filterList(value) {
+      this.filteredList = this.lista.filter(elem => {
+
+        const nome = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        //const teste = '^'+ value + '.*'
+        const teste = `^${value}.* | ${value}.*`
+        const regex = new RegExp(teste, "gim")
+
+        return nome.match(regex)    
+      })
+
+      /*this.lista.forEach(elem => {
+        const nome = elem.nome.normalize('NFD').replace(/[\u036f-\u036f]/g, '')
+        const teste = '^'+ value + '.*'
+        const regex = new RegExp(teste, "gim")
+
+        console.log('nome', regex.exec(nome))
+        
+      });*/
+      
+    },
 
     nextId(){
       /*console.log(this.lista)
@@ -122,6 +146,7 @@ export default {
     },
 
     cleanFilds() {
+      console.log(this.filteredList)
       this.$store.commit('cleanAll')
       this.nextId()
 
@@ -160,7 +185,11 @@ export default {
     
     saveBD() {
       //this.$store.commit('setIdCliente', 10)
-      this.proximoID()
+      //this.filterList('jon')
+      const text = 'Jônatas'
+
+      console.log(text.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+ 
       console.log('Salvar no banco?')
       /* forEach ---------------
       const l = this.lista

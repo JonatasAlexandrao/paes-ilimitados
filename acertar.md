@@ -12,13 +12,16 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 
 
-- criar componente botão
+
+
 
 --> Tela cliente:
-  - criar mascara para o input celular
+  
+  - passar para click duplo para abrir lista do input search
+  - passar a abrir a lista quando digitado no input search
 
   -->Imput com lista de nomes
-  - quando usado o evento blur para sumir a lista no celular o click não está pegando os valores e adicionando nos inputs.
+  
 
  --> Banco 
   - validar campos antes de gravar no BD
@@ -39,8 +42,12 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
 
 # Problemas:
-    
+
+(ok) acertar formula do regex
+(ok) quando usado o evento blur para sumir a lista no celular o click não está pegando os valores e adicionando nos inputs.
+(ok) criar mascara para o input celular
 (ok) povoar o campo ID automaticamente
+(ok) criar componente botão
 (ok) como fazer para q no celular já passe direto para o proximo campo depois (tab)
 (ok) quando digitando caracter invalido no input ele tá tirando a classe da label até ser digitado um numero valido
 (OK) - quando troca o tipo de input muda o teclado no celular.

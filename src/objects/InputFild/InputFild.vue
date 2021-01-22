@@ -33,6 +33,7 @@ export default {
     label: { type: String, required: true },
     value: { type: String, required: true },
     type: { type: String, default: 'text'},
+    filterList: { type: Function, default: ()=>{}},
 
     mask: String,
     inputmode: String,
@@ -86,7 +87,8 @@ export default {
 
     updateData(value) {
       //this.$emit('input', value) 
-      console.log(this.$emit)
+      //console.log(this.$emit)
+      this.filterList(value)
       this.$emit('input', mask.maskFilter(this.mask, value))
     },
 
