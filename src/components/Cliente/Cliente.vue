@@ -103,13 +103,21 @@ export default {
 
     filterList(value) {
       this.filteredList = this.lista.filter(elem => {
-
         const nome = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        //const teste = '^'+ value + '.*'
-        const teste = `^${value}.* | ${value}.*`
+        const teste = `^${value}.*`
         const regex = new RegExp(teste, "gim")
 
-        return nome.match(regex)    
+        /*const n = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(" ")
+        //console.log(n)
+        let result = n.forEach(element => {
+          console.log(element)
+          console.log('r',element.match(regex))
+          return element.match(regex)
+        });
+
+        console.log(result)*/
+        return nome.match(regex)
+        //return nome.match(regex)    
       })
 
       /*this.lista.forEach(elem => {

@@ -9,7 +9,7 @@
       @input="updateData($event.target.value)"
       
       v-model="localValue"
-      @click="clickInput('clickInput')"
+      @dblclick="dblClickInput()"
       
 
       autocomplete="off"
@@ -69,16 +69,9 @@ export default {
 
   methods: {
 
-    clickInput(active) {
-      //event.target.select()
-      //console.log(event.target)
-     // event.target.select()
-      //if(event.target.value)
-       // event.target.select()
-        //console.log(event.target.value)
-
+    dblClickInput() {
       if(this.type == 'search')
-        this.$store.dispatch('activeListClient', active)
+        this.$store.dispatch('activeListClient', 'dblclick')
     },
     deFocus() {
       if(this.type == 'search')
@@ -86,10 +79,16 @@ export default {
     },
 
     updateData(value) {
-      //this.$emit('input', value) 
-      //console.log(this.$emit)
+    
       this.filterList(value)
+
       this.$emit('input', mask.maskFilter(this.mask, value))
+
+      if(this.type == 'search')
+        if(this.localValue === '')
+          this.$store.dispatch('activeListClient', 'empty')
+        else
+          this.$store.dispatch('activeListClient', 'input')
     },
 
     maskFilter(value) { 

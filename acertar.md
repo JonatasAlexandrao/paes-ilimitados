@@ -10,9 +10,12 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
+  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
 
 
-
+  - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
+  - erro na formula do regex, quando apaga tudo a lista fica só com os nomes que tem duas palavras
+  - testar formula do regex para nomes de tres partes ou mais
 
 
 --> Tela cliente:

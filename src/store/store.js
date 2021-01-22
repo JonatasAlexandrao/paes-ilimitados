@@ -91,10 +91,12 @@ const store = new Vuex.Store({
     },
 
     activeListClient(context, action) {
-      if(action == 'clickInput')
+      if(action === 'dblclick')
         context.commit('activeListClient', !context.state.activeListClient)
-      else if(action == 'clickList' || action == 'blur')
-      context.commit('activeListClient', false)
+      else if(action === 'clickList' || action === 'blur' || action === 'empty')
+        context.commit('activeListClient', false)
+      else if(action === 'input')
+        context.commit('activeListClient', true)
     }
   }
 
