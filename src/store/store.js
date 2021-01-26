@@ -68,7 +68,7 @@ const store = new Vuex.Store({
       state.cliente.num = ''
       state.cliente.bairro = ''
       state.cliente.cidade = ''
-      state.cliente.valor = ''
+      state.cliente.valor = '0,00'
     }
     
 

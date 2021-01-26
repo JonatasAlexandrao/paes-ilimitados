@@ -20,7 +20,7 @@
 
 <script>
 
-import Cliente from '@/components/Cliente/Cliente.vue'
+import Cliente from '@/pages/Cliente/Cliente.vue'
 
 export default {
   name: 'App',

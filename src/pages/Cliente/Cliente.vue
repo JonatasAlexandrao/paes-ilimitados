@@ -4,19 +4,19 @@
     <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
     <p class="id">ID: {{clienteId}}</p>
   
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" inputmode="text" :filterList="filterList">
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList">
       <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
     </InputFild>
 
-    <h1>teste: {{clienteNum}}</h1>
+    <!-- <h1>teste: {{clienteNum}}</h1> -->
 
-    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" />
+    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
 
     <fieldset>
       <legend>Endereço</legend>
       <div class="endereco">
         <InputFild classInput="-rua" name="rua" label="Rua" v-model="clienteRua" />
-        <InputFild classInput="-num" name="num" label="Nº" mask="noString" inputmode="numeric" v-model="clienteNum" />
+        <InputFild classInput="-num" name="num" label="Nº" v-model="clienteNum" />
         <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
         <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
         <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />     
@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import InputFild from '@/objects/InputFild/InputFild.vue'
-import FlatButton from '@/objects/FlatButton/FlatButton'
-import DropDownList from '@/objects/DropDownList/DropDownList'
+import InputFild from '@/components/InputFild/InputFild.vue'
+import FlatButton from '@/components/FlatButton/FlatButton'
+import DropDownList from '@/components/DropDownList/DropDownList'
 
 //import mask from '@/assets/mask/mask'
 // --------- bd-teste --------------
@@ -194,11 +194,12 @@ export default {
     saveBD() {
       //this.$store.commit('setIdCliente', 10)
       //this.filterList('jon')
-      const text = 'Jônatas'
+      //const text = 'Jônatas'
 
-      console.log(text.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+      //console.log(text.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
  
-      console.log('Salvar no banco?')
+      alert('Salvar no banco?')
+      //console.log('Salvar no banco?')
       /* forEach ---------------
       const l = this.lista
       let testePesquisa 

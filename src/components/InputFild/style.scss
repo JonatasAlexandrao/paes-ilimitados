@@ -8,10 +8,11 @@
   //width: 100%;
 }
 
-.divInput.-id, .divInput.-nome {
-  margin-left: 0;
+.divInput.-nome {
+  margin-bottom: .6rem;
+  /*margin-left: 0;
   margin-right: 0;
-  margin-top: 0.5rem;
+  margin-top: 0.5rem;*/
 }
 .divInput.-rua {
   grid-area: rua;

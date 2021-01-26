@@ -4,7 +4,7 @@
       :id="name"
       :name="name"  
       :inputmode="inputmode"
-      :type="type"
+      
 
       @input="updateData($event.target.value)"
       
@@ -16,6 +16,7 @@
       
 
     >
+    <!-- :type="type" -->
     <!-- @blur="deFocus('blur')" -->
     <slot name="list"></slot>
     
