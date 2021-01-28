@@ -1,15 +1,12 @@
 <template>
 <div class="backgroundDiv">
   <form @submit="(event) => event.preventDefault()">
-
-    <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
+    
     <p class="id">ID: {{clienteId}}</p>
   
     <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList">
       <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
     </InputFild>
-
-    <!-- <h1>teste: {{clienteNum}}</h1> -->
 
     <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
 
@@ -25,14 +22,13 @@
     </fieldset>
 
 
-    <FlatButton classButton="-save" :handleclick="saveBD" title="Gravar" />
-    <!-- Não Parece fazer sentido ---
-    <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" /> -->
+    <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
+    <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
     <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
 
   </form>
 
-  <TableClient classTables="-cliente" :list="list" :selectClient="selectClient"/>
+  <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :selectClient="selectClient"/>
 
   
 
@@ -45,14 +41,12 @@ import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import TableClient from '@/components/TableClient/TableClient'
 
-//import mask from '@/assets/mask/mask'
-// --------- bd-teste --------------
 import data from '@/database/data'
 
 export default {
   components: { InputFild, FlatButton, DropDownList, TableClient},
 
-  created: function() { this.nextId() },
+  //created: function() { this.nextId() },
 
   computed: {
     activeList() { return this.$store.state.activeListClient },
@@ -98,51 +92,22 @@ export default {
 
   methods: {
 
-    teste() {
-      this.$store.commit('setNomeCliente', 'client.nome')
-    },
-
-    filterList(value) {
+    filterList(value) { // Filtra lista do imput cliente //
       this.filteredList = this.list.filter(elem => {
         const nome = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        const teste = `^${value}.*`
-        const regex = new RegExp(teste, "gim")
+        const rule = `^${value}.*`
+        const regex = new RegExp(rule, "gim")
 
-        /*const n = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(" ")
-        //console.log(n)
-        let result = n.forEach(element => {
-          console.log(element)
-          console.log('r',element.match(regex))
-          return element.match(regex)
-        });
-
-        console.log(result)*/
-        return nome.match(regex)
-        //return nome.match(regex)    
-      })
-
-      /*this.list.forEach(elem => {
-        const nome = elem.nome.normalize('NFD').replace(/[\u036f-\u036f]/g, '')
-        const teste = '^'+ value + '.*'
-        const regex = new RegExp(teste, "gim")
-
-        console.log('nome', regex.exec(nome))
-        
-      });*/
-      
+        return nome.match(regex) 
+      })     
     },
 
-    nextId(){
-      /*console.log(this.list)
-      console.log(this.list.length)
-      console.log(this.list[this.list.length-1].id)*/
+    nextId(){ // Verifica qual o próximo id //
       const ultimoId = (this.list[this.list.length-1].id) +1
-      //console.log(ultimoID)
-      this.$store.commit('setIdCliente', ultimoId)
-      
+      this.$store.commit('setIdCliente', ultimoId)   
     },
 
-    selectClient(event, client) {
+    selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e Table
 
       event.stopPropagation();
       console.log(event)
@@ -158,11 +123,9 @@ export default {
       //this.clienteNome = client.nome
     },
 
-    cleanFilds() {
+    cleanFilds() { // Limpa o store cliente para limpar os campos do form //
       console.log(this.filteredList)
       this.$store.commit('cleanAll')
-      this.nextId()
-
       const input = document.getElementsByTagName('input')
       input[0].focus()
     },
@@ -248,10 +211,11 @@ export default {
       
     },
 
-    searchBD() {   
+    changeBD() {   
       /*let idCliente = 3
       data.search('clientes/', idCliente)*/
-      console.log('Buscar no banco?')
+      alert('Alterar um cliente já existente no banco?')
+      console.log('Alterar um cliente já existente no banco?')
     },
 
   },

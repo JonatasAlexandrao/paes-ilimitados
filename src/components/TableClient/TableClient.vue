@@ -3,11 +3,7 @@
 <div class="tbl" :class="classTables">
     <table>
       <thead>
-        <!-- <th>#</th> -->
-        <th>Nome</th>
-        <th>Celular</th>
-        <th>Endereço</th>
-        <th>Valor entrega</th>
+        <th v-for="(item, index) in header" :key="index">{{ item }}</th>
       </thead>
       <tbody>
         <tr v-for="item in list" :key="item.id" @click="handleclick($event, item)">

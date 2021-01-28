@@ -14,14 +14,17 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - Pesquisar sobre scolp da tag style do vue 
+  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
 
 
 --> Tela cliente:
   
-  --> Criar a tabela dos clientes cadastrados
+  - fazer validação do form
+  - deixar o botão ativo quando todos os campos estiverem preenchidos
+  - mudar botão gravar para alterar
 
   --> Pesquisa Na Lista do Input
-  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  
   
 
  --> Banco 
@@ -44,6 +47,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok)> Criar a tabela dos clientes cadastrados
 (ok) passar para click duplo para abrir lista do input search
 (ok) passar a abrir a lista quando digitado no input search
 (ok) erro na formula do regex, quando apaga tudo a lista fica só com os nomes que tem duas palavras
