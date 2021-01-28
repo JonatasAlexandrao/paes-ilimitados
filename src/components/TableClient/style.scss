@@ -1,0 +1,67 @@
+.tbl {
+  width: 100%;
+  max-height: 40rem;
+  display: block;
+  overflow-x: scroll;
+  margin-top: 1rem;
+
+  box-shadow: 0 10px 15px rgba(32,32,32,.6);
+}
+
+.tbl > table{
+  
+  border-spacing: 0;
+
+  font-size: 1.6rem;
+  background-color: rgb(230, 230, 230);
+
+  user-select: none;
+
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(202, 202, 202);
+}
+
+th, td{
+ padding: 10px 10px; 
+ box-sizing: border-box;
+}
+
+tr:hover {
+  cursor: pointer;
+  background-color:  rgb(163, 163, 163);
+}
+
+tr:hover:nth-child(odd) {
+  cursor: pointer;
+  background-color:  rgb(126, 126, 126);
+}
+
+thead {
+  background-color: crimson;
+}
+.tbl tfoot {
+  font-size: 1rem;
+  display: none;
+}
+
+.tblId {
+  min-width: 50px;
+  display: none;
+}
+.tblNome {
+  min-width: 190px;
+  //text-align: right;
+}
+.tblCel {
+ min-width: 140px;
+ // white-space: nowrap;
+}
+.tblEndereco{
+  min-width: 200px;
+  //white-space: nowrap;
+}
+.tblValor {
+  min-width: 130px;
+}

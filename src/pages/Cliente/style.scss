@@ -11,12 +11,10 @@
   margin-top: 2rem;
   box-sizing: border-box;
 
-
-}
-
-.customerRegistration {
   background-color: $color-background-div;
+
 }
+
 
 .id {
   margin: 0 0 0 1rem;
@@ -46,13 +44,19 @@
 
 }
 
-.backgroundDiv > fieldset {
+form > fieldset {
   position: relative;
   margin: 2rem 0;
 }
 
-.backgroundDiv > fieldset > legend {
+form > fieldset > legend {
   font-size: 1.6rem;
   padding: 0 0.8rem;
 }
+
+
+
+
+
+
 

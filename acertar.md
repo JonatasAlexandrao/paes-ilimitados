@@ -10,20 +10,18 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
-  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
-
+  
 
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
-  - erro na formula do regex, quando apaga tudo a lista fica só com os nomes que tem duas palavras
-  - testar formula do regex para nomes de tres partes ou mais
+  - Pesquisar sobre scolp da tag style do vue 
 
 
 --> Tela cliente:
   
-  - passar para click duplo para abrir lista do input search
-  - passar a abrir a lista quando digitado no input search
+  --> Criar a tabela dos clientes cadastrados
 
-  -->Imput com lista de nomes
+  --> Pesquisa Na Lista do Input
+  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
   
 
  --> Banco 
@@ -39,13 +37,17 @@ document.getElementById("meu-input").onkeypress = function(e) {
 - Seria o certo separar em um arquivo as functions que mexem com o banco e só chamalas no componente passando um obj...
 
 
-- Pesquisar sobre scolp da tag style do vue 
+
 
 # Pensamentos:
   
 
 # Problemas:
 
+(ok) passar para click duplo para abrir lista do input search
+(ok) passar a abrir a lista quando digitado no input search
+(ok) erro na formula do regex, quando apaga tudo a lista fica só com os nomes que tem duas palavras
+(ok) Campo não trocado para teclado de texto
 (ok) acertar formula do regex
 (ok) quando usado o evento blur para sumir a lista no celular o click não está pegando os valores e adicionando nos inputs.
 (ok) criar mascara para o input celular

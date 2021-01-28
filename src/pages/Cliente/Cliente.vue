@@ -1,5 +1,6 @@
 <template>
-  <form class="backgroundDiv customerRegistration" @submit="(event) => {event.preventDefault()}">
+<div class="backgroundDiv">
+  <form @submit="(event) => event.preventDefault()">
 
     <!-- <InputFild classInput="-id" name="id" label="Id" mask="noString" inputmode="numeric" v-model="clienteId" /> -->
     <p class="id">ID: {{clienteId}}</p>
@@ -28,23 +29,28 @@
     <!-- Não Parece fazer sentido ---
     <FlatButton classButton="-search" :handleclick="searchBD" title="Buscar" /> -->
     <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
-    
-
 
   </form>
+
+  <TableClient classTables="-cliente" :list="list" :selectClient="selectClient"/>
+
+  
+
+</div>
 </template>
 
 <script>
 import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
+import TableClient from '@/components/TableClient/TableClient'
 
 //import mask from '@/assets/mask/mask'
 // --------- bd-teste --------------
 import data from '@/database/data'
 
 export default {
-  components: { InputFild, FlatButton, DropDownList},
+  components: { InputFild, FlatButton, DropDownList, TableClient},
 
   created: function() { this.nextId() },
 
@@ -85,24 +91,19 @@ export default {
   
   data() {
     return {
-      lista: data.obj(),
+      list: data.obj(),
       filteredList: data.obj(),
-      /*
-      //clienteId:'1', 
-      //clienteNome:'',
-      clienteCelular:'', 
-      clienteRua:'', 
-      //clienteNum:'',
-      clienteBairro:'',
-      clienteCidade:'',
-      clienteValor:'',*/
     }
   },
 
   methods: {
 
+    teste() {
+      this.$store.commit('setNomeCliente', 'client.nome')
+    },
+
     filterList(value) {
-      this.filteredList = this.lista.filter(elem => {
+      this.filteredList = this.list.filter(elem => {
         const nome = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
         const teste = `^${value}.*`
         const regex = new RegExp(teste, "gim")
@@ -120,7 +121,7 @@ export default {
         //return nome.match(regex)    
       })
 
-      /*this.lista.forEach(elem => {
+      /*this.list.forEach(elem => {
         const nome = elem.nome.normalize('NFD').replace(/[\u036f-\u036f]/g, '')
         const teste = '^'+ value + '.*'
         const regex = new RegExp(teste, "gim")
@@ -132,16 +133,20 @@ export default {
     },
 
     nextId(){
-      /*console.log(this.lista)
-      console.log(this.lista.length)
-      console.log(this.lista[this.lista.length-1].id)*/
-      const ultimoId = (this.lista[this.lista.length-1].id) +1
+      /*console.log(this.list)
+      console.log(this.list.length)
+      console.log(this.list[this.list.length-1].id)*/
+      const ultimoId = (this.list[this.list.length-1].id) +1
       //console.log(ultimoID)
       this.$store.commit('setIdCliente', ultimoId)
       
     },
 
-    selectClient(client) {
+    selectClient(event, client) {
+
+      event.stopPropagation();
+      console.log(event)
+
       this.$store.commit('setIdCliente', client.id)
       this.$store.commit('setNomeCliente', client.nome)
       this.$store.commit('setCelularCliente', client.celular)
@@ -201,7 +206,7 @@ export default {
       alert('Salvar no banco?')
       //console.log('Salvar no banco?')
       /* forEach ---------------
-      const l = this.lista
+      const l = this.list
       let testePesquisa 
       l.forEach(obj => {
         //console.log(obj.id)

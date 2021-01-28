@@ -84,15 +84,15 @@ const data = (function() {
 
   module.objCliente = () => {
     let obj = [
-      {id: 1,nome: "Jônatas Jorge",celular: "(19)99876-5432",valor: "100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
-      {id: 2,nome: "Pamela",celular: "(19)99999-5499",valor: "1880,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
-      {id: 3,nome: "Diego Henrique",celular: "(19)99888-8888",valor: "140,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 1,nome: "Jônatas Jorge",celular: "(19)99876-5432",valor: "R$ 100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 22222,nome: "Pamela",celular: "(19)99999-5499",valor: "R$ 1880,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
+      {id: 33,nome: "Diego Henrique",celular: "(19)99888-8888",valor: "R$ 140,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
       {id: 4,nome: "Jan",celular: "(19)99877-7777",valor: "16,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
       {id: 5,nome: "Carinha ai",celular: "(19)99566-5656",valor: "1080,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
       {id: 6,nome: "Teste ai",celular: "(19)99444-5444",valor: "150,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
       {id: 7,nome: "Jorge",celular: "(19)99833-3333",valor: "1000,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXV', cidade: 'Amparo'},
       {id: 8,nome: "Malu",celular: "(19)99876-2222",valor: "110,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tira dentes XXVVVVVVV', cidade: 'Amparo'},
-      {id: 9,nome: "Tos",celular: "(19)99876-1111",valor: "100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tirrrrrra dentes XXV', cidade: 'Amparo'}
+      {id: 9,nome: "Tos",celular: "(19)99876-1111",valor: "R$ 100,00", rua: "rua alguma coisa ai", num: '299', bairro: 'Tirrrrrra dentes XXV', cidade: 'Amparo'}
     ]
       
     
