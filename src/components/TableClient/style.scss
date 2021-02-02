@@ -5,7 +5,7 @@
   overflow-x: scroll;
   margin-top: 1rem;
 
-  box-shadow: 0 10px 15px rgba(32,32,32,.6);
+  box-shadow: 0 1rem 1.5rem rgba(32,32,32,.6);
 }
 
 .tbl > table{
@@ -24,7 +24,7 @@ tr:nth-child(odd) {
 }
 
 th, td{
- padding: 10px 10px; 
+ padding: 1rem 1rem; 
  box-sizing: border-box;
 }
 
@@ -47,21 +47,21 @@ thead {
 }
 
 .tblId {
-  min-width: 50px;
+  min-width: 5rem;
   display: none;
 }
 .tblNome {
-  min-width: 190px;
+  min-width: 19rem;
   //text-align: right;
 }
 .tblCel {
- min-width: 140px;
+ min-width: 14rem;
  // white-space: nowrap;
 }
 .tblEndereco{
-  min-width: 200px;
+  min-width: 20rem;
   //white-space: nowrap;
 }
 .tblValor {
-  min-width: 130px;
+  min-width: 13rem;
 }

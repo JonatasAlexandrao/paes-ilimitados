@@ -1,8 +1,6 @@
 <template>
-  <div class="selectList" :class="active">
-  <!-- <div class="selectList" v-if="activeList"> -->
+  <div class="selectList" :class="{'-active' : activeList}">
     <ul class="optionList" v-for="(item, index) in list" :key="index" >
-      <!-- <input type="radio" name="radioClientes" :id="index"> -->
       <li :for="index" @click="handleclick($event)" :value="item.id">{{ item.nome }}</li>
     </ul>     
   </div>
@@ -16,31 +14,18 @@ export default {
     selectClient: { type: Function}
   },
   computed: {
-    activeList() {
-      return this.$store.state.activeListClient
-    },
-    active() {
-      if(this.activeList)
-        return '-active'
-      else  
-        return ''
-    },
-    list() {
-      return this.itens
-    }
+    activeList() { return this.$store.state.activeListClient },
+    list() { return this.itens }
   },
   methods: {
-    handleclick(event) {
+    handleclick(event) { // pega o id do item clicado na lista, procura o cliente com esse id e envia para o evento selectClient do pai //
       const id = event.target.attributes.value.value
       const client = this.list.filter(l => l.id == id)
-      console.log(client)
       this.selectClient(event,...client)
 
       this.$store.dispatch('activeListClient', 'clickList')
     }
-
-  }
-
+  },
 }
 </script>
 

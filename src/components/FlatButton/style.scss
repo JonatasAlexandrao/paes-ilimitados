@@ -1,6 +1,6 @@
 @import "@/assets/scss/_colors.scss";
 
-.btn {
+.flatButton {
   width: 15rem;
   height: 4.5rem;
   margin: .5rem;
@@ -15,19 +15,19 @@
   border-radius: .5rem;
 }
 
-.btn.-save:focus, .btn.-save:hover{
+.flatButton.-save:focus, .flatButton.-save:hover{
   background-color: $color-save-button-bc;
   color: $color-save-button;
   border: .2rem solid $color-save-button;
 }
 
-.btn.-search:focus, .btn.-search:hover{
+.flatButton.-search:focus, .flatButton.-search:hover{
   background-color: $color-search-button-bc;
   color: $color-search-button;
   border: .2rem solid $color-search-button;
 }
 
-.btn.-clean:focus, .btn.-clean:hover{
+.flatButton.-clean:focus, .flatButton.-clean:hover{
   background-color: $color-clean-button-bc;
   color: $color-clean-button;
   border: .2rem solid $color-clean-button;

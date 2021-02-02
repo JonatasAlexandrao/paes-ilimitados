@@ -4,11 +4,11 @@
     
     <p class="id">ID: {{clienteId}}</p>
   
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList">
+    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
       <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
     </InputFild>
 
-    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
+    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
 
     <fieldset>
       <legend>Endereço</legend>
@@ -21,6 +21,7 @@
       </div>
     </fieldset>
 
+    <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
 
     <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
     <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
@@ -40,15 +41,18 @@ import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import TableClient from '@/components/TableClient/TableClient'
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage'
 
 import data from '@/database/data'
+import mask from '@/assets/mask/mask'
 
 export default {
-  components: { InputFild, FlatButton, DropDownList, TableClient},
+  components: { InputFild, FlatButton, DropDownList, TableClient, ErrorMessage},
 
   //created: function() { this.nextId() },
 
   computed: {
+    //list() { return this.getList() },
     activeList() { return this.$store.state.activeListClient },
     clienteId() { return this.$store.state.cliente.id },
     clienteNome: {
@@ -85,32 +89,49 @@ export default {
   
   data() {
     return {
-      list: data.obj(),
-      filteredList: data.obj(),
+      list: [],
+      filteredList: [],
+      validateInput: true,
+      errorMessage: ''
     }
+  },
+
+  created() {
+    //Povoa o this.list
+    this.getList()
   },
 
   methods: {
 
-    filterList(value) { // Filtra lista do imput cliente //
+    nextId(){ // Verifica qual o próximo id //
+      const id = (this.list[this.list.length-1].id)
+      const ultimoId = parseInt(id) + 1
+      this.$store.commit('setIdCliente', ultimoId)   
+
+      console.log(ultimoId)
+      console.log('store', this.clienteId)
+    },
+
+    filterList(value) { // Filtra lista do input cliente //
+
+      value = mask.maskFilter('letter', value)
+
       this.filteredList = this.list.filter(elem => {
-        const nome = elem.nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        const nome = elem.nome.normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+
         const rule = `^${value}.*`
         const regex = new RegExp(rule, "gim")
 
         return nome.match(regex) 
+       
       })     
-    },
-
-    nextId(){ // Verifica qual o próximo id //
-      const ultimoId = (this.list[this.list.length-1].id) +1
-      this.$store.commit('setIdCliente', ultimoId)   
+       return value
     },
 
     selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e Table
 
       event.stopPropagation();
-      console.log(event)
 
       this.$store.commit('setIdCliente', client.id)
       this.$store.commit('setNomeCliente', client.nome)
@@ -123,100 +144,87 @@ export default {
       //this.clienteNome = client.nome
     },
 
-    cleanFilds() { // Limpa o store cliente para limpar os campos do form //
-      console.log(this.filteredList)
+    cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
+
       this.$store.commit('cleanAll')
       const input = document.getElementsByTagName('input')
       input[0].focus()
-    },
-  
-    getInf() {
-      
-      let clienteObj = {}
-      clienteObj.id = this.clienteId
-      clienteObj.nome = this.clienteNome
-      clienteObj.celular = this.clienteCelular
-      clienteObj.rua = this.clienteRua
-      clienteObj.num = this.clienteNum
-      clienteObj.bairro = this.clienteBairro
-      clienteObj.cidade = this.clienteCidade 
-      clienteObj.valor = this.clienteValor
-      
-      return clienteObj
-
-    },
-
-    showInf(obj) {
-
-      this.clienteId = obj.id
-      this.clienteNome = obj.nome
-      this.clienteCelular = obj.celular
-      this.clienteRua = obj.rua
-      this.clienteNum = obj.num
-      this.clienteBairro = obj.bairro
-      this.clienteCidade = obj.cidade
-      this.clienteValor = obj.valor
-
+      this.filterList('')
     },
     
-    saveBD() {
-      //this.$store.commit('setIdCliente', 10)
-      //this.filterList('jon')
-      //const text = 'Jônatas'
-
-      //console.log(text.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+    async getList() {
+      try {
+        const listData = await data.searchList('clientes/')
+        this.list = listData
+        this.filteredList = listData
  
-      alert('Salvar no banco?')
-      //console.log('Salvar no banco?')
-      /* forEach ---------------
-      const l = this.list
-      let testePesquisa 
-      l.forEach(obj => {
-        //console.log(obj.id)
-        if(obj.id == '1')
-          testePesquisa = obj
-      });
-      console.log(testePesquisa)
-      */
+      } catch(error) {
+        console.error(error)
+      }
 
+    },
 
-     //data.save('clientes/', this.getInf())
-     
-
-
-      //this.$store.state.cliente.id = '111'
-      //console.log(this.$store.state.cliente.id)
-      //data.save('clientes/', this.getInf())
-      //console.log(data.obj())
-      //const id = 2
-      
-      
-      //console.log('botão', data.searchById('clientes/', id))
-
-
-      //.then(data=>{console.log(data)})
-
-      /*this.$store.commit('activeClientMutations')
-      console.log(this.$store.state.activeListClient)*/
-      /*const id = 2
-      data.searchById2('clientes/', id).then((response)=>{console.log(response)})
-      .catch((erro)=>{console.log(erro)})*/
-
-      //data.teste().then((response)=>{console.log(response)})
-      
-      //const testePes = l.filter(function(obj){ obj });
-      //const testePesquisa = l.reduce((obj) =>{obj.id == '1'})
-
-      //console.log(l)
-      
+    saveBD() { 
+      if(this.validate()){
+        this.nextId()
+        const id = this.clienteId
+        data.save('clientes/' + id, this.$store.state.cliente) 
+        this.cleanFilds()
+      }
+       
     },
 
     changeBD() {   
-      /*let idCliente = 3
-      data.search('clientes/', idCliente)*/
-      alert('Alterar um cliente já existente no banco?')
-      console.log('Alterar um cliente já existente no banco?')
+      if(this.validate()){
+        const id = this.clienteId
+        data.update('clientes/' + id, this.$store.state.cliente)
+        this.cleanFilds()
+      }   
     },
+
+    // Validação de campos
+      /*
+      - Nome é necessário
+      - Celular é necessário
+      */
+    validate() {
+      if(!this.clienteNome) {
+        console.error('falta nome!')
+        const input = document.getElementsByTagName('input')
+        input[0].focus()
+        this.errorMessage = 'Campo nome é obrigatório.'
+        this.validateInput = false
+        return false
+      }
+      else if(!this.clienteCelular){
+        console.error('falta celular!')
+        const input = document.getElementsByTagName('input')
+        input[1].focus()
+        
+        this.validateInput = false
+
+        console.log(this.clienteCelular.length)
+    
+        this.errorMessage = 'Campo celular é obrigatório.'
+        
+        return false
+      }
+      else if(this.clienteCelular.length < 15){
+        console.error('falta celular!')
+        const input = document.getElementsByTagName('input')
+        input[1].focus()
+        
+        this.validateInput = false
+        this.errorMessage = 'Celular invalido, faltam números.'
+
+         return false
+
+      }
+      else{
+        this.validateInput = true
+        return true
+      }
+    }
 
   },
 

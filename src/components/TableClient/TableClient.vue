@@ -32,10 +32,7 @@ export default {
   },
 
   methods: {
-    teste(id) {
-      console.log(id)
-    },
-    handleclick(event, client) {
+    handleclick(event, client) { // Pela o cliente clicado na tabela e envia para o evento selectClient do pai //
       this.selectClient(event, client)   
     }
   }

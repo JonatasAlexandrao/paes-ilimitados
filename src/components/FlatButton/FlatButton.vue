@@ -1,5 +1,5 @@
 <template>
-  <button class="btn -t" :class="classButton" @click="handleclick"> {{ title }} </button>
+  <button class="flatButton" :class="classButton" @click="handleclick"> {{ title }} </button>
 </template>
 
 <script>

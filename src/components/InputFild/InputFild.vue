@@ -5,6 +5,8 @@
       :name="name"  
       :inputmode="inputmode"
       
+      @focus="focus"
+      @blur="deFocus"
 
       @input="updateData($event.target.value)"
       
@@ -20,7 +22,7 @@
     <!-- @blur="deFocus('blur')" -->
     <slot name="list"></slot>
     
-    <label :class="smallLabel" :for="name">{{ label }}</label>
+    <label :class="{ '-small': smallLabel }" :for="name">{{ label }}</label>
   </div>
 </template>
 
@@ -44,46 +46,39 @@ export default {
   data() {
     return {
       localValue: '',
-    }
-  },
-  computed: {
-    smallLabel() {
-         //this.value ? this.name + ' -small' : this.name
-      if(this.value)
-        return this.name + ' -small'    
-      else
-        return this.name
+      smallLabel: false,
     }
   },
   watch: {
-    value() {
-      this.localValue = this.value     
-    },
+    value() { this.localValue = this.value },
     localValue() {
-     this.localValue = mask.maskFilter(this.mask, this.localValue)      
+      this.localValue = mask.maskFilter(this.mask, this.localValue)  
+      //const input = document.getElementById(this.name)
+
+      this.localValue ? this.smallLabel = true : this.smallLabel = false
     }
   },
 
-  created() {
-    this.localValue = this.value
-  },
+  created() { this.localValue = this.value },
 
   methods: {
+    // focus e deFocus intercalam a classe da label //
+    focus() { this.smallLabel = true },
+    deFocus() {
+      if(!this.localValue)
+        this.smallLabel = false
+    },
 
-    dblClickInput() {
+    dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
         this.$store.dispatch('activeListClient', 'dblclick')
     },
-    deFocus() {
-      if(this.type == 'search')
-        this.$store.dispatch('activeListClient', 'blur')
-    },
 
-    updateData(value) {
+    updateData(value) { // chama evento do pai para filtrar a lista do input //
     
-      this.filterList(value)
-
       this.$emit('input', mask.maskFilter(this.mask, value))
+
+      this.filterList(value)
 
       if(this.type == 'search')
         if(this.localValue === '')
@@ -91,21 +86,6 @@ export default {
         else
           this.$store.dispatch('activeListClient', 'input')
     },
-
-    maskFilter(value) { 
-
-      if(this.mask == 'noString'){
-       return value = mask.noLetter(value)
-      }  
-      else if(this.mask == 'money'){
-        return value = mask.money(value)
-      }
-      else{
-        return value
-      }
-    },
-
-    
   }
   
 }

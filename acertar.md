@@ -11,23 +11,31 @@ document.getElementById("meu-input").onkeypress = function(e) {
 410x750
 
   
-
+  
+  - quando salva ou altera um cliente o dropBox tá abrindo
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
-  - Pesquisar sobre scolp da tag style do vue 
+  (ok) Pesquisar sobre scolp da tag style do vue 
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  (ok) Depois de salvo ou alterado um cliente não está atualizando a tabela e filtro
+  (ok) Mascara do input de pesquisa dá erro quando é digitado caracteres especiais, criar uma mascara para impedir o uso deles, talvez uma de somente letras
 
 
 --> Tela cliente:
   
   - fazer validação do form
   - deixar o botão ativo quando todos os campos estiverem preenchidos
-  - mudar botão gravar para alterar
+  - criar um botão para deletar clientes
+
+  
+  
 
   --> Pesquisa Na Lista do Input
   
   
 
  --> Banco 
+  - ver forma de capturar erro do banco no arquivo data
+  - gerar novo id
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco
   - Exibir mensagem de confirmação de save
@@ -47,6 +55,8 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok) erro no dropDownList: quando é apagado os inputs com o botão de apagar a lista continua filtrada com a ultima pesquisa.
+(ok) mudar botão gravar para alterar
 (ok)> Criar a tabela dos clientes cadastrados
 (ok) passar para click duplo para abrir lista do input search
 (ok) passar a abrir a lista quando digitado no input search

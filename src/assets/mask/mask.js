@@ -2,6 +2,11 @@
 
 const mask = (function() {
 
+  module.letter = (value) => {
+    value = value.replace(/[^\w\s]/gi, '')
+    return value
+  },
+
   module.noLetter = (value) => {
     value = value.replace(/\D/g, '')
     return value
@@ -29,6 +34,7 @@ const mask = (function() {
   }
 
   module.cellPhone = (value) => {
+
     value = value.replace(/\D/g, '')
       .replace(/(^\d)/, '($1')
       .replace(/(^.{3})(\d)/, '$1) $2')
@@ -41,16 +47,19 @@ const mask = (function() {
   }
 
   module.maskFilter = (filter, value) => {
-    if(filter == 'noString'){
+    if(filter == 'noLetter'){
       value = module.noLetter(value)
-     }  
-     else if(filter == 'money'){
+    }
+    else if(filter == 'letter'){
+      value = module.letter(value)
+    }  
+    else if(filter == 'money'){
       value = module.money(value)
-     }
-     else if(filter == 'cellPhone')
-     {
-       value = module.cellPhone(value)
-     }
+    }
+    else if(filter == 'cellPhone')
+    {
+      value = module.cellPhone(value)
+    }
     
      return value
   }
