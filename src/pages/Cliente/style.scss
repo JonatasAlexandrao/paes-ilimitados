@@ -39,8 +39,16 @@
   grid-template-areas: 
     "rua rua rua num"
     "bairro bairro cidade cidade"
-    "valor valor . ."
+    "valor valor delete delete"
   ;
+
+}
+
+.endereco .flatButton.-delete {
+  grid-area: delete;
+  width: auto;
+  height: auto;
+  background-color: rgba(165, 42, 42, .8);
 
 }
 

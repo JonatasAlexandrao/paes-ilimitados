@@ -17,7 +17,8 @@
         <InputFild classInput="-num" name="num" label="Nº" v-model="clienteNum" />
         <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
         <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
-        <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />     
+        <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />   
+        <FlatButton  classButton="-delete" :handleclick="deleteBD" title="Deletar"/>  
       </div>
     </fieldset>
 
@@ -96,8 +97,7 @@ export default {
     }
   },
 
-  created() {
-    //Povoa o this.list
+  created() { //Povoa o this.list
     this.getList()
   },
 
@@ -150,9 +150,12 @@ export default {
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
+      this.$store.dispatch('activeListClient', 'empty')
+      this.getList()
+      this.validateInput = true
     },
     
-    async getList() {
+    async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
         const listData = await data.searchList('clientes/')
         this.list = listData
@@ -164,7 +167,7 @@ export default {
 
     },
 
-    saveBD() { 
+    saveBD() { // salva um novo cliente //
       if(this.validate()){
         this.nextId()
         const id = this.clienteId
@@ -174,7 +177,7 @@ export default {
        
     },
 
-    changeBD() {   
+    changeBD() { // salva uma alteração de um cliente //
       if(this.validate()){
         const id = this.clienteId
         data.update('clientes/' + id, this.$store.state.cliente)
@@ -182,12 +185,25 @@ export default {
       }   
     },
 
+    deleteBD() { // deleta um cliente do banco //
+      const message = `Apagar o cliente ${this.clienteNome} de ID: ${this.clienteId}?`
+      const id = this.clienteId
+
+      if(!this.clienteId){
+        alert('Selecione o cliente que deseja deletar.')
+      }
+      else if(confirm(message)){
+        data.delete('clientes/', id)
+        this.cleanFilds()
+      }
+    },
+
     // Validação de campos
       /*
       - Nome é necessário
       - Celular é necessário
       */
-    validate() {
+    validate() { // Validando campos obrigatórios para salvar no BD //
       if(!this.clienteNome) {
         console.error('falta nome!')
         const input = document.getElementsByTagName('input')

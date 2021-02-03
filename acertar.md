@@ -12,30 +12,30 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
   
   
-  - quando salva ou altera um cliente o dropBox tá abrindo
+  
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
-  (ok) Pesquisar sobre scolp da tag style do vue 
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
-  (ok) Depois de salvo ou alterado um cliente não está atualizando a tabela e filtro
-  (ok) Mascara do input de pesquisa dá erro quando é digitado caracteres especiais, criar uma mascara para impedir o uso deles, talvez uma de somente letras
+  
 
 
 --> Tela cliente:
   
-  - fazer validação do form
+  
   - deixar o botão ativo quando todos os campos estiverem preenchidos
-  - criar um botão para deletar clientes
+  - colocar um icone de seta para baixo no input search para abrir a lista
 
-  
+  --> CSS
+    - Passar o código para scss
+    - remover tamanho dos botões, passar seu tamanho no pai do componente
+    - mudar layout para o versão nova
   
 
-  --> Pesquisa Na Lista do Input
-  
+  --> Lista do Input
+    - Customizar as barras de rolagem
   
 
  --> Banco 
   - ver forma de capturar erro do banco no arquivo data
-  - gerar novo id
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco
   - Exibir mensagem de confirmação de save
@@ -45,7 +45,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - escolher cores para os botões
   - quando todos os inputs estiverem com valores o gravar pode ficar colorido
 
-- Seria o certo separar em um arquivo as functions que mexem com o banco e só chamalas no componente passando um obj...
+
 
 
 
@@ -55,6 +55,13 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok) gerar novo id
+(ok) criar um botão para deletar clientes
+(ok) fazer validação do form
+(ok) quando salva ou altera um cliente o dropBox tá abrindo
+(ok) Pesquisar sobre scolp da tag style do vue 
+(ok) Depois de salvo ou alterado um cliente não está atualizando a tabela e filtro
+(ok) Mascara do input de pesquisa dá erro quando é digitado caracteres especiais, criar uma mascara para impedir o uso deles, talvez uma de somente letras
 (ok) erro no dropDownList: quando é apagado os inputs com o botão de apagar a lista continua filtrada com a ultima pesquisa.
 (ok) mudar botão gravar para alterar
 (ok)> Criar a tabela dos clientes cadastrados
@@ -74,6 +81,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 (OK) criar evento para limpar inputs
 (ok) foi trocado a div por um form e agora o "enter" está enviando o formulario e recarregando a pagina
 (ok) campo cliente como combo box
+(ok) Seria o certo separar em um arquivo as functions que mexem com o banco e só chamalas no componente passando um obj...
 
 (OK) Probelmas com o input:
 - quando busco as inf no banco e coloco elas nos inputs ao clicar elas somem.

@@ -12,6 +12,9 @@ const data = (function() {
     db.ref(ref).update(obj)
   }
 
+  module.delete = (ref, id) => {
+    db.ref(ref+id).remove()
+  }
 
   module.searchList = (ref) => {
     const callback = (resolve, reject) => {
@@ -82,6 +85,7 @@ const data = (function() {
   return {
     save: module.save,
     update: module.update,
+    delete: module.delete,
     searchById: module.searchById,
     searchList: module.searchList
   }
