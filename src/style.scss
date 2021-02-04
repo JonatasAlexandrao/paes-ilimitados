@@ -34,9 +34,6 @@ ul, li, ol {
 
 }
 
-
-
-
 .menu {
   display: grid;
   grid-template-columns: 1fr 5rem;
@@ -48,9 +45,7 @@ ul, li, ol {
 
 .desktop {
   display: flex;
-  //justify-content: center;
   flex-direction: column;
-  //flex-wrap: wrap;
   align-items: center;
 }
 
@@ -79,7 +74,6 @@ ul, li, ol {
   background-color: rgba(15, 15, 15, .8);
   color: $color-white;
 
-  /*grid-column: 3;*/
   justify-self: end;
 
   display: flex;

@@ -13,54 +13,83 @@
 
   background-color: $color-background-div;
 
+  .id {
+    margin: 0 0 0 1rem;
+    text-align: left;
+    font-size: 1.6rem;
+  }
+
+  .divInput.-nome{ 
+    margin-bottom: .8rem; 
+  }
+
+  fieldset {
+    position: relative;
+    margin: 1.6rem 0;
+  }
+
+  fieldset > legend {
+    font-size: 1.6rem;
+    padding: 0 0.8rem;
+  }
+
+  .endereco {
+    display: grid;
+    grid-template-columns: 50% 10% 10% 30%;
+    grid-template-areas: 
+      "rua rua rua num"
+      "bairro bairro cidade cidade"
+      "valor valor delete delete"
+    ;
+    row-gap: .8rem;
+
+    .divInput {
+      padding: 0 .4rem;
+
+      &.-rua{ grid-area: rua; }
+      &.-num { grid-area: num; }
+      &.-bairro { grid-area: bairro; }
+      &.-cidade { grid-area: cidade; }
+      &.-valor { grid-area: valor; }
+    }
+    .flatButton.-delete { 
+      grid-area: delete; 
+      margin: 0 .4rem;
+    }
+
+    
+  }
+
+
+  .divButtons {
+    width: 100%;
+    //background-color: chocolate;
+    display: grid;
+    grid-auto-rows: 4rem;
+    gap: 8px;
+    margin-bottom: 1.6rem;
+
+  }
+
+  
+
+
+  
+  
+
+
+}
+
+.backgroundDiv {
+  //background-color: chartreuse;
+
 }
 
 
-.id {
-  margin: 0 0 0 1rem;
-  text-align: left;
-  font-size: 1.5rem;
-}
 
-.optionnn{
-  background-color: brown;
-}
 
-.endereco {
-  // border: $color-white 1px solid;
-  //padding: .5rem;
-  //margin-top: 2rem;
-  // margin-bottom: .5rem;
 
-  //position: relative;
-  /*box-sizing: border-box;*/
-  display: grid;
-  grid-template-columns: 50% 10% 10% 30%;
-  grid-template-areas: 
-    "rua rua rua num"
-    "bairro bairro cidade cidade"
-    "valor valor delete delete"
-  ;
 
-}
-
-.endereco .flatButton.-delete {
-  grid-area: delete;
-  width: auto;
-  height: auto;
-  background-color: rgba(165, 42, 42, .8);
-
-}
-
-form > fieldset {
-  position: relative;
-  margin: 2rem 0;
-}
-
-form > fieldset > legend {
-  font-size: 1.6rem;
-  padding: 0 0.8rem;
-}
 
 
 

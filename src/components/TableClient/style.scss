@@ -1,67 +1,60 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+@import "@/assets/scss/_mixin.scss";
+
 .tbl {
-  width: 100%;
   max-height: 40rem;
   display: block;
   overflow-x: scroll;
-  margin-top: 1rem;
 
   box-shadow: 0 1rem 1.5rem rgba(32,32,32,.6);
-}
 
-.tbl > table{
+  & > table{
   
-  border-spacing: 0;
+    border-spacing: 0;
+    font-size: 1.6rem;
+    background-color: rgb(230, 230, 230);
+  
+    user-select: none;
 
-  font-size: 1.6rem;
-  background-color: rgb(230, 230, 230);
+    & > tfoot { font-size: $font-small; display: none; }
 
-  user-select: none;
-
-}
-
-tr:nth-child(odd) {
-  background-color: rgb(202, 202, 202);
-}
-
-th, td{
- padding: 1rem 1rem; 
- box-sizing: border-box;
-}
-
-tr:hover {
-  cursor: pointer;
-  background-color:  rgb(163, 163, 163);
+    th, td{
+      padding: 1rem 1rem; 
+      box-sizing: border-box;
+    }
+  
+  }
+  
 }
 
-tr:hover:nth-child(odd) {
-  cursor: pointer;
-  background-color:  rgb(126, 126, 126);
+.tbl.-cliente {
+  @include custonScrollBar(rgb(87, 23, 23),rgb(146, 37, 37));
+
+  & > table{
+
+    & > thead { background-color: crimson; }
+
+    tr {
+
+      & > .tblId { min-width: 5rem; display: none; }
+      & > .tblNome { min-width: 18rem; max-width: 18rem;}
+      & > .tblCel { min-width: 15rem; }
+      & > .tblEndereco{ min-width: 20rem; max-width: 20rem;}
+      & > .tblValor { min-width: 13rem; }
+  
+      &:nth-child(odd) { background-color: rgb(202, 202, 202); }
+    
+      &:hover {
+        cursor: pointer;
+        background-color:  rgb(163, 163, 163);
+    
+        &:hover:nth-child(odd) { background-color:  rgb(126, 126, 126); }
+      }
+    }
+    
+  }
+
+  
 }
 
-thead {
-  background-color: crimson;
-}
-.tbl tfoot {
-  font-size: 1rem;
-  display: none;
-}
-
-.tblId {
-  min-width: 5rem;
-  display: none;
-}
-.tblNome {
-  min-width: 18rem;
-  //text-align: right;
-}
-.tblCel {
- min-width: 15rem;
- // white-space: nowrap;
-}
-.tblEndereco{
-  min-width: 20rem;
-  //white-space: nowrap;
-}
-.tblValor {
-  min-width: 13rem;
-}

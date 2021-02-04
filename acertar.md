@@ -16,6 +16,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
   
+  
 
 
 --> Tela cliente:
@@ -25,20 +26,26 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - colocar um icone de seta para baixo no input search para abrir a lista
 
   --> CSS
-    - Passar o código para scss
-    - remover tamanho dos botões, passar seu tamanho no pai do componente
+    
     - mudar layout para o versão nova
+    - resolver problema de ficar tendo q importar os arquivos globais .scss
+
+
+    * Mudar nome e cores das variaveis
+    * em tableClient as cores não estão em variaveis
+    * em dropDownlist as cores não estão em variaveis
+     
   
 
   --> Lista do Input
-    - Customizar as barras de rolagem
+    
   
 
  --> Banco 
   - ver forma de capturar erro do banco no arquivo data
   - validar campos antes de gravar no BD
   - não permitir gravar completamente em branco
-  - Exibir mensagem de confirmação de save
+  
   
 
 --> Button
@@ -55,6 +62,13 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok) Customizar as barras de rolagem
+(ok) Exibir mensagem de confirmação de save
+(ok) acertar tb dos botoes
+(ok) Passar o código para scss
+(ok) remover tamanho dos botões, passar seu tamanho no pai do componente
+(ok) corrigir tamanho de botao, removido do flatbutton
+(ok) passar pra grid o cliente?
 (ok) gerar novo id
 (ok) criar um botão para deletar clientes
 (ok) fazer validação do form

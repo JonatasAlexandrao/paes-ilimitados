@@ -4,93 +4,45 @@
 
 .divInput {
   position: relative;
-  margin: .3rem;
-  //width: 100%;
-}
 
-.divInput.-nome {
-  margin-bottom: .6rem;
-  /*margin-left: 0;
-  margin-right: 0;
-  margin-top: 0.5rem;*/
-}
-.divInput.-rua {
-  grid-area: rua;
-}
-.divInput.-num {
-  grid-area: num;
-}
-.divInput.-bairro {
-  grid-area: bairro;
-}
-.divInput.-cidade {
-  grid-area: cidade;
-}
-.divInput.-valor {
-  grid-area: valor;
-}
+  & > input {
 
-.divInput > input {
-
-  font-size: $font-standard;
-  text-align: right;
-
-  width: 100%;
-  height: 4rem;
-  padding: 1rem 1rem 0rem 1rem;
-
-  background-color: $color-white;
-  border: none;
-  border-radius: 0.4rem;
-
-  box-sizing: border-box;
-  outline: none;
-}
-
-.divInput > input:focus {
-  border-bottom: 0.3rem solid $color-select-input;
-
-}
-
-/*.divInput > input:focus ~ label {
-  font-size: $font-small;
-  text-align: left;
-
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: $color-select-input;
-
-  padding-left: 1rem;
+    font-size: $font-standard;
+    text-align: right;
   
-  box-sizing: border-box;
-}*/
+    width: 100%;
+    height: 4rem;
+    padding: 1rem 1rem 0rem 1rem;
+  
+    background-color: $color-white;
+    border: none;
+    border-radius: 0.4rem;
+  
+    box-sizing: border-box;
+    outline: none;
 
-.divInput > label {
-  font-size: $font-standard;
-  color: $color-description;
+     &:focus {
+      border-bottom: 0.3rem solid $color-select-input;
+    }
+  }
 
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  pointer-events: none; /*é como se o elemento estivesse por baixo assim da pra clicar no input mesmo por cima dele*/
+  & > label {
+    font-size: $font-standard;
+    color: $color-description;
+  
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    pointer-events: none; /*é como se o elemento estivesse por baixo assim da pra clicar no input mesmo por cima dele*/
+
+    &.-small {
+      font-size: $font-small;
+    
+      left: 1rem;
+      top: 0.2rem;
+      color: $color-select-input;
+    }
+    
+  }
   
 }
-
-.divInput > label.-small {
-  font-size: $font-small;
-  text-align: left;
-
-  left: 0;
-  top: 0.2rem;
-  width: 100%;
-  height: 100%;
-  color: $color-select-input;
-
-  padding-left: 1rem;
-  
-  box-sizing: border-box;
-}
-
-

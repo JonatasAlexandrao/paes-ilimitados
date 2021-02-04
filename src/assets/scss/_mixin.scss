@@ -1,0 +1,16 @@
+
+@mixin custonScrollBar($color1, $color2) {
+  scrollbar-width: thin;
+  scrollbar-color:$color1 $color2;
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+    background: $color1;
+    border-radius: .4rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color2;
+    border-radius: .4rem;
+  }
+}

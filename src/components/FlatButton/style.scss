@@ -1,35 +1,38 @@
 @import "@/assets/scss/_colors.scss";
 
+@mixin color-button($background, $color) {
+  background-color: $background;
+  color: $color;
+  border: .2rem solid $color;
+}
+
 .flatButton {
-  width: 15rem;
-  height: 4.5rem;
-  margin: .5rem;
   border-style: none;
   text-transform: uppercase;
   font-weight: 700;
   outline: none;
   cursor: pointer;
 
-  background-color: $color-background-div;
-  color: $color-white;
-  border: .2rem solid $color-white;
+  @include color-button($color-background-div, $color-white);
   border-radius: .5rem;
+
+  &.-delete:focus, &.-delete:hover {
+    @include color-button($color-delete-button-bc, $color-delete-button)
+  }
+
+  &.-save:focus, &.-save:hover{
+    @include color-button($color-save-button-bc, $color-save-button);
+  }
+  
+  &.-change:focus, &.-change:hover{
+    @include color-button($color-search-button-bc, $color-search-button);
+  }
+  
+  &.-clean:focus, &.-clean:hover{
+    @include color-button($color-clean-button-bc, $color-clean-button);
+  }
+  
+  
 }
 
-.flatButton.-save:focus, .flatButton.-save:hover{
-  background-color: $color-save-button-bc;
-  color: $color-save-button;
-  border: .2rem solid $color-save-button;
-}
 
-.flatButton.-search:focus, .flatButton.-search:hover{
-  background-color: $color-search-button-bc;
-  color: $color-search-button;
-  border: .2rem solid $color-search-button;
-}
-
-.flatButton.-clean:focus, .flatButton.-clean:hover{
-  background-color: $color-clean-button-bc;
-  color: $color-clean-button;
-  border: .2rem solid $color-clean-button;
-}

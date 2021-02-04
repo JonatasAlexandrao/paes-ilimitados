@@ -24,9 +24,11 @@
 
     <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
 
-    <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
-    <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
-    <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
+    <div class="divButtons">
+      <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
+      <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
+      <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
+    </div>
 
   </form>
 
@@ -247,4 +249,4 @@ export default {
 }
 </script>
 
-<style src="./style.scss" lang="scss"/>
+<style src="./style.scss" lang="scss" />
