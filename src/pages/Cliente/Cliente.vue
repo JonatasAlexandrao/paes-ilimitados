@@ -1,45 +1,50 @@
 <template>
-<div class="backgroundDiv">
-  <form @submit="(event) => event.preventDefault()">
+<div class="clientPage">
+  <PageTitle title="Clientes" />
+
+  <div class="backgroundDiv">
+    <form @submit="(event) => event.preventDefault()">
+      
+      <p class="id">ID: {{clienteId}}</p>
     
-    <p class="id">ID: {{clienteId}}</p>
-  
-    <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
-      <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
-    </InputFild>
+      <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
+        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
+      </InputFild>
 
-    <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
+      <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
 
-    <fieldset>
-      <legend>Endereço</legend>
-      <div class="endereco">
-        <InputFild classInput="-rua" name="rua" label="Rua" v-model="clienteRua" />
-        <InputFild classInput="-num" name="num" label="Nº" v-model="clienteNum" />
-        <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
-        <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
-        <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />   
-        <FlatButton  classButton="-delete" :handleclick="deleteBD" title="Deletar"/>  
+      <fieldset>
+        <legend>Endereço</legend>
+        <div class="endereco">
+          <InputFild classInput="-rua" name="rua" label="Rua" v-model="clienteRua" />
+          <InputFild classInput="-num" name="num" label="Nº" v-model="clienteNum" />
+          <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
+          <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
+          <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />   
+          <FlatButton  classButton="-delete" :handleclick="deleteBD" title="Deletar"/>  
+        </div>
+      </fieldset>
+
+      <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
+
+      <div class="divButtons">
+        <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
+        <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
+        <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
       </div>
-    </fieldset>
 
-    <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
+    </form>
 
-    <div class="divButtons">
-      <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
-      <FlatButton v-else classButton="-change" :handleclick="changeBD" title="Alterar" />
-      <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
-    </div>
+    <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :selectClient="selectClient"/>
 
-  </form>
+    
 
-  <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :selectClient="selectClient"/>
-
-  
-
+  </div>
 </div>
 </template>
 
 <script>
+import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
@@ -50,7 +55,7 @@ import data from '@/database/data'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { InputFild, FlatButton, DropDownList, TableClient, ErrorMessage},
+  components: { PageTitle, InputFild, FlatButton, DropDownList, TableClient, ErrorMessage},
 
   //created: function() { this.nextId() },
 
@@ -152,7 +157,7 @@ export default {
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
-      this.$store.dispatch('activeListClient', 'empty')
+      this.$store.dispatch('activeListClient', 'desabled')
       this.getList()
       this.validateInput = true
     },

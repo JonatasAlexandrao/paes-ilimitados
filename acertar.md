@@ -27,7 +27,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
   --> CSS
     
-    - mudar layout para o versão nova
+    - mudar layout para a versão nova
     - resolver problema de ficar tendo q importar os arquivos globais .scss
 
 

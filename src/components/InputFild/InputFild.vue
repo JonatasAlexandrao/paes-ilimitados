@@ -1,5 +1,8 @@
 <template>
   <div class="divInput" :class="classInput">
+
+    <IconOpenOrClose v-if="type=='search'"/>
+
     <input 
       :id="name"
       :name="name"  
@@ -12,7 +15,6 @@
       
       v-model="localValue"
       @dblclick="dblClickInput()"
-      
 
       autocomplete="off"
       
@@ -27,9 +29,12 @@
 </template>
 
 <script>
+  import IconOpenOrClose from '@/components/IconOpenOrClose/IconOpenOrClose'
   import mask from '@/assets/mask/mask'
 
 export default {
+  components: { IconOpenOrClose },
+
   props: {
     classInput: { type: String, required: true },
     name: { type: String, required: true },
@@ -71,7 +76,7 @@ export default {
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
-        this.$store.dispatch('activeListClient', 'dblclick')
+        this.$store.dispatch('activeListClient', 'toggle')
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -82,9 +87,9 @@ export default {
 
       if(this.type == 'search')
         if(this.localValue === '')
-          this.$store.dispatch('activeListClient', 'empty')
+          this.$store.dispatch('activeListClient', 'disabled')
         else
-          this.$store.dispatch('activeListClient', 'input')
+          this.$store.dispatch('activeListClient', 'active')
     },
   }
   

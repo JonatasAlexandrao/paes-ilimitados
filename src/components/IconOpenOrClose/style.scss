@@ -1,0 +1,25 @@
+
+
+.divIcon {
+  //background-color: violet;
+  width: 35px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  
+}
+.icon {
+  cursor: pointer;
+  margin: auto;
+  
+  width: 15px;
+  height: 15px;
+  padding: 5px;
+  border-radius: 15px;
+
+  &:hover{
+    background-color: rgb(218, 218, 218);
+  }
+  
+}
