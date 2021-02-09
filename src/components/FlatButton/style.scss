@@ -1,10 +1,8 @@
 @import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+@import "@/assets/scss/_mixin.scss";
 
-@mixin color-button($background, $color) {
-  background-color: $background;
-  color: $color;
-  border: .2rem solid $color;
-}
+
 
 .flatButton {
   border-style: none;
@@ -12,8 +10,10 @@
   font-weight: 700;
   outline: none;
   cursor: pointer;
+  font-size: $font-button;
 
   @include color-button($color-background-div, $color-white);
+
   border-radius: .5rem;
 
   &.-delete:focus, &.-delete:hover {

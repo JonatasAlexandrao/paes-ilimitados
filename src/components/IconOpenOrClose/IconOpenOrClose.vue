@@ -22,15 +22,6 @@
 <script>
 export default {
 
-  props: {
-
-  },
-  data() {
-    return {
-      teste: false,
-    }
-  },
-
   methods: {
     handleclick() {
       this.$store.dispatch('activeListClient','toggle')

@@ -4,6 +4,7 @@
 
 .divInput {
   position: relative;
+  box-sizing: border-box;
 
   & > input {
 
@@ -21,9 +22,6 @@
     box-sizing: border-box;
     outline: none;
 
-     &:focus {
-      border-bottom: 0.3rem solid $color-select-input;
-    }
   }
 
   & > label {
@@ -40,9 +38,22 @@
     
       left: 1rem;
       top: 0.2rem;
-      color: $color-select-input;
+      //color: $color-select-input;
     }
     
   }
   
 }
+
+.clientPage {
+  input:focus {
+    //border-bottom: 0.3rem solid $color-select-input;
+    border-bottom: 0.4rem solid $color-client;
+  }
+  label.-small {
+    color: $color-client;
+  }
+}
+
+
+

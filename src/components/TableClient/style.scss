@@ -29,11 +29,11 @@
 }
 
 .tbl.-cliente {
-  @include custonScrollBar(rgb(87, 23, 23),rgb(146, 37, 37));
+  @include custonScrollBar(darken($color-client, 20%),$color-client);
 
   & > table{
 
-    & > thead { background-color: crimson; }
+    & > thead { background-color: $color-client; color: $color-white; }
 
     tr {
 

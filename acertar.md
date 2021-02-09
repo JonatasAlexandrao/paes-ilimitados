@@ -10,11 +10,15 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
-  
+    * Mudar nome e cores das variaveis
+    * em tableClient as cores não estão em variaveis
+    * em dropDownlist as cores não estão em variaveis
+    - passar img da setinho do input para o css
   
   
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  
   
   
 
@@ -23,19 +27,14 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
   
   - deixar o botão ativo quando todos os campos estiverem preenchidos
-  - colocar um icone de seta para baixo no input search para abrir a lista
+  
 
   --> CSS
     
-    - mudar layout para a versão nova
+    
     - resolver problema de ficar tendo q importar os arquivos globais .scss
 
-
-    * Mudar nome e cores das variaveis
-    * em tableClient as cores não estão em variaveis
-    * em dropDownlist as cores não estão em variaveis
-     
-  
+    - talves precise trocar a fonte dos botoes
 
   --> Lista do Input
     
@@ -62,6 +61,10 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok) colocar um icone de seta para baixo no input search para abrir a lista
+(ok) mudar layout para a versão nova
+(ok) ao clicar no item do dropdown fora do texto ele não está selecionando
+(ok) ao selecionar um item do dropdown a lista não está fechando
 (ok) Customizar as barras de rolagem
 (ok) Exibir mensagem de confirmação de save
 (ok) acertar tb dos botoes

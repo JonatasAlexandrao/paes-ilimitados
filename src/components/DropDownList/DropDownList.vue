@@ -23,7 +23,7 @@ export default {
       const client = this.list.filter(l => l.id == id)
       this.selectClient(event,...client)
 
-      this.$store.dispatch('activeListClient', 'clickList')
+      this.$store.dispatch('activeListClient', 'toggle')
     }
   },
 }

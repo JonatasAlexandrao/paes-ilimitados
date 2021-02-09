@@ -14,3 +14,9 @@
     border-radius: .4rem;
   }
 }
+
+@mixin color-button($background, $color) {
+  background-color: $background;
+  color: $color;
+  border: solid $color;
+}
