@@ -136,7 +136,7 @@ export default {
        return value
     },
 
-    selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e Table
+    selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e TableClient
 
       event.stopPropagation();
 
