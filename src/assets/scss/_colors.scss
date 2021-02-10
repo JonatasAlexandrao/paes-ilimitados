@@ -13,16 +13,16 @@ $color-select-input: #0043c0;
 $color-error-input: #8b0f0f;
 
 
-$color-save-button: rgb(13, 240, 100);
-$color-save-button-bc: rgb(13, 240, 100, .1); 
+//$color-save-button: rgb(13, 240, 100);
+$color-save-button-bc: rgb(0, 122, 47); 
 
-$color-search-button: rgb(255, 230, 0);
-$color-search-button-bc:  rgb(0, 199, 106);
+//$color-change-button: rgb(255, 230, 0);
+$color-change-button-bc:  rgb(0, 103, 163);
 
-$color-clean-button: rgb(107, 44, 253);
+//$color-clean-button: rgb(107, 44, 253);
 $color-clean-button-bc: rgb(255, 230, 0, .7);
 
-$color-delete-button: $color-white;
+//$color-delete-button: $color-white;
 $color-delete-button-bc: rgb(182, 35, 35); 
 
 
@@ -30,6 +30,9 @@ $color-delete-button-bc: rgb(182, 35, 35);
 $color-client: #6211ad;
 $color-background-client: #7A7A7A;
 $color-highlight: #16DB93;
+
+$color-table-row-odd: lighten($color-background-div, 20%);
+
 
 
 

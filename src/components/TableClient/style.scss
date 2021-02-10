@@ -7,13 +7,13 @@
   display: block;
   overflow-x: scroll;
 
-  box-shadow: 0 1rem 1.5rem rgba(32,32,32,.6);
+  box-shadow: 0 1rem 1.5rem $color-black;
 
   & > table{
   
     border-spacing: 0;
     font-size: 1.6rem;
-    background-color: rgb(230, 230, 230);
+    //background-color: $color-white;
   
     user-select: none;
 
@@ -28,33 +28,5 @@
   
 }
 
-.tbl.-cliente {
-  @include custonScrollBar(darken($color-client, 20%),$color-client);
 
-  & > table{
-
-    & > thead { background-color: $color-client; color: $color-white; }
-
-    tr {
-
-      & > .tblId { min-width: 5rem; display: none; }
-      & > .tblNome { min-width: 18rem; max-width: 18rem;}
-      & > .tblCel { min-width: 15rem; }
-      & > .tblEndereco{ min-width: 20rem; max-width: 20rem;}
-      & > .tblValor { min-width: 13rem; }
-  
-      &:nth-child(odd) { background-color: rgb(202, 202, 202); }
-    
-      &:hover {
-        cursor: pointer;
-        background-color:  rgb(163, 163, 163);
-    
-        &:hover:nth-child(odd) { background-color:  rgb(126, 126, 126); }
-      }
-    }
-    
-  }
-
-  
-}
 

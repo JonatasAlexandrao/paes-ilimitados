@@ -15,8 +15,33 @@
   }
 }
 
-@mixin color-button($background, $color) {
-  background-color: $background;
-  color: $color;
-  border: solid $color;
+@mixin color-button($type:simple) {
+  @if($type == simple){
+    color: $color-white;
+    background-color: darken($color-background-div, 25%);
+
+  }
+  @else if ($type == save){
+    color: $color-white;
+    background-color: $color-save-button-bc;
+    border: none;
+  
+  }
+  @else if ($type == change){
+    color: $color-white;
+    background-color: $color-change-button-bc;
+    border: none;
+  
+  }
+  @else if ($type == delete){
+    color: $color-white;
+    background-color: $color-delete-button-bc;
+    border: none;
+
+  }
+  &:hover{
+    border: 3px solid transparentize($color-white, .1);
+  }
+  
+  
 }

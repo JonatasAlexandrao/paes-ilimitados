@@ -6,33 +6,19 @@
 
 .flatButton {
   border-style: none;
-  text-transform: uppercase;
-  font-weight: 700;
-  outline: none;
+  //outline: none;
   cursor: pointer;
   font-size: $font-button;
+  border-radius: .3rem;
+ 
+  @include color-button(simple);
 
-  @include color-button($color-background-div, $color-white);
+  &.-delete{ @include color-button(delete); }
+  &.-save { @include color-button(save); }
+  &.-change { @include color-button(change); }
 
-  border-radius: .5rem;
+  &:focus{ outline: .3rem solid transparentize($color-white, .1); }
 
-  &.-delete:focus, &.-delete:hover {
-    @include color-button($color-delete-button-bc, $color-delete-button)
-  }
-
-  &.-save:focus, &.-save:hover{
-    @include color-button($color-save-button-bc, $color-save-button);
-  }
-  
-  &.-change:focus, &.-change:hover{
-    @include color-button($color-search-button-bc, $color-search-button);
-  }
-  
-  &.-clean:focus, &.-clean:hover{
-    @include color-button($color-clean-button-bc, $color-clean-button);
-  }
-  
-  
 }
 
 

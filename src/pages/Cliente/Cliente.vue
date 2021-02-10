@@ -8,7 +8,7 @@
       <p class="id">ID: {{clienteId}}</p>
     
       <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
-        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list"/>
+        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list" class="-client"/>
       </InputFild>
 
       <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
