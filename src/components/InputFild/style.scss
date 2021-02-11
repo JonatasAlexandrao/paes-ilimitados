@@ -46,13 +46,12 @@
 }
 
 .clientPage {
-  input:focus {
-    //border-bottom: 0.3rem solid $color-select-input;
-    border-bottom: 0.4rem solid $color-client;
-  }
-  label.-small {
-    color: $color-client;
-  }
+  input:focus { border-bottom: 0.4rem solid $color-client; }
+  label.-small { color: $color-client; }
+}
+.productPage {
+  input:focus { border-bottom: 0.4rem solid $color-product; }
+  label.-small { color: $color-product; }
 }
 
 

@@ -1,3 +1,10 @@
+
+<!-- 
+inputmode: Altera o tipo de teclado no celular para 
+  numeric, text, decimal, tel, search, email, url
+mask: a mascara de input q será usada
+-->
+
 <template>
   <div class="divInput" :class="classInput">
 
@@ -17,11 +24,8 @@
       @dblclick="dblClickInput()"
 
       autocomplete="off"
-      
-
     >
-    <!-- :type="type" -->
-    <!-- @blur="deFocus('blur')" -->
+
     <slot name="list"></slot>
     
     <label :class="{ '-small': smallLabel }" :for="name">{{ label }}</label>

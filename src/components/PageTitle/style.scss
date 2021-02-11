@@ -2,7 +2,7 @@
 @import "@/assets/scss/_fonts.scss";
 
 .pageTitle {
-  background-color: $color-client;
+  //background-color: $color-client;
   //background-color: $color-background-div;
   color: $color-white;
   width: 100%;
@@ -21,3 +21,6 @@
   }
   
 }
+
+.clientPage { background-color: $color-client; }
+.productPage { background-color: $color-product; }
