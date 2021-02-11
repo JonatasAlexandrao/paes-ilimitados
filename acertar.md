@@ -10,7 +10,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
    
-  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb
+  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb.
 
   
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
