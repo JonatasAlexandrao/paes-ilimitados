@@ -1,5 +1,5 @@
 <template>
-  <div class="messagerError" v-if="!validateInput"> 
+  <div class="messagerError" :class="classMessager" > 
     Erro: {{ errorMessage }}
   </div>
 </template>
@@ -14,8 +14,15 @@ export default {
 
   data() {
     return {
-      error: true
-      
+      error: true   
+    }
+  },
+  computed: {
+    classMessager() {
+      if(!this.validateInput)
+        return '-active'
+      else  
+        return ''
     }
   },
 

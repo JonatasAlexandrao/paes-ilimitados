@@ -9,33 +9,23 @@ document.getElementById("meu-input").onkeypress = function(e) {
 }
 ----------------------------------------
 410x750
+   
+  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb
 
-    * Mudar nome e cores das variaveis
-    * em tableClient as cores não estão em variaveis
-    * em dropDownlist as cores não estão em variaveis
-    - passar img da setinho do input para o css
-  
   
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
   
-  
-  
 
 
 --> Tela cliente:
-  
-  
-  - deixar o botão ativo quando todos os campos estiverem preenchidos
-  
 
   --> CSS
     
     
     - resolver problema de ficar tendo q importar os arquivos globais .scss
 
-    - talves precise trocar a fonte dos botoes
-
+    
   --> Lista do Input
     
   
@@ -48,10 +38,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
 
 --> Button
-  - escolher cores para os botões
-  - quando todos os inputs estiverem com valores o gravar pode ficar colorido
-
-
+  
 
 
 
@@ -61,6 +48,15 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok) colocar em ordem alfabetica a lista de clientes
+(ok) colocar um efeito na caixa de erro, uma vibração pra chamar atenção pra ela.
+(ok) quando salva um cliente novo ele limpa e da foco no input e abre a lista
+(ok) desativar botão deletar quando não tiver um cliente selecionado
+(ok) escolher cores para os botões
+(ok) talves precise trocar a fonte dos botoes
+(ok) Mudar nome e cores das variaveis
+(ok) em tableClient as cores não estão em variaveis
+(ok) em dropDownlist as cores não estão em variaveis
 (ok) colocar um icone de seta para baixo no input search para abrir a lista
 (ok) mudar layout para a versão nova
 (ok) ao clicar no item do dropdown fora do texto ele não está selecionando

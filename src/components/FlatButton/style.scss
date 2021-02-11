@@ -6,12 +6,11 @@
 
 .flatButton {
   border-style: none;
-  //outline: none;
   cursor: pointer;
   font-size: $font-button;
   border-radius: .3rem;
- 
-  @include color-button(simple);
+
+   @include color-button(simple);
 
   &.-delete{ @include color-button(delete); }
   &.-save { @include color-button(save); }

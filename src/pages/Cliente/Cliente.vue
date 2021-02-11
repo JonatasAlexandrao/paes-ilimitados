@@ -21,7 +21,7 @@
           <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
           <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
           <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />   
-          <FlatButton  classButton="-delete" :handleclick="deleteBD" title="Deletar"/>  
+          <FlatButton v-if="clienteId" classButton="-delete" :handleclick="deleteBD" title="Deletar" />  
         </div>
       </fieldset>
 
@@ -109,7 +109,7 @@ export default {
   },
 
   methods: {
-
+    
     nextId(){ // Verifica qual o próximo id //
       const id = (this.list[this.list.length-1].id)
       const ultimoId = parseInt(id) + 1
@@ -123,16 +123,17 @@ export default {
 
       value = mask.maskFilter('letter', value)
 
-      this.filteredList = this.list.filter(elem => {
+       this.filteredList = this.list.filter(elem => {
         const nome = elem.nome.normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
 
-        const rule = `^${value}.*`
+        const rule = `${value}.*`
         const regex = new RegExp(rule, "gim")
 
         return nome.match(regex) 
        
-      })     
+      }) 
+      
        return value
     },
 
@@ -148,7 +149,6 @@ export default {
       this.$store.commit('setBairroCliente', client.bairro)
       this.$store.commit('setCidadeCliente', client.cidade)
       this.$store.commit('setValorCliente', client.valor)
-      //this.clienteNome = client.nome
     },
 
     cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
@@ -157,15 +157,28 @@ export default {
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
-      this.$store.dispatch('activeListClient', 'desabled')
+      this.$store.dispatch('activeListClient', 'disabled')
       this.getList()
       this.validateInput = true
+    },
+
+    sortList(list) { // ordena a lista em ordem alfabetica //
+      list.sort(function (a, b) { 
+        if(a.nome > b.nome)
+          return 1
+        if(a.nome < b.nome)
+          return -1
+        
+        return 0
+      })
+      return list
     },
     
     async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
         const listData = await data.searchList('clientes/')
         this.list = listData
+        this.list = this.sortList(listData)
         this.filteredList = listData
  
       } catch(error) {
@@ -175,12 +188,14 @@ export default {
     },
 
     saveBD() { // salva um novo cliente //
+      //this.validateInput = true
       if(this.validate()){
         this.nextId()
         const id = this.clienteId
         data.save('clientes/' + id, this.$store.state.cliente) 
         this.cleanFilds()
       }
+      
        
     },
 
@@ -189,7 +204,8 @@ export default {
         const id = this.clienteId
         data.update('clientes/' + id, this.$store.state.cliente)
         this.cleanFilds()
-      }   
+      }
+      
     },
 
     deleteBD() { // deleta um cliente do banco //
@@ -225,7 +241,6 @@ export default {
         input[1].focus()
         
         this.validateInput = false
-
         console.log(this.clienteCelular.length)
     
         this.errorMessage = 'Campo celular é obrigatório.'
@@ -237,14 +252,14 @@ export default {
         const input = document.getElementsByTagName('input')
         input[1].focus()
         
-        this.validateInput = false
+        //this.validateInput = false
         this.errorMessage = 'Celular invalido, faltam números.'
 
          return false
 
       }
       else{
-        this.validateInput = true
+        //this.validateInput = true
         return true
       }
     }
