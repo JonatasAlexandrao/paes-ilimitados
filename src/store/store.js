@@ -14,8 +14,19 @@ const store = new Vuex.Store({
       cidade: '',
       valor: ''
     },
+    produto: {
+      id: 0,
+      nome: '',
+      peso: '',
+      valor: '',
+      ingredientes: '',
+    },
 
-    activeListClient: false
+    activeListClient: false,
+    activeList: {
+      clienteNome: false,
+      produtoNome: false,
+    }
   },
   
   getters: {
@@ -38,7 +49,7 @@ const store = new Vuex.Store({
     setCidadeCliente(state, cidade) { state.cliente.cidade = cidade },
     setValorCliente(state, valor) { state.cliente.valor = valor },
 
-    cleanAll(state) {
+    cleanAllCliente(state) {
       state.cliente.id = 0
       state.cliente.nome = ''
       state.cliente.celular = ''
@@ -47,7 +58,19 @@ const store = new Vuex.Store({
       state.cliente.bairro = ''
       state.cliente.cidade = ''
       state.cliente.valor = '0,00'
-    }
+    },
+
+
+    setProdutoId(state, id) { state.produto.id = id },
+    setProdutoNome(state, nome) { state.produto.nome = nome },
+    setProdutoValor(state, valor) { state.produto.valor = valor },
+    setProdutoPeso(state, peso) { state.produto.peso = peso },
+    cleanAllProduto(state) {
+      state.produto.id = 0
+      state.produto.nome = ''
+      state.produto.valor = '0,00'
+      state.produto.peso = ''
+    },
     
 
   },
@@ -68,7 +91,14 @@ const store = new Vuex.Store({
         context.commit('activeListClient', false)
       else if(action === 'active')
         context.commit('activeListClient', true)
+    },
+
+    activeList(context, action) {
+      if(action === 'toggle')
+        context.commit('activeList', !context.state.activeList.productNome)
     }
+    
+
   }
 
 })

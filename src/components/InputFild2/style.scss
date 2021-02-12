@@ -1,0 +1,58 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+
+
+.divInput {
+  position: relative;
+  box-sizing: border-box;
+
+  & > input {
+
+    font-size: $font-standard;
+    text-align: right;
+  
+    width: 100%;
+    height: 4rem;
+    padding: 1rem 1rem 0rem 1rem;
+  
+    background-color: $color-white;
+    border: none;
+    border-radius: 0.4rem;
+  
+    box-sizing: border-box;
+    outline: none;
+
+  }
+
+  & > label {
+    font-size: $font-standard;
+    color: $color-description;
+  
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    pointer-events: none; /*é como se o elemento estivesse por baixo assim da pra clicar no input mesmo por cima dele*/
+
+    &.-small {
+      font-size: $font-small;
+    
+      left: 1rem;
+      top: 0.2rem;
+      //color: $color-select-input;
+    }
+    
+  }
+  
+}
+
+.clientPage {
+  input:focus { border-bottom: 0.4rem solid $color-client; }
+  label.-small { color: $color-client; }
+}
+.productPage {
+  input:focus { border-bottom: 0.4rem solid $color-product; }
+  label.-small { color: $color-product; }
+}
+
+
+

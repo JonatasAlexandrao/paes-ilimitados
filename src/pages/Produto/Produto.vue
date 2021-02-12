@@ -5,10 +5,17 @@
   <div class="backgroundDiv">
     <form @submit="(event) => event.preventDefault()">
       <p class="id">ID: {{produtoId}}</p>
-      <InputFild classInput="-prod" name="produto" label="Produto" v-model="produtoNome" />
-      <InputFild classInput="-peso" name="peso" label="Peso" v-model="produtoPeso" />
-      <InputFild classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" />
-      <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="produtoValor" /> 
+      <div class="containerInputProduct" >     
+        <InputFild2 classInput="-prod" name="produto" label="Produto" v-model="produtoNome" type="search" :activeList="activeList">
+          <DropDownList2 :itens="productList" :select="selectProduct" slot="list" class="-productList" :activeListProduto="activeListProduto" />
+        </InputFild2>
+        <InputFild classInput="-peso" name="peso" label="Peso" v-model="produtoPeso" />
+        <InputFild classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" type="search">
+          <DropDownList2 :itens="typeList" :select="selectProduct" slot="list" class="-productType"/>
+        </InputFild>
+        <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
+      </div>
+      
 
       <fieldset>
         <legend>Ingredientes</legend>
@@ -36,29 +43,53 @@
 
 import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
+import InputFild2 from '@/components/InputFild2/InputFild2.vue'
+//import DropDownList from '@/components/DropDownList/DropDownList'
+import DropDownList2 from '@/components/DropDownList2/DropDownList2'
 import FlatButton from '@/components/FlatButton/FlatButton'
 
 export default {
 
-  components: { PageTitle, InputFild, FlatButton },
+  components: { PageTitle, InputFild, InputFild2, DropDownList2, FlatButton },
   data(){
     return {
-      produtoId:'123',
-      produtoNome:'',
-      produtoValor:'',
-      produtoPeso:'',
       produtoTipo:'',
       produtoIngredientes:'',
+      productList: [{id:'1', nome:'testes'},{id:'2', nome:'testes2'},{id:'3', nome:'testes3'}],
+      typeList: [{id:'1', nome:'testes'},{id:'2', nome:'testes2'},{id:'3', nome:'testes3'}],
+
+
+
+      activeListProduto: false,
 
     }
   },
 
+  computed: {
+    produtoId() { return this.$store.state.produto.id },
+    produtoNome: {
+      get(){ return this.$store.state.produto.nome },
+      set(value){ this.$store.commit('setProdutoNome', value) }
+    },
+    produtoValor: {
+      get(){ return this.$store.state.produto.valor },
+      set(value){ this.$store.commit('setProdutoValor', value) }
+    },
+    produtoPeso: {
+      get(){ return this.$store.state.produto.peso },
+      set(value){ this.$store.commit('setProdutoPeso', value) }
+    },
+  },
+
   methods: {
+    activeList(value){
+      return this.activeListProduto = value
+    },
     cleanFilds(){
 
     },
     saveBD(){
-
+      console.log(this.$store.state.cliente)
     },
     changeBD(){
 
@@ -67,6 +98,9 @@ export default {
     deleteBD(){
 
     },
+    selectProduct(){
+
+    }
 
   },
 

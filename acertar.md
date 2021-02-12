@@ -9,26 +9,35 @@ document.getElementById("meu-input").onkeypress = function(e) {
 }
 ----------------------------------------
 410x750
-   
-  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb.
 
-  
+
+
+   
+  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  - resolver problema de ficar tendo q importar os arquivos globais .scss
   
+
+--> Tela produtos:
+
+  -dropdown por usar o store para saber quando abrir ou fechar a lista está fazendo isso com todos os combobox juntos.
+
+
+  - criar o store para o produtos
+  - nome produto deve ser um combo box
+  - tipo tb deve ser um combo box
+  - campo ingredientes tem q ser um textbox de texto mesmo
+  - fazer mascaras de cada input
+    - peso
 
 
 --> Tela cliente:
 
   --> CSS
     
-    
-    - resolver problema de ficar tendo q importar os arquivos globais .scss
 
-    
   --> Lista do Input
-    
-  
 
  --> Banco 
   - ver forma de capturar erro do banco no arquivo data

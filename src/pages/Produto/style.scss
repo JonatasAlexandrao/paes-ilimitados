@@ -20,6 +20,16 @@
     margin-top: 5rem;
     background-color: $color-background-div;
 
+    .containerInputProduct {
+      display: grid;
+      grid-template-areas: 
+      "produto produto"
+      "peso tipo"
+      "valor ."
+      ;
+      column-gap: .8rem;
+    }
+
     .id {
       margin: 0 0 .4rem 1rem;
       text-align: left;
@@ -28,6 +38,11 @@
 
     .divInput {
       margin-bottom: .8rem;
+
+      &.-prod{ grid-area: produto; }
+      &.-peso{ grid-area: peso; }
+      &.-tipo{ grid-area: tipo; }
+      &.-valor{ grid-area: valor; }
     }
 
     fieldset {

@@ -1,5 +1,5 @@
 <template>
-  <div class="selectList" :class="{'-active' : activeList}">
+  <div class="selectList" :class="{'-active' : activeListProduto}">
     <ul class="optionList" v-for="(item, index) in list" :key="index" >
       <li :for="index" @click="handleclick($event)" :value="item.id">{{ item.nome }}</li>
     </ul>     
@@ -11,7 +11,8 @@ export default {
 
   props: {
     itens: { type: Array, required: true},
-    select: { type: Function}
+    select: { type: Function},
+    activeListProduto: Boolean,
   },
   computed: {
     activeList() { return this.$store.state.activeListClient },
