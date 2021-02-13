@@ -6,13 +6,13 @@
     <form @submit="(event) => event.preventDefault()">
       <p class="id">ID: {{produtoId}}</p>
       <div class="containerInputProduct" >     
-        <InputFild2 classInput="-prod" name="produto" label="Produto" v-model="produtoNome" type="search" :activeList="activeList">
-          <DropDownList2 :itens="productList" :select="selectProduct" slot="list" class="-productList" :activeListProduto="activeListProduto" />
+        <InputFild2 classInput="-prod" name="produto" label="Produto" v-model="produtoNome" type="search" :activeFunc="activeList" :activeVar="activeListProduto">
+          <DropDownList2 :itens="productList" :select="selectProduct" slot="list" class="-productName" :activeVar="activeListProduto" />
         </InputFild2>
         <InputFild classInput="-peso" name="peso" label="Peso" v-model="produtoPeso" />
-        <InputFild classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" type="search">
-          <DropDownList2 :itens="typeList" :select="selectProduct" slot="list" class="-productType"/>
-        </InputFild>
+        <InputFild2 classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" type="search" :activeFunc="activeList" :activeVar="activeListTipo">
+          <DropDownList2 :itens="typeList" :select="selectProduct" slot="list" class="-productType" :activeVar="activeListTipo"/>
+        </InputFild2>
         <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
       </div>
       
@@ -61,6 +61,7 @@ export default {
 
 
       activeListProduto: false,
+      activeListTipo: false,
 
     }
   },
@@ -82,8 +83,16 @@ export default {
   },
 
   methods: {
-    activeList(value){
-      return this.activeListProduto = value
+    activeList(value, input) { // Verifica qual input quer abrir a lista //
+     /* console.log('function activeList !!!')
+      console.log('value',value)
+      console.log('input',input)*/
+      if(input === 'produto'){
+        this.activeListProduto = value
+      }
+        
+      else if(input === 'tipo')
+        this.activeListTipo = value
     },
     cleanFilds(){
 
@@ -98,8 +107,11 @@ export default {
     deleteBD(){
 
     },
-    selectProduct(){
-
+    selectProduct(event, product){
+      console.log(event)
+      console.log(product)
+      this.activeListProduto = false
+      this.activeListTipo = false
     }
 
   },

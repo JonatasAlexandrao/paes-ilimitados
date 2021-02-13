@@ -3,7 +3,7 @@
 <div class="divIcon" @click="handleclick()">
   <img 
     class="icon"
-    v-if="$store.state.activeListClient"
+    v-if="activeVarLocal"
     src="@/assets/images/icons/icon_retrair.svg" 
     alt="icone para abrir lista de clientes"
     
@@ -22,10 +22,21 @@
 <script>
 export default {
 
+  props: { activeFunc: Function, activeVar: Boolean, name: String },
+  watch: {
+    activeVar(newValue) {
+      if(newValue)
+        this.activeVarLocal = true
+      else
+        this.activeVarLocal = false
+    }
+  },
+  data(){ return{ activeVarLocal: this.activeVar } },
+
   methods: {
     handleclick() {
-      this.$store.dispatch('activeListClient','toggle')
-      console.log('click no icone')
+      this.activeVarLocal = !this.activeVarLocal
+      this.activeFunc(this.activeVarLocal, this.name)
     }
   },
 
