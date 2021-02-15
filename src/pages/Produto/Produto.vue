@@ -6,13 +6,13 @@
     <form @submit="(event) => event.preventDefault()">
       <p class="id">ID: {{produtoId}}</p>
       <div class="containerInputProduct" >     
-        <InputFild2 classInput="-prod" name="produto" label="Produto" v-model="produtoNome" type="search" :activeFunc="activeList" :activeVar="activeListProduto">
-          <DropDownList2 :itens="productList" :select="selectProduct" slot="list" class="-productName" :activeVar="activeListProduto" />
-        </InputFild2>
+        <InputFild classInput="-prod" name="produto" label="Produto" v-model="produtoNome" type="search" :activeFunc="activeList" :activeVar="$store.state.activeList.produtoNome">
+          <DropDownList :itens="productList" :select="selectProduct" slot="list" class="-productName" :activeVar="$store.state.activeList.produtoNome" />
+        </InputFild>
         <InputFild classInput="-peso" name="peso" label="Peso" v-model="produtoPeso" />
-        <InputFild2 classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" type="search" :activeFunc="activeList" :activeVar="activeListTipo">
-          <DropDownList2 :itens="typeList" :select="selectProduct" slot="list" class="-productType" :activeVar="activeListTipo"/>
-        </InputFild2>
+        <InputFild classInput="-tipo" name="tipo" label="Tipo" v-model="produtoTipo" type="search" :activeFunc="activeList" :activeVar="$store.state.activeList.produtoTipo">
+          <DropDownList :itens="typeList" :select="selectProduct" slot="list" class="-productType" :activeVar="$store.state.activeList.produtoTipo"/>
+        </InputFild>
         <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
       </div>
       
@@ -43,14 +43,14 @@
 
 import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
-import InputFild2 from '@/components/InputFild2/InputFild2.vue'
-//import DropDownList from '@/components/DropDownList/DropDownList'
-import DropDownList2 from '@/components/DropDownList2/DropDownList2'
+
+import DropDownList from '@/components/DropDownList/DropDownList'
+
 import FlatButton from '@/components/FlatButton/FlatButton'
 
 export default {
 
-  components: { PageTitle, InputFild, InputFild2, DropDownList2, FlatButton },
+  components: { PageTitle, InputFild, DropDownList, FlatButton },
   data(){
     return {
       produtoTipo:'',
@@ -83,16 +83,16 @@ export default {
   },
 
   methods: {
-    activeList(value, input) { // Verifica qual input quer abrir a lista //
-     /* console.log('function activeList !!!')
-      console.log('value',value)
-      console.log('input',input)*/
-      if(input === 'produto'){
-        this.activeListProduto = value
-      }
+    activeList(input, action) { // Verifica qual input quer abrir a lista //
         
-      else if(input === 'tipo')
-        this.activeListTipo = value
+      if(input === 'produto') {
+        this.$store.dispatch('activeListProdutoNome', action)
+      }
+      else if(input === 'tipo') {
+       this.$store.dispatch('activeListProdutoTipo', action)
+      }
+ 
+    
     },
     cleanFilds(){
 

@@ -38,10 +38,16 @@
 
     .divInput {
       margin-bottom: .8rem;
+      
 
-      &.-prod{ grid-area: produto; }
+      &.-prod{ 
+        grid-area: produto;
+        & > input { padding-right: 35px }
+      }
       &.-peso{ grid-area: peso; }
-      &.-tipo{ grid-area: tipo; }
+      &.-tipo{ grid-area: tipo; 
+        & > input { padding-right: 35px }
+      }
       &.-valor{ grid-area: valor; }
     }
 

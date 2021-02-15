@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     activeList: {
       clienteNome: false,
       produtoNome: false,
+      produtoTipo: false,
     }
   },
   
@@ -39,7 +40,8 @@ const store = new Vuex.Store({
 
   //seters
   mutations: {
-    activeListClient(state, active) { state.activeListClient = active },
+    // ------------- Clientes ------------- //
+    activeListClienteNome(state, active) { state.activeList.clienteNome = active },
     setIdCliente(state, id) { state.cliente.id = id },
     setNomeCliente(state, nome) { state.cliente.nome = nome },
     setCelularCliente(state, celular) { state.cliente.celular = celular },
@@ -59,7 +61,14 @@ const store = new Vuex.Store({
       state.cliente.cidade = ''
       state.cliente.valor = '0,00'
     },
-
+    // ------------- PRODUTOS ------------- //
+    activeListProdutoNome(state, active) {
+      state.activeList.produtoNome = active
+      console.log('cliente')
+    },
+    activeListProdutoTipo(state, active) {
+      state.activeList.produtoTipo = active
+    },
 
     setProdutoId(state, id) { state.produto.id = id },
     setProdutoNome(state, nome) { state.produto.nome = nome },
@@ -84,19 +93,40 @@ const store = new Vuex.Store({
       context.commit('idCliente', id)
     },
 
-    activeListClient(context, action) {
+    activeListClienteNome(context, action='toggle') {
       if(action === 'toggle')
-        context.commit('activeListClient', !context.state.activeListClient)
+        context.commit('activeListClienteNome', !context.state.activeList.clienteNome)
       else if(action === 'disabled')
-        context.commit('activeListClient', false)
+        context.commit('activeListClienteNome', false)
       else if(action === 'active')
-        context.commit('activeListClient', true)
+        context.commit('activeListClienteNome', true)
+
+
+        
     },
 
-    activeList(context, action) {
+    activeListProdutoNome(context, action='toggle') {
+      if(action === 'toggle')
+        context.commit('activeListProdutoNome', !context.state.activeList.produtoNome)
+      else if(action === 'disabled')
+        context.commit('activeListProdutoNome', false)
+      else if(action === 'active')
+        context.commit('activeListProdutoNome', true)
+    },
+
+    activeListProdutoTipo(context, action='toggle') {
+      if(action === 'toggle')
+        context.commit('activeListProdutoTipo', !context.state.activeList.produtoTipo)
+      else if(action === 'disabled')
+        context.commit('activeListProdutoTipo', false)
+      else if(action === 'active')
+        context.commit('activeListProdutoTipo', true)
+    },
+
+    /*activeList(context, action) {
       if(action === 'toggle')
         context.commit('activeList', !context.state.activeList.productNome)
-    }
+    }*/
     
 
   }

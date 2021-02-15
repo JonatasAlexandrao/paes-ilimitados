@@ -3,7 +3,7 @@
 <div class="divIcon" @click="handleclick()">
   <img 
     class="icon"
-    v-if="activeVarLocal"
+    v-if="activeVar"
     src="@/assets/images/icons/icon_retrair.svg" 
     alt="icone para abrir lista de clientes"
     
@@ -23,20 +23,17 @@
 export default {
 
   props: { activeFunc: Function, activeVar: Boolean, name: String },
-  watch: {
-    activeVar(newValue) {
-      if(newValue)
-        this.activeVarLocal = true
-      else
-        this.activeVarLocal = false
-    }
-  },
-  data(){ return{ activeVarLocal: this.activeVar } },
 
   methods: {
     handleclick() {
-      this.activeVarLocal = !this.activeVarLocal
-      this.activeFunc(this.activeVarLocal, this.name)
+      //const input = document.querySelector(".divInput #" + this.name)
+      //console.log(input)
+      //input.focus()
+      //this.activeVarLocal = !this.activeVarLocal
+      this.activeFunc(this.name)
+      //this.$store.dispatch('activeListProdutoNome')
+      //console.log(this.$state.activeList.clienteNome)
+
     }
   },
 

@@ -12,7 +12,7 @@
 
     <div class="desktop">
       <Produto />
-      <Cliente v-if="false"/>
+      <Cliente v-if="true"/>
     </div>
 
   </div>

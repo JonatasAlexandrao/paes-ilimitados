@@ -21,8 +21,9 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 --> Tela produtos:
 
-  -dropdown por usar o store para saber quando abrir ou fechar a lista está fazendo isso com todos os combobox juntos.
-
+  
+  - refaturar o dropdown do cliente para o formato sem store
+  - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
 
   - criar o store para o produtos
   - nome produto deve ser um combo box
@@ -57,6 +58,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas:
 
+(ok)dropdown por usar o store para saber quando abrir ou fechar a lista está fazendo isso com todos os combobox juntos.
 (ok) colocar em ordem alfabetica a lista de clientes
 (ok) colocar um efeito na caixa de erro, uma vibração pra chamar atenção pra ela.
 (ok) quando salva um cliente novo ele limpa e da foco no input e abre a lista

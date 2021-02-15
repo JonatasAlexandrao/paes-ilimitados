@@ -8,7 +8,10 @@ mask: a mascara de input q será usada
 <template>
   <div class="divInput" :class="classInput">
 
-    <IconOpenOrClose v-if="type=='search'"/>
+    <IconOpenOrClose v-if="type=='search'"
+    :activeFunc="activeFunc"
+    :activeVar="activeVar"
+    :name="this.name" />
 
     <input 
       :id="name"
@@ -47,6 +50,9 @@ export default {
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
+    activeFunc: Function,
+    activeVar: Boolean,
+
     mask: String,
     inputmode: String,
     
@@ -65,22 +71,28 @@ export default {
       //const input = document.getElementById(this.name)
 
       this.localValue ? this.smallLabel = true : this.smallLabel = false
-    }
+    },
   },
 
   created() { this.localValue = this.value },
 
   methods: {
     // focus e deFocus intercalam a classe da label //
-    focus() { this.smallLabel = true },
+    focus() { 
+      this.smallLabel = true
+      //this.updateData(this.localValue)
+    },
     deFocus() {
-      if(!this.localValue)
+      if(!this.localValue){
         this.smallLabel = false
+        //this.activeFunc(this.name, 'disabled')
+      }
     },
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
-        this.$store.dispatch('activeListClient', 'toggle')
+        this.activeFunc(this.name) 
+
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -91,9 +103,9 @@ export default {
 
       if(this.type == 'search')
         if(this.localValue === '')
-          this.$store.dispatch('activeListClient', 'disabled')
+          this.activeFunc(this.name, 'disabled')
         else
-          this.$store.dispatch('activeListClient', 'active')
+          this.activeFunc(this.name, 'active')
     },
   }
   

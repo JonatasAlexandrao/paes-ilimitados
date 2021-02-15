@@ -7,11 +7,11 @@
       
       <p class="id">ID: {{clienteId}}</p>
     
-      <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
-        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list" class="-client"/>
+      <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeFunc="activeList" :activeVar="$store.state.activeList.clienteNome">
+        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list" class="-client" :activeVar="$store.state.activeList.clienteNome" />
       </InputFild>
 
-      <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
+      <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
 
       <fieldset>
         <legend>Endereço</legend>
@@ -61,7 +61,7 @@ export default {
 
   computed: {
     //list() { return this.getList() },
-    activeList() { return this.$store.state.activeListClient },
+    //activeList() { return this.$store.state.activeListClient },
     clienteId() { return this.$store.state.cliente.id },
     clienteNome: {
       get(){ return this.$store.state.cliente.nome },
@@ -109,6 +109,13 @@ export default {
   },
 
   methods: {
+    activeList(input, action) { // Verifica qual input quer abrir a lista //
+    
+      if(input === 'clienteNome') {
+        this.$store.dispatch('activeListClienteNome', action)
+        
+      }
+    },
     
     nextId(){ // Verifica qual o próximo id //
       const id = (this.list[this.list.length-1].id)

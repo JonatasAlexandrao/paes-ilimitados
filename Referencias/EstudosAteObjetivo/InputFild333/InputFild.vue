@@ -8,10 +8,7 @@ mask: a mascara de input q será usada
 <template>
   <div class="divInput" :class="classInput">
 
-    <IconOpenOrClose v-if="type=='search'"
-    :activeFunc="activeFunc"
-    :activeVar="activeVarLocal"
-    :name="this.name" />
+    <IconOpenOrClose v-if="type=='search'"/>
 
     <input 
       :id="name"
@@ -50,9 +47,6 @@ export default {
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
-    activeFunc: Function,
-    activeVar: Boolean,
-
     mask: String,
     inputmode: String,
     
@@ -62,7 +56,6 @@ export default {
     return {
       localValue: '',
       smallLabel: false,
-      activeVarLocal: this.activeVar,
     }
   },
   watch: {
@@ -72,12 +65,6 @@ export default {
       //const input = document.getElementById(this.name)
 
       this.localValue ? this.smallLabel = true : this.smallLabel = false
-    },
-    activeVar(newValue) {
-      if(newValue)
-        this.activeVarLocal = true
-      else
-        this.activeVarLocal = false
     }
   },
 
@@ -85,25 +72,15 @@ export default {
 
   methods: {
     // focus e deFocus intercalam a classe da label //
-    focus() { 
-      this.smallLabel = true
-      //this.updateData(this.localValue)
-    },
+    focus() { this.smallLabel = true },
     deFocus() {
-      if(!this.localValue){
+      if(!this.localValue)
         this.smallLabel = false
-        this.activeFunc(false, this.name)
-      }
     },
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
-      if(this.type == 'search'){
-        this.activeVarLocal = !this.activeVarLocal
-        this.activeFunc(this.activeVarLocal, this.name)
-      }
-
-      
-
+      if(this.type == 'search')
+        this.$store.dispatch('activeListClient', 'toggle')
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -114,9 +91,9 @@ export default {
 
       if(this.type == 'search')
         if(this.localValue === '')
-          this.activeFunc(false, this.name)
+          this.$store.dispatch('activeListClient', 'disabled')
         else
-          this.activeFunc(true, this.name)
+          this.$store.dispatch('activeListClient', 'active')
     },
   }
   
