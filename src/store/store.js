@@ -64,7 +64,6 @@ const store = new Vuex.Store({
     // ------------- PRODUTOS ------------- //
     activeListProdutoNome(state, active) {
       state.activeList.produtoNome = active
-      console.log('cliente')
     },
     activeListProdutoTipo(state, active) {
       state.activeList.produtoTipo = active
@@ -93,16 +92,25 @@ const store = new Vuex.Store({
       context.commit('idCliente', id)
     },
 
+    activeList(contex, input, action='toggle'){
+      if(input === 'clienteNome') {
+        contex.dispatch('activeListClienteNome', action)
+      }
+      else if(input === 'produtoNome') {
+        contex.dispatch('activeListProdutoNome', action)
+      }
+      else if(input === 'produtoTipo') {
+        contex.dispatch('activeListProdutoTipo', action)
+      }
+    },
+
     activeListClienteNome(context, action='toggle') {
       if(action === 'toggle')
         context.commit('activeListClienteNome', !context.state.activeList.clienteNome)
       else if(action === 'disabled')
         context.commit('activeListClienteNome', false)
       else if(action === 'active')
-        context.commit('activeListClienteNome', true)
-
-
-        
+        context.commit('activeListClienteNome', true) 
     },
 
     activeListProdutoNome(context, action='toggle') {
@@ -122,12 +130,6 @@ const store = new Vuex.Store({
       else if(action === 'active')
         context.commit('activeListProdutoTipo', true)
     },
-
-    /*activeList(context, action) {
-      if(action === 'toggle')
-        context.commit('activeList', !context.state.activeList.productNome)
-    }*/
-    
 
   }
 

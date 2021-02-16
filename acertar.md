@@ -10,27 +10,13 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
-
-
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
-  - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
-  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
-  - resolver problema de ficar tendo q importar os arquivos globais .scss
+
   
+
 
 --> Tela produtos:
-
-  
-  - refaturar o dropdown do cliente para o formato sem store
-  - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
-
-  - criar o store para o produtos
-  - nome produto deve ser um combo box
-  - tipo tb deve ser um combo box
-  - campo ingredientes tem q ser um textbox de texto mesmo
-  - fazer mascaras de cada input
-    - peso
 
 
 --> Tela cliente:
@@ -50,14 +36,26 @@ document.getElementById("meu-input").onkeypress = function(e) {
 --> Button
   
 
-
+# Problemas e bugs:
+  - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
+  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
+  - resolver problema de ficar tendo q importar os arquivos globais .scss
 
 
 # Pensamentos:
   
 
-# Problemas:
+# Problemas Resolvidos:
 
+(ok) Depois da refaturação o item do dropdownlist não está sendo selecionado e passado para os inputs
+(ok) criar o store para o produtos
+(ok) nome produto deve ser um combo box
+(ok) tipo tb deve ser um combo box
+(ok) campo ingredientes tem q ser um textbox de texto mesmo
+(ok) fazer mascaras de cada input
+  (ok) peso
+(ok) refaturar o dropdown do cliente para o formato sem store
 (ok)dropdown por usar o store para saber quando abrir ou fechar a lista está fazendo isso com todos os combobox juntos.
 (ok) colocar em ordem alfabetica a lista de clientes
 (ok) colocar um efeito na caixa de erro, uma vibração pra chamar atenção pra ela.

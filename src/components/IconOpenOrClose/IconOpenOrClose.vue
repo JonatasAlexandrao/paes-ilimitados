@@ -22,19 +22,10 @@
 <script>
 export default {
 
-  props: { activeFunc: Function, activeVar: Boolean, name: String },
+  props: { activeVar: Boolean, name: String },
 
   methods: {
-    handleclick() {
-      //const input = document.querySelector(".divInput #" + this.name)
-      //console.log(input)
-      //input.focus()
-      //this.activeVarLocal = !this.activeVarLocal
-      this.activeFunc(this.name)
-      //this.$store.dispatch('activeListProdutoNome')
-      //console.log(this.$state.activeList.clienteNome)
-
-    }
+    handleclick() { this.$store.dispatch('activeList', this.name) }
   },
 
 }

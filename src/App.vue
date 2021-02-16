@@ -11,8 +11,8 @@
     </nav>
 
     <div class="desktop">
-      <Produto />
-      <Cliente v-if="true"/>
+      <Produto v-if="true"/>
+      <Cliente />
     </div>
 
   </div>

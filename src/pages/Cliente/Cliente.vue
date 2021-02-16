@@ -7,8 +7,13 @@
       
       <p class="id">ID: {{clienteId}}</p>
     
-      <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeFunc="activeList" :activeVar="$store.state.activeList.clienteNome">
-        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list" class="-client" :activeVar="$store.state.activeList.clienteNome" />
+      <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
+        <DropDownList :itens="filteredList" 
+        :select="selectClient" 
+        name="clienteNome"
+        slot="list" 
+        class="-client" 
+        :activeVar="$store.state.activeList.clienteNome" />
       </InputFild>
 
       <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
@@ -35,7 +40,7 @@
 
     </form>
 
-    <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :selectClient="selectClient"/>
+    <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :select="selectClient"/>
 
     
 
@@ -109,13 +114,14 @@ export default {
   },
 
   methods: {
-    activeList(input, action) { // Verifica qual input quer abrir a lista //
+  /*  activeList(input, action) { // Verifica qual input quer abrir a lista //
     
       if(input === 'clienteNome') {
-        this.$store.dispatch('activeListClienteNome', action)
-        
+        this.$store.dispatch('activeList', input, action)
+        //this.$store.dispatch('activeListClienteNome', action)
+        //console.log('teste123')
       }
-    },
+    },*/
     
     nextId(){ // Verifica qual o próximo id //
       const id = (this.list[this.list.length-1].id)
@@ -156,6 +162,7 @@ export default {
       this.$store.commit('setBairroCliente', client.bairro)
       this.$store.commit('setCidadeCliente', client.cidade)
       this.$store.commit('setValorCliente', client.valor)
+
     },
 
     cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//

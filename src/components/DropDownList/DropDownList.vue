@@ -11,8 +11,9 @@ export default {
 
   props: {
     itens: { type: Array, required: true},
-    select: { type: Function},
-    activeVar: Boolean,
+    select: { type: Function },
+    activeVar: { type: Boolean },
+    name: { type: String },
   },
   computed: {
     //activeList() { return this.$store.state.activeListClient },
@@ -21,9 +22,10 @@ export default {
   methods: {
     handleclick(event) { // pega o id do item clicado na lista, procura o produto com esse id e envia para o evento select do pai //
       const id = event.target.attributes.value.value
-      const product = this.list.filter(l => l.id == id)
-      this.select(event,...product)
+      const iten = this.list.filter(l => l.id == id)
+      this.select(event,...iten)
 
+      this.$store.dispatch('activeList', this.name, 'disabled')
     }
   },
 }

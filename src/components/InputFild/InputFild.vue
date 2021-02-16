@@ -9,7 +9,6 @@ mask: a mascara de input q será usada
   <div class="divInput" :class="classInput">
 
     <IconOpenOrClose v-if="type=='search'"
-    :activeFunc="activeFunc"
     :activeVar="activeVar"
     :name="this.name" />
 
@@ -50,7 +49,7 @@ export default {
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
-    activeFunc: Function,
+    //activeFunc: Function,
     activeVar: Boolean,
 
     mask: String,
@@ -91,8 +90,7 @@ export default {
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
-        this.activeFunc(this.name) 
-
+        this.$store.dispatch('activeList', this.name)
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -101,11 +99,13 @@ export default {
 
       this.filterList(value)
 
-      if(this.type == 'search')
+      if(this.type == 'search') {
         if(this.localValue === '')
-          this.activeFunc(this.name, 'disabled')
+          this.$store.dispatch('activeList', this.name, 'disabled')
         else
-          this.activeFunc(this.name, 'active')
+          this.$store.dispatch('activeList', this.name, 'active')
+      }
+        
     },
   }
   
