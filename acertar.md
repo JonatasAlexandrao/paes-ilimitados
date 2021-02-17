@@ -13,13 +13,12 @@ document.getElementById("meu-input").onkeypress = function(e) {
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 
-  (ok) codar a parte do banco para o produto
+  
 
   - a ativação da lista está sempre fazendo toggle
-  - os inputs com a mask letter não estão aceitando acentos
-  (ok) mudar cores do dropdown para a cor do produto
+  
   - falta vincular lista do tipo de produto ao dropdown
-  (ok) fazer o codigo para a função de validação dos inputs
+  
   - Mudar o componete de mensagem de erro para alert e mostrar nele quando o item foi salvo, alterado, deletado e erro na validação (para cada um usar uma cor diferente)
 
 
@@ -55,6 +54,10 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas Resolvidos:
 
+(ok) fazer o codigo para a função de validação dos inputs
+(ok) codar a parte do banco para o produto
+(ok) os inputs com a mask letter não estão aceitando acentos
+(ok) mudar cores do dropdown para a cor do produto
 (ok) Depois da refaturação o item do dropdownlist não está sendo selecionado e passado para os inputs
 (ok) criar o store para o produtos
 (ok) nome produto deve ser um combo box

@@ -3,7 +3,13 @@
 const mask = (function() {
 
   module.letter = (value) => {
-    value = value.replace(/[^\w\s]/gi, '')
+    //value = value.replace(/[^\w\s]/gi, '')
+    value = value
+      .replace('*', '')
+      .replace('[', '')
+      .replace('+', '')
+      .replace(/\d/gi, '')
+      
     return value
   },
 
