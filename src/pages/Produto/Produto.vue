@@ -181,22 +181,33 @@ export default {
     },
 
     saveBD(){ // salva um novo Produto //
-      //console.log(this.$store.state.cliente)
-      console.log(this.filteredList)
-
-      /*if(this.validate()) {
+      if(this.validate()) {
         this.nextId()
         const id = this.produtoId
-        data.save('produto/' + id, this.$store.state.produto)
+        data.save('produtos/' + id, this.$store.state.produto)
         this.cleanFilds()
         
-      }*/
+      }
     },
-    changeBD(){
-
+    changeBD(){ // salva uma alteração de um produto //
+      if(this.validate()){
+        const id = this.produtoId
+        data.update('produtos/' + id, this.$store.state.produto)
+        this.cleanFilds()
+      }
     },
     
-    deleteBD(){
+    deleteBD(){ // deleta um produto do banco //
+      const message = `Apagar o produto ${this.produtoNome} de ID: ${this.produtoId}?`
+      const id = this.produtoId
+
+      if(!this.produtoId){
+        alert('Selecione o produto que deseja deletar.')
+      }
+      else if(confirm(message)){
+        data.delete('produtos/', id)
+        this.cleanFilds()
+      }
 
     },
     

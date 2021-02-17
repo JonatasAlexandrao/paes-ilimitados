@@ -18,6 +18,8 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - a ativação da lista está sempre fazendo toggle
   - os inputs com a mask letter não estão aceitando acentos
   - mudar cores do dropdown para a cor do produto
+  - falta vincular lista do tipo de produto ao dropdown
+  - fazer o codigo para a função de validação dos inputs
 
 
 --> Tela produtos:
