@@ -85,7 +85,7 @@
   }
 
   .selectList.-client {
-    color: white;
+    color: $color-white;
     @include custonScrollBar(darken($color-client, 20%), $color-client);
   
     .optionList {

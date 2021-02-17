@@ -14,7 +14,7 @@
           <DropDownList :itens="typeList" name="produtoTipo" :select="selectProduct" slot="list" class="-productType" :activeVar="$store.state.activeList.produtoTipo"/>
         </InputFild>
         <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
-        <FlatButton classButton="-delete" :handleclick="deleteBD" title="Deletar" />
+        <FlatButton classButton="-delete" :handleclick="deleteBD" title="Deletar" v-if="produtoId" />
       </div>
       
 
@@ -214,7 +214,24 @@ export default {
 
 
     validate() { // Valida os inputs antes de enviar //
-      return true
+
+      if(!this.produtoNome) {
+        console.error('falta o nome do produto!')
+        const input = document.getElementsByTagName('input')
+        input[0].focus()
+        return false
+      }
+      else if(!this.produtoValor || this.produtoValor.length < 4 || this.produtoValor == 'R$ 0,00'){
+        console.error('falta o valor!')
+        const input = document.getElementsByTagName('input')
+        input[3].focus()
+        return false
+      }
+      else {
+        return true
+      }
+
+      
     }
 
   },

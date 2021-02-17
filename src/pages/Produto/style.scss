@@ -22,7 +22,7 @@
 
     .containerInputProduct {
       display: grid;
-      grid-template-columns: 40% 60%;
+      grid-template-columns: 45% 55%;
       grid-template-areas: 
       "produto produto"
       "peso tipo"
@@ -52,13 +52,6 @@
       &.-valor { grid-area: valor; }
     }
 
-    .flatButton.-delete { 
-      grid-area: deletar; 
-      margin: 0 .4rem;
-      font-size: 1.4rem;
-     //height: 4rem;
-    }
-
     fieldset {
       position: relative;
       margin: .8rem 0 1.6rem 0;
@@ -81,8 +74,6 @@
       }
     }
   
-    
-
     .divButtons {
       width: 100%;
       display: grid;
@@ -90,5 +81,28 @@
       gap: 8px;
       margin-bottom: 1.6rem;
     }
+
+    
   }
+
+  .flatButton.-delete { 
+    grid-area: deletar; 
+    margin: 0 .4rem;
+    font-size: 1.4rem;
+   //height: 4rem;
+  }
+
+  .selectList.-productType,
+  .selectList.-productName {
+    color: $color-white;
+    @include custonScrollBar(darken($color-product, 20%), $color-product);
+
+    .optionList {
+      background-color: lighten($color-product, 10%);
+      &:hover { background-color: $color-product; }
+    }
+  }
+
+  
 }
+
