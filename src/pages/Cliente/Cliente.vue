@@ -109,9 +109,8 @@ export default {
     }
   },
 
-  created() { //Povoa o this.list
-    this.getList()
-  },
+  //Povoa o this.list
+  created() { this.getList() },
 
   methods: {
   /*  activeList(input, action) { // Verifica qual input quer abrir a lista //
@@ -167,7 +166,7 @@ export default {
 
     cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
 
-      this.$store.commit('cleanAll')
+      this.$store.commit('cleanAllCliente')
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
@@ -198,7 +197,7 @@ export default {
       } catch(error) {
         console.error(error)
       }
-
+      
     },
 
     saveBD() { // salva um novo cliente //

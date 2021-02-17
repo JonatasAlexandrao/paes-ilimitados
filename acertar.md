@@ -13,7 +13,11 @@ document.getElementById("meu-input").onkeypress = function(e) {
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 
-  
+  - codar a parte do banco para o produto
+
+  - a ativação da lista está sempre fazendo toggle
+  - os inputs com a mask letter não estão aceitando acentos
+  - mudar cores do dropdown para a cor do produto
 
 
 --> Tela produtos:

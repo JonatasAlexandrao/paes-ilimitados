@@ -18,6 +18,7 @@ const store = new Vuex.Store({
       id: 0,
       nome: '',
       peso: '',
+      tipo: '',
       valor: '',
       ingredientes: '',
     },
@@ -71,13 +72,17 @@ const store = new Vuex.Store({
 
     setProdutoId(state, id) { state.produto.id = id },
     setProdutoNome(state, nome) { state.produto.nome = nome },
-    setProdutoValor(state, valor) { state.produto.valor = valor },
     setProdutoPeso(state, peso) { state.produto.peso = peso },
+    setProdutoTipo(state, tipo) { state.produto.tipo = tipo },
+    setProdutoValor(state, valor) { state.produto.valor = valor },
+    setProdutoIngredientes(state, ingredientes) { state.produto.ingredientes = ingredientes },
     cleanAllProduto(state) {
       state.produto.id = 0
       state.produto.nome = ''
-      state.produto.valor = '0,00'
+      state.produto.tipo = ''
       state.produto.peso = ''
+      state.produto.valor = '0,00'
+      state.produto.ingredientes = ''
     },
     
 
@@ -111,6 +116,8 @@ const store = new Vuex.Store({
         context.commit('activeListClienteNome', false)
       else if(action === 'active')
         context.commit('activeListClienteNome', true) 
+
+      console.log(action)
     },
 
     activeListProdutoNome(context, action='toggle') {
