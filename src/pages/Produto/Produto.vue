@@ -75,25 +75,25 @@ export default {
   created() { this.getList() },
 
   computed: {
-    produtoId() { return this.$store.state.produto.id },
+    produtoId() { return this.$store.getters.getProId },
     produtoNome: {
-      get(){ return this.$store.state.produto.nome },
+      get(){ return this.$store.getters.getProNome },
       set(value){ this.$store.commit('setProdutoNome', value) }
     },
     produtoTipo: {
-      get(){ return this.$store.state.produto.tipo },
+      get(){ return this.$store.getters.getProTipo },
       set(value){ this.$store.commit('setProdutoTipo', value) }
     },
     produtoPeso: {
-      get(){ return this.$store.state.produto.peso },
+      get(){ return this.$store.getters.getProPeso },
       set(value){ this.$store.commit('setProdutoPeso', value) }
     },
     produtoValor: {
-      get(){ return this.$store.state.produto.valor },
+      get(){ return this.$store.getters.getProValor },
       set(value){ this.$store.commit('setProdutoValor', value) }
     },
     produtoIngredientes: {
-      get(){ return this.$store.state.produto.ingredientes },
+      get(){ return this.$store.getters.getProIngredientes },
       set(value){ this.$store.commit('setProdutoIngredientes', value) }
     },
     
@@ -173,7 +173,7 @@ export default {
       this.$store.commit('cleanAllProduto')
       const input = document.getElementsByTagName('input')
       input[0].focus()
-      //this.filterList('')
+      this.filterList('')
       this.$store.dispatch('activeList', 'produtoNome', false)
       this.$store.dispatch('activeList', 'produtoTipo', false)
       //this.getList()

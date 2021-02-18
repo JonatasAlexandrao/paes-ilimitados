@@ -25,7 +25,7 @@ export default {
       const iten = this.list.filter(l => l.id == id)
       this.select(event,...iten)
 
-      this.$store.dispatch('activeList', this.name, 'disabled')
+      this.$store.dispatch('activeList', [this.name, 'disabled'])
     }
   },
 }

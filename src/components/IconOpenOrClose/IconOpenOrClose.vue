@@ -25,7 +25,13 @@ export default {
   props: { activeVar: Boolean, name: String },
 
   methods: {
-    handleclick() { this.$store.dispatch('activeList', this.name) }
+    handleclick() { //this.$store.dispatch
+      //this.$store.dispatch('activeList', [this.name])
+      //this.$store.dispatch('activeListClienteNome', [this.name])
+      //this.$store.dispatch('activeListClienteNome', 'toggle')
+      this.$store.dispatch('activeList', [this.name])
+      //console.log(this.$store.getters.getActiveList)
+    }
   },
 
 }

@@ -90,7 +90,7 @@ export default {
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
-        this.$store.dispatch('activeList', this.name)
+        this.$store.dispatch('activeList', [this.name])
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -101,9 +101,9 @@ export default {
 
       if(this.type == 'search') {
         if(this.localValue === '')
-          this.$store.dispatch('activeList', this.name, 'disabled')
+          this.$store.dispatch('activeList', [this.name, 'disabled'])
         else
-          this.$store.dispatch('activeList', this.name, 'active')
+          this.$store.dispatch('activeList', [this.name, 'active'])
       }
         
     },

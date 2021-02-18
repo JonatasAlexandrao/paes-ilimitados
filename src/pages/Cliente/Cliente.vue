@@ -65,35 +65,34 @@ export default {
   //created: function() { this.nextId() },
 
   computed: {
-    //list() { return this.getList() },
-    //activeList() { return this.$store.state.activeListClient },
-    clienteId() { return this.$store.state.cliente.id },
+
+    clienteId() { return this.$store.getters.getCliId },
     clienteNome: {
-      get(){ return this.$store.state.cliente.nome },
+      get(){ return this.$store.getters.getCliNome },
       set(value){ this.$store.commit('setNomeCliente', value) }
     },
     clienteCelular: {
-      get(){ return this.$store.state.cliente.celular },
+      get(){ return this.$store.getters.getCliCelular },
       set(value){ this.$store.commit('setCelularCliente', value) }
     },
     clienteRua: {
-      get(){ return this.$store.state.cliente.rua },
+      get(){ return this.$store.getters.getCliRua },
       set(value){ this.$store.commit('setRuaCliente', value) }
     },
     clienteNum: {
-      get(){ return this.$store.state.cliente.num },
+      get(){ return this.$store.getters.getCliNum },
       set(value){ this.$store.commit('setNumCliente', value) }
     },
     clienteBairro: {
-      get(){ return this.$store.state.cliente.bairro },
+      get(){ return this.$store.getters.getCliBairro },
       set(value){ this.$store.commit('setBairroCliente', value) }
     },
     clienteCidade: {
-      get(){ return this.$store.state.cliente.cidade },
+      get(){ return this.$store.getters.getCliCidade },
       set(value){ this.$store.commit('setCidadeCliente', value) }
     },
     clienteValor: {
-      get(){ return this.$store.state.cliente.valor },
+      get(){ return this.$store.getters.getCliValor },
       set(value){ this.$store.commit('setValorCliente', value) }
     },
 

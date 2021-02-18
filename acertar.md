@@ -13,13 +13,23 @@ document.getElementById("meu-input").onkeypress = function(e) {
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 
-  
+  (ok) a ativação da lista está sempre fazendo toggle
 
-  - a ativação da lista está sempre fazendo toggle
+  --->> quando vc seleciona um item da lista do input tipo ele está tentando povoar os inputs igual ao nome do produto, precisa remover essa função dele e só permiter q ele povoe seu próprio input 
   
+  - filtrar a lista de produtos
+
+    - passar para o $store o filtered e o list para poder pegar no input, passar a função filter para o componente inputFild assim não precisa ter ela em clientes e produtos
+
+    
   - falta vincular lista do tipo de produto ao dropdown
   
   - Mudar o componete de mensagem de erro para alert e mostrar nele quando o item foi salvo, alterado, deletado e erro na validação (para cada um usar uma cor diferente)
+
+  -->> Store
+    - modularizar a store para poder separar os arquivos de produto dos de cliente
+    - ver de criar gets para acessar as variaveis glopais
+    *** no curso ver aula de modularização para mais detalhes
 
 
 --> Tela produtos:
@@ -43,6 +53,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
 
 # Problemas e bugs:
+  - quando clica em limpar funciona tudo mas da um erro no console
   - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
