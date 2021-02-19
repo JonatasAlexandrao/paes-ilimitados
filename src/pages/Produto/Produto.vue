@@ -6,12 +6,12 @@
     <form @submit="(event) => event.preventDefault()">
       <p class="id">ID: {{produtoId}}</p>
       <div class="containerInputProduct" >     
-        <InputFild classInput="-prod" name="produtoNome" label="Produto" v-model="produtoNome" type="search"  :activeVar="$store.state.activeList.produtoNome" mask="letter">
+        <InputFild classInput="-prod" name="produtoNome" label="Produto" v-model="produtoNome" type="search" :filterList="filterList" :activeVar="$store.state.activeList.produtoNome" mask="letter">
           <DropDownList :itens="filteredList" name="produtoNome" :select="selectProduct" slot="list" class="-productName" :activeVar="$store.state.activeList.produtoNome" />
         </InputFild>
         <InputFild classInput="-peso" name="peso" label="Peso (g)" v-model="produtoPeso" mask="weight" />
         <InputFild classInput="-tipo" name="produtoTipo" label="Tipo" v-model="produtoTipo" type="search"  :activeVar="$store.state.activeList.produtoTipo" mask="letter">
-          <DropDownList :itens="typeList" name="produtoTipo" :select="selectProduct" slot="list" class="-productType" :activeVar="$store.state.activeList.produtoTipo"/>
+          <DropDownList :itens="typeList" name="produtoTipo" :select="selectProductType" slot="list" class="-productType" :activeVar="$store.state.activeList.produtoTipo"/>
         </InputFild>
         <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
         <FlatButton classButton="-delete" :handleclick="deleteBD" title="Deletar" v-if="produtoId" />
@@ -26,11 +26,12 @@
           v-model="produtoIngredientes"></textarea>
       </fieldset>
 
+      <AlertMessage message="testando 132" classMessager="-error" :alertMessage="alertMessage" />
+
       <div class="divButtons">
         <FlatButton classButton="-save" v-if="!produtoId" :handleclick="saveBD" title="Gravar" />
         <FlatButton classButton="-change" v-else :handleclick="changeBD" title="Alterar" />
-        <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />
-        
+        <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />    
       </div>
 
       
@@ -50,24 +51,32 @@ import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import FlatButton from '@/components/FlatButton/FlatButton'
+import AlertMessage from '@/components/AlertMessage/AlertMessage'
 
 export default {
 
-  components: { PageTitle, InputFild, DropDownList, FlatButton },
+  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage },
   data(){
     return {
-      //produtoTipo:'',
-      //produtoIngredientes:'',
-      productList: [{id:'1', nome:'testes'},{id:'2', nome:'testes2'},{id:'3', nome:'testes3'}],
-      typeList: [{id:'1', nome:'testes'},{id:'2', nome:'testes2'},{id:'3', nome:'testes3'}],
-
       list: [],
+      typeList: [
+        {id: 0, nome: 'Pão Caseiro'},
+        {id: 1, nome: 'Pão Doce'},
+        {id: 2, nome: 'Bolachinhas'},
+        {id: 3, nome: 'Outros'}
+      ],
       filteredList: [],
       validateInput: true,
       errorMessage: '',
       // var ativação da Lista dos inputs //
       activeListProduto: false,
       activeListTipo: false,
+      // var do container mensagens
+      alertMessage: { 
+        class: '',
+        message: 'teste',
+        active: false
+      }
 
     }
   },
@@ -125,12 +134,16 @@ export default {
         const listData = await data.searchList('produtos/')
         this.list = listData
         this.list = this.sortList(listData)
+        // povoa a lista dos produtos
         this.filteredList = listData
+        // povoa a lista dos tipos
+        /*this.typeList = this.list.map((ele) => {
+          return {id: ele.id, nome: ele.tipo}
+        })*/
  
       } catch(error) {
         console.error(error)
       }
-      console.log(this.filteredList)
 
     },
 
@@ -153,9 +166,6 @@ export default {
     },
 
     selectProduct(event, product){
-      console.log(event)
-      console.log(product)
-
       event.stopPropagation();
       
       this.$store.commit('setProdutoId', product.id)
@@ -166,6 +176,11 @@ export default {
       this.$store.commit('setProdutoIngredientes', product.ingredientes)
       /*this.activeListProduto = false
       this.activeListTipo = false*/
+    },
+
+    selectProductType(event, type) {
+      event.stopPropagation();
+      this.$store.commit('setProdutoTipo', type.nome)
     },
     
     // ================== BUTTONS ==================
@@ -182,10 +197,14 @@ export default {
 
     saveBD(){ // salva um novo Produto //
       if(this.validate()) {
-        this.nextId()
+        /*this.nextId()
         const id = this.produtoId
         data.save('produtos/' + id, this.$store.state.produto)
-        this.cleanFilds()
+        this.cleanFilds()*/
+
+        this.alertMessage.class = '-confirmed'
+        this.alertMessage.message = 'salvo com sucesso!'
+        this.alertMessage.active = true
         
       }
     },
@@ -216,9 +235,14 @@ export default {
     validate() { // Valida os inputs antes de enviar //
 
       if(!this.produtoNome) {
-        console.error('falta o nome do produto!')
+        //console.error('falta o nome do produto!')
         const input = document.getElementsByTagName('input')
         input[0].focus()
+
+        this.alertMessage.class = '-error'
+        this.alertMessage.message = 'falta o nome do produto!'
+        this.alertMessage.active = true
+
         return false
       }
       else if(!this.produtoValor || this.produtoValor.length < 4 || this.produtoValor == 'R$ 0,00'){

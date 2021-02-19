@@ -1,0 +1,44 @@
+
+@import "@/assets/scss/_colors.scss";
+
+
+.message {
+  padding: 1.2rem 0;
+
+  color: $color-black;
+  font-weight: 700;
+  border-radius: .4rem;
+  font-size: 1.6rem;
+
+  box-shadow: .3rem .3rem .5rem $color-black;
+  display: block;
+
+  &.-active {
+    display: block;
+    animation: vibrate 0.5s linear both;
+  }
+
+  &.-confirmed {
+    background-color: $color-confirmed;
+  }
+  &.-alert {
+    background-color: $color-alert;
+  }
+  &.-error {
+    background-color: $color-error;
+  }
+  
+
+}
+
+
+ @keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-8px, 8px); }
+  40% { transform: translate(-8px, -8px); }
+  60% { transform: translate(8px, 8px); }
+  80% { transform: translate(8px, -8px); }
+  100% { transform: translate(0); }
+}
+
+

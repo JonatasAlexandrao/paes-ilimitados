@@ -13,13 +13,14 @@ document.getElementById("meu-input").onkeypress = function(e) {
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 
-  (ok) a ativação da lista está sempre fazendo toggle
+  
 
   --->> quando vc seleciona um item da lista do input tipo ele está tentando povoar os inputs igual ao nome do produto, precisa remover essa função dele e só permiter q ele povoe seu próprio input 
   
   - filtrar a lista de produtos
+  - criar uma tabela no banco de dados para o tipo
 
-    - passar para o $store o filtered e o list para poder pegar no input, passar a função filter para o componente inputFild assim não precisa ter ela em clientes e produtos
+    - retirar o dropdown do tipo até resolver os dados q produto realmente vão precisar.
 
     
   - falta vincular lista do tipo de produto ao dropdown
@@ -58,6 +59,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
   - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
   - resolver problema de ficar tendo q importar os arquivos globais .scss
+  - quando pesquisado com acentos não filtra a lista
 
 
 # Pensamentos:
@@ -65,6 +67,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas Resolvidos:
 
+(ok) a ativação da lista está sempre fazendo toggle
 (ok) fazer o codigo para a função de validação dos inputs
 (ok) codar a parte do banco para o produto
 (ok) os inputs com a mask letter não estão aceitando acentos

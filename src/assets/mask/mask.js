@@ -55,7 +55,7 @@ const mask = (function() {
   module.weight = (value) => {
     let num = value.replace('Kg', '').replace('.', '')
          
-      console.log(num)
+      //console.log(num)
       //let num = value
       value = num
         .replace(/\D/g, '')
