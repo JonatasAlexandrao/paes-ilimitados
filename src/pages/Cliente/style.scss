@@ -98,7 +98,7 @@
     @include custonScrollBar(darken($color-client, 20%),$color-client);
   
     & > table{
-      background-color: $color-white;
+      //background-color: $color-white;
   
       & > thead { background-color: $color-client; color: $color-white; }
   
@@ -110,7 +110,7 @@
         & > .tblEndereco{ min-width: 20rem; max-width: 20rem;}
         & > .tblValor { min-width: 13rem; }
     
-        &:nth-child(odd) { background-color: $color-table-row-odd; }
+        //&:nth-child(odd) { background-color: $color-table-row-odd; }
       
         &:hover {
           cursor: pointer;
@@ -125,7 +125,7 @@
     
   }
 
-  .messagerError {
+  .message {
     margin-bottom: 1.6rem;
   }
 }

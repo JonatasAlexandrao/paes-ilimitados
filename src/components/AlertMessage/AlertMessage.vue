@@ -1,6 +1,6 @@
 <template>
-  <div class="message" :class="alertMessage.class" > 
-    Messagem: {{ alertMessage.message }}
+  <div class="message" :class="className" > 
+    Messagem: {{ messageText }}
   </div>
 </template>
 
@@ -8,10 +8,9 @@
 export default {
 
   props: {
-   // validateInput: Boolean,
-    message: String,
-    //classMessager: String,
-    alertMessage: Object,
+    messageActive: Boolean,
+    messageText: String,
+    messageClass: String,
   },
 
   data() {
@@ -20,12 +19,12 @@ export default {
     }
   },
   computed: {
-    /*classMessager() {
-      if(!this.validateInput)
-        return '-active'
+    className() {
+      if(this.messageActive)
+        return '-active ' + this.messageClass
       else  
         return ''
-    }*/
+    }
   },
 
   /*created() {

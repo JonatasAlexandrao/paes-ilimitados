@@ -13,23 +13,13 @@ document.getElementById("meu-input").onkeypress = function(e) {
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 
-  
 
-  --->> quando vc seleciona um item da lista do input tipo ele está tentando povoar os inputs igual ao nome do produto, precisa remover essa função dele e só permiter q ele povoe seu próprio input 
-  
-  - filtrar a lista de produtos
   - criar uma tabela no banco de dados para o tipo
 
-    - retirar o dropdown do tipo até resolver os dados q produto realmente vão precisar.
-
-    
-  - falta vincular lista do tipo de produto ao dropdown
   
-  - Mudar o componete de mensagem de erro para alert e mostrar nele quando o item foi salvo, alterado, deletado e erro na validação (para cada um usar uma cor diferente)
 
   -->> Store
-    - modularizar a store para poder separar os arquivos de produto dos de cliente
-    - ver de criar gets para acessar as variaveis glopais
+    
     *** no curso ver aula de modularização para mais detalhes
 
 
@@ -67,6 +57,13 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas Resolvidos:
 
+(ok) modularizar a store para poder separar os arquivos de produto dos de cliente
+(ok) ver de criar gets para acessar as variaveis glopais
+(ok) falta vincular lista do tipo de produto ao dropdown
+(ok) Mudar o componete de mensagem de erro para alert e mostrar nele quando o item foi salvo, alterado, deletado e erro na validação (para cada um usar uma cor diferente)
+(ok) quando vc seleciona um item da lista do input tipo ele está tentando povoar os inputs igual ao nome do produto, precisa remover essa função dele e só permiter q ele povoe seu próprio input 
+(ok) filtrar a lista de produtos
+(ok) retirar o dropdown do tipo até resolver os dados q produto realmente vão precisar.
 (ok) a ativação da lista está sempre fazendo toggle
 (ok) fazer o codigo para a função de validação dos inputs
 (ok) codar a parte do banco para o produto

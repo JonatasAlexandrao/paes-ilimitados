@@ -26,16 +26,17 @@
           v-model="produtoIngredientes"></textarea>
       </fieldset>
 
-      <AlertMessage message="testando 132" classMessager="-error" :alertMessage="alertMessage" />
+      <AlertMessage :messageText="messageText" :messageClass="messageClass" :messageActive="messageActive" />
 
       <div class="divButtons">
         <FlatButton classButton="-save" v-if="!produtoId" :handleclick="saveBD" title="Gravar" />
         <FlatButton classButton="-change" v-else :handleclick="changeBD" title="Alterar" />
         <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />    
-      </div>
-
-      
+      </div>   
     </form>
+
+    <Table classTable="-productTable" :header="['Produto', 'Tipo', 'Valor']" :list="list" :select="selectProduct"/>
+
   </div>
 
 
@@ -52,10 +53,11 @@ import InputFild from '@/components/InputFild/InputFild.vue'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import AlertMessage from '@/components/AlertMessage/AlertMessage'
+import Table from '@/components/Table/Table'
 
 export default {
 
-  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage },
+  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage, Table },
   data(){
     return {
       list: [],
@@ -68,15 +70,11 @@ export default {
       filteredList: [],
       validateInput: true,
       errorMessage: '',
-      // var ativação da Lista dos inputs //
-      activeListProduto: false,
-      activeListTipo: false,
+
       // var do container mensagens
-      alertMessage: { 
-        class: '',
-        message: 'teste',
-        active: false
-      }
+      messageClass: '',
+      messageActive: false,
+      messageText: '',
 
     }
   },
@@ -186,25 +184,24 @@ export default {
     // ================== BUTTONS ==================
     cleanFilds() {
       this.$store.commit('cleanAllProduto')
+      this.messageActive = false
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
-      this.$store.dispatch('activeList', 'produtoNome', false)
-      this.$store.dispatch('activeList', 'produtoTipo', false)
-      //this.getList()
-      this.validateInput = true
+      this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
+      this.$store.dispatch('activeList', ['produtoTipo', 'disabled'])
     },
 
     saveBD(){ // salva um novo Produto //
       if(this.validate()) {
-        /*this.nextId()
+        this.nextId()
         const id = this.produtoId
         data.save('produtos/' + id, this.$store.state.produto)
-        this.cleanFilds()*/
+        this.cleanFilds()
 
-        this.alertMessage.class = '-confirmed'
-        this.alertMessage.message = 'salvo com sucesso!'
-        this.alertMessage.active = true
+        this.messageText = 'Produto Salvo com sucesso!'
+        this.messageClass = '-confirmed'
+        this.messageActive = true
         
       }
     },
@@ -213,6 +210,10 @@ export default {
         const id = this.produtoId
         data.update('produtos/' + id, this.$store.state.produto)
         this.cleanFilds()
+
+        this.messageText = 'Produto alterado com sucesso!'
+        this.messageClass = '-alert'
+        this.messageActive = true
       }
     },
     
@@ -229,26 +230,27 @@ export default {
       }
 
     },
-    
-
 
     validate() { // Valida os inputs antes de enviar //
 
       if(!this.produtoNome) {
-        //console.error('falta o nome do produto!')
         const input = document.getElementsByTagName('input')
         input[0].focus()
 
-        this.alertMessage.class = '-error'
-        this.alertMessage.message = 'falta o nome do produto!'
-        this.alertMessage.active = true
+        this.messageText = 'Falta o nome do produto!'
+        this.messageClass = '-error'
+        this.messageActive = true
 
         return false
       }
-      else if(!this.produtoValor || this.produtoValor.length < 4 || this.produtoValor == 'R$ 0,00'){
-        console.error('falta o valor!')
+      else if(!this.produtoValor || this.produtoValor.length < 4 || this.produtoValor == 'R$ 0,00' || this.produtoValor == '0,00'){
         const input = document.getElementsByTagName('input')
         input[3].focus()
+
+         this.messageText = 'Falta o valor do produto!'
+        this.messageClass = '-error'
+        this.messageActive = true
+
         return false
       }
       else {

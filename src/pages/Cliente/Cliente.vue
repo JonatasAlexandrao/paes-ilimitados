@@ -30,7 +30,7 @@
         </div>
       </fieldset>
 
-      <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
+      <AlertMessage :messageText="messageText" :messageClass="messageClass" :messageActive="messageActive" />
 
       <div class="divButtons">
         <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
@@ -54,13 +54,13 @@ import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import TableClient from '@/components/TableClient/TableClient'
-import ErrorMessage from '@/components/ErrorMessage/ErrorMessage'
+import AlertMessage from '@/components/AlertMessage/AlertMessage'
 
 import data from '@/database/data'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { PageTitle, InputFild, FlatButton, DropDownList, TableClient, ErrorMessage},
+  components: { PageTitle, InputFild, FlatButton, DropDownList, TableClient, AlertMessage},
 
   //created: function() { this.nextId() },
 
@@ -104,7 +104,12 @@ export default {
       list: [],
       filteredList: [],
       validateInput: true,
-      errorMessage: ''
+      errorMessage: '',
+
+      // var do container mensagens
+      messageClass: '',
+      messageActive: false,
+      messageText: '',
     }
   },
 
@@ -126,8 +131,8 @@ export default {
       const ultimoId = parseInt(id) + 1
       this.$store.commit('setIdCliente', ultimoId)   
 
-      console.log(ultimoId)
-      console.log('store', this.clienteId)
+      //console.log(ultimoId)
+      //console.log('store', this.clienteId)
     },
 
     filterList(value) { // Filtra lista do input cliente //
@@ -166,6 +171,7 @@ export default {
     cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
 
       this.$store.commit('cleanAllCliente')
+      this.messageActive = false
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
@@ -206,6 +212,10 @@ export default {
         const id = this.clienteId
         data.save('clientes/' + id, this.$store.state.cliente) 
         this.cleanFilds()
+
+        this.messageText = 'Cliente Salvo com sucesso!'
+        this.messageClass = '-confirmed'
+        this.messageActive = true
       }
       
        
@@ -216,6 +226,10 @@ export default {
         const id = this.clienteId
         data.update('clientes/' + id, this.$store.state.cliente)
         this.cleanFilds()
+
+        this.messageText = 'Cliente alterado com sucesso!'
+        this.messageClass = '-alert'
+        this.messageActive = true
       }
       
     },
@@ -240,32 +254,32 @@ export default {
       */
     validate() { // Validando campos obrigatórios para salvar no BD //
       if(!this.clienteNome) {
-        console.error('falta nome!')
         const input = document.getElementsByTagName('input')
         input[0].focus()
-        this.errorMessage = 'Campo nome é obrigatório.'
-        this.validateInput = false
+
+        this.messageText = 'Falta o nome do cliente!'
+        this.messageClass = '-error'
+        this.messageActive = true
+
         return false
       }
       else if(!this.clienteCelular){
-        console.error('falta celular!')
         const input = document.getElementsByTagName('input')
         input[1].focus()
-        
-        this.validateInput = false
-        console.log(this.clienteCelular.length)
-    
-        this.errorMessage = 'Campo celular é obrigatório.'
+
+        this.messageText = 'Falta o celular do cliente!'
+        this.messageClass = '-error'
+        this.messageActive = true
         
         return false
       }
       else if(this.clienteCelular.length < 15){
-        console.error('falta celular!')
         const input = document.getElementsByTagName('input')
         input[1].focus()
-        
-        //this.validateInput = false
-        this.errorMessage = 'Celular invalido, faltam números.'
+   
+        this.messageText = 'Celular invalido, faltam números.'
+        this.messageClass = '-error'
+        this.messageActive = true
 
          return false
 

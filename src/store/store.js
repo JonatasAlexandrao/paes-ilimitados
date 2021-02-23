@@ -7,6 +7,8 @@ import produto from '@/store/modules/produto'
 Vue.use(Vuex)
 export default new Vuex.Store({
 
+  modules: { cliente, produto },
+
   state: {
     activeList: {
       clienteNome: false,
@@ -38,7 +40,7 @@ export default new Vuex.Store({
     },
   },
 
-  modules: { cliente, produto },
+  
 
 
 })

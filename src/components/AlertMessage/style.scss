@@ -3,7 +3,7 @@
 
 
 .message {
-  padding: 1.2rem 0;
+  padding: 1.2rem;
 
   color: $color-black;
   font-weight: 700;
@@ -11,7 +11,7 @@
   font-size: 1.6rem;
 
   box-shadow: .3rem .3rem .5rem $color-black;
-  display: block;
+  display: none;
 
   &.-active {
     display: block;
