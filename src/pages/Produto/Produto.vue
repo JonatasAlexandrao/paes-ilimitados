@@ -16,7 +16,6 @@
         <InputFild classInput="-valor" name="valor" label="Valor" mask='money' inputmode="numeric" v-model="produtoValor" /> 
         <FlatButton classButton="-delete" :handleclick="deleteBD" title="Deletar" v-if="produtoId" />
       </div>
-      
 
       <fieldset>
         <legend>Ingredientes:</legend>
@@ -38,7 +37,6 @@
     <TableProduct classTable="-productTable" :header="['Id', 'Produto', 'Peso', 'Tipo', 'Valor']" :list="list" :select="selectProduct"/>
 
   </div>
-
 
 </div>
 </template>

@@ -45,3 +45,11 @@
   
   
 }
+
+@mixin pageCustom($color) {
+  position: relative;
+  max-width: 40rem;
+  width: 100vw;
+  overflow: hidden;
+  background-color: $color;
+}

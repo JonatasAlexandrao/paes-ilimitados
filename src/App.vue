@@ -11,8 +11,9 @@
     </nav>
 
     <div class="desktop">
+      <Pedido />
       <Produto v-if="true"/>
-      <Cliente />
+      <Cliente v-if="true"/>
     </div>
 
   </div>
@@ -23,10 +24,11 @@
 
 import Cliente from '@/pages/Cliente/Cliente.vue'
 import Produto from '@/pages/Produto/Produto'
+import Pedido from '@/pages/Pedido/Pedido'
 
 export default {
   name: 'App',
-  components: { Cliente, Produto },
+  components: { Cliente, Produto, Pedido },
   data(){
     return {
       active: "",
