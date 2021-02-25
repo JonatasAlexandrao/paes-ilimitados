@@ -1,0 +1,56 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+@import "@/assets/scss/_mixin.scss";
+
+
+
+.selectList {
+  position: absolute;
+  width: 100%;
+  max-height: 18rem;
+  margin-top: 0.8rem;
+  
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+
+  @include custonScrollBar(darken($color-background-div, 20%),$color-background-div);
+
+  opacity: .25;
+  transition: all 200ms ease-in;
+  transform-origin: top center;
+  transform: rotateX(90deg);
+
+  &.-active {
+    overflow-y: scroll;
+    opacity: 1;
+    transform: rotateX(0);
+
+  }
+
+  .optionList {
+
+    width: 100%;
+    background-color: darken($color-background-div, 10%);
+    
+    font-size: $font-standard;
+    text-align: left;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    &:hover { background-color: $color-background-div; }
+    & > li {
+      display: inline-block;
+      padding: 1rem 0  1rem 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+  }
+
+}
+
+
+
+

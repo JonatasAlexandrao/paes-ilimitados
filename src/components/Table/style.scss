@@ -1,0 +1,34 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+@import "@/assets/scss/_mixin.scss";
+
+.tbl {
+  max-height: 40rem;
+  display: block;
+  overflow-x: scroll;
+
+  box-shadow: 0 1rem 1.5rem $color-black;
+
+  & > table{
+  
+    border-spacing: 0;
+    font-size: 1.6rem;
+    background-color: $color-white;
+  
+    user-select: none;
+
+    & > tfoot { font-size: $font-small; display: none; }
+
+    th, td{
+      padding: 1rem 1rem; 
+      box-sizing: border-box;
+    }
+
+    tr:nth-child(odd) { background-color: $color-table-row-odd; }
+  
+  }
+  
+}
+
+
+

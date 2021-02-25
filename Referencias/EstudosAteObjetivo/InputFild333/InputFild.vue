@@ -8,9 +8,7 @@ mask: a mascara de input q será usada
 <template>
   <div class="divInput" :class="classInput">
 
-    <IconOpenOrClose v-if="type=='search'"
-    :activeVar="activeVar"
-    :name="this.name" />
+    <IconOpenOrClose v-if="type=='search'"/>
 
     <input 
       :id="name"
@@ -45,12 +43,9 @@ export default {
     classInput: { type: String, required: true },
     name: { type: String, required: true },
     label: { type: String, required: true },
-    value: { type: String, required: true, default: ''},
+    value: { type: String, required: true },
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
-
-    //activeFunc: Function,
-    activeVar: Boolean,
 
     mask: String,
     inputmode: String,
@@ -70,27 +65,22 @@ export default {
       //const input = document.getElementById(this.name)
 
       this.localValue ? this.smallLabel = true : this.smallLabel = false
-    },
+    }
   },
 
   created() { this.localValue = this.value },
 
   methods: {
     // focus e deFocus intercalam a classe da label //
-    focus() { 
-      this.smallLabel = true
-      //this.updateData(this.localValue)
-    },
+    focus() { this.smallLabel = true },
     deFocus() {
-      if(!this.localValue){
+      if(!this.localValue)
         this.smallLabel = false
-        //this.activeFunc(this.name, 'disabled')
-      }
     },
 
     dblClickInput() { // abrir/fechar lista do input de pesquisa com duplo click //
       if(this.type == 'search')
-        this.$store.dispatch('activeList', [this.name])
+        this.$store.dispatch('activeListClient', 'toggle')
     },
 
     updateData(value) { // chama evento do pai para filtrar a lista do input //
@@ -99,13 +89,11 @@ export default {
 
       this.filterList(value)
 
-      if(this.type == 'search') {
+      if(this.type == 'search')
         if(this.localValue === '')
-          this.$store.dispatch('activeList', [this.name, 'disabled'])
+          this.$store.dispatch('activeListClient', 'disabled')
         else
-          this.$store.dispatch('activeList', [this.name, 'active'])
-      }
-        
+          this.$store.dispatch('activeListClient', 'active')
     },
   }
   

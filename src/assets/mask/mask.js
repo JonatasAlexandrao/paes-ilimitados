@@ -3,7 +3,13 @@
 const mask = (function() {
 
   module.letter = (value) => {
-    value = value.replace(/[^\w\s]/gi, '')
+    //value = value.replace(/[^\w\s]/gi, '')
+    value = value
+      .replace('*', '')
+      .replace('[', '')
+      .replace('+', '')
+      .replace(/\d/gi, '')
+      
     return value
   },
 
@@ -46,22 +52,34 @@ const mask = (function() {
     return value
   }
 
+  module.weight = (value) => {
+    let num = value.replace('Kg', '').replace('.', '')
+         
+      //console.log(num)
+      //let num = value
+      value = num
+        .replace(/\D/g, '')
+
+       .replace(/^[0]$/, "0000")
+       .replace(/(\d)(\d{3}$)/, '$1.$2')
+       .replace(/(^0)(\d{1}.)(\d)/, '$2$3')
+       .replace(/(^\d{3}$)/g, '0$1')
+       //.replace(/\d{0}/, 'Kg ')
+       //.replace(/\d{0}$/, 'Kg ')
+     
+
+    return value
+
+  }
+
   module.maskFilter = (filter, value) => {
-    if(filter == 'noLetter'){
-      value = module.noLetter(value)
-    }
-    else if(filter == 'letter'){
-      value = module.letter(value)
-    }  
-    else if(filter == 'money'){
-      value = module.money(value)
-    }
-    else if(filter == 'cellPhone')
-    {
-      value = module.cellPhone(value)
-    }
+    if(filter == 'noLetter'){ value = module.noLetter(value) }
+    else if(filter == 'letter'){ value = module.letter(value) }  
+    else if(filter == 'money'){ value = module.money(value) }
+    else if(filter == 'cellPhone'){ value = module.cellPhone(value) }
+    else if(filter == 'weight'){ value = module.weight(value) }
     
-     return value
+    return value
   }
 
 

@@ -7,11 +7,16 @@
       
       <p class="id">ID: {{clienteId}}</p>
     
-      <InputFild classInput="-nome" name="nome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :required="true">
-        <DropDownList :itens="filteredList" :selectClient="selectClient" slot="list" class="-client"/>
+      <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
+        <DropDownList :itens="filteredList" 
+        :select="selectClient" 
+        name="clienteNome"
+        slot="list" 
+        class="-client" 
+        :activeVar="$store.state.activeList.clienteNome" />
       </InputFild>
 
-      <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" :required="true" />
+      <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
 
       <fieldset>
         <legend>Endereço</legend>
@@ -25,7 +30,7 @@
         </div>
       </fieldset>
 
-      <ErrorMessage :validateInput="validateInput" :errorMessage="errorMessage"/>
+      <AlertMessage :messageText="messageText" :messageClass="messageClass" :messageActive="messageActive" />
 
       <div class="divButtons">
         <FlatButton v-if="!clienteId" classButton="-save" :handleclick="saveBD" title="Gravar" />
@@ -35,7 +40,7 @@
 
     </form>
 
-    <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :selectClient="selectClient"/>
+    <TableClient classTable="-client" :list="filteredList" :select="selectClient"/>
 
     
 
@@ -48,47 +53,46 @@ import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
-import TableClient from '@/components/TableClient/TableClient'
-import ErrorMessage from '@/components/ErrorMessage/ErrorMessage'
+import AlertMessage from '@/components/AlertMessage/AlertMessage'
+import TableClient from '@/components/Table/TableClient/TableClient'
 
 import data from '@/database/data'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { PageTitle, InputFild, FlatButton, DropDownList, TableClient, ErrorMessage},
+  components: { PageTitle, InputFild, FlatButton, DropDownList, AlertMessage, TableClient},
 
   //created: function() { this.nextId() },
 
   computed: {
-    //list() { return this.getList() },
-    activeList() { return this.$store.state.activeListClient },
-    clienteId() { return this.$store.state.cliente.id },
+
+    clienteId() { return this.$store.getters.getCliId },
     clienteNome: {
-      get(){ return this.$store.state.cliente.nome },
+      get(){ return this.$store.getters.getCliNome },
       set(value){ this.$store.commit('setNomeCliente', value) }
     },
     clienteCelular: {
-      get(){ return this.$store.state.cliente.celular },
+      get(){ return this.$store.getters.getCliCelular },
       set(value){ this.$store.commit('setCelularCliente', value) }
     },
     clienteRua: {
-      get(){ return this.$store.state.cliente.rua },
+      get(){ return this.$store.getters.getCliRua },
       set(value){ this.$store.commit('setRuaCliente', value) }
     },
     clienteNum: {
-      get(){ return this.$store.state.cliente.num },
+      get(){ return this.$store.getters.getCliNum },
       set(value){ this.$store.commit('setNumCliente', value) }
     },
     clienteBairro: {
-      get(){ return this.$store.state.cliente.bairro },
+      get(){ return this.$store.getters.getCliBairro },
       set(value){ this.$store.commit('setBairroCliente', value) }
     },
     clienteCidade: {
-      get(){ return this.$store.state.cliente.cidade },
+      get(){ return this.$store.getters.getCliCidade },
       set(value){ this.$store.commit('setCidadeCliente', value) }
     },
     clienteValor: {
-      get(){ return this.$store.state.cliente.valor },
+      get(){ return this.$store.getters.getCliValor },
       set(value){ this.$store.commit('setValorCliente', value) }
     },
 
@@ -98,25 +102,38 @@ export default {
   data() {
     return {
       list: [],
+      listTable: [],
       filteredList: [],
       validateInput: true,
-      errorMessage: ''
+      errorMessage: '',
+
+      // var do container mensagens
+      messageClass: '',
+      messageActive: false,
+      messageText: '',
     }
   },
 
-  created() { //Povoa o this.list
-    this.getList()
-  },
+  //Povoa o this.list
+  created() { this.getList() },
 
   methods: {
+  /*  activeList(input, action) { // Verifica qual input quer abrir a lista //
+    
+      if(input === 'clienteNome') {
+        this.$store.dispatch('activeList', input, action)
+        //this.$store.dispatch('activeListClienteNome', action)
+        //console.log('teste123')
+      }
+    },*/
     
     nextId(){ // Verifica qual o próximo id //
       const id = (this.list[this.list.length-1].id)
       const ultimoId = parseInt(id) + 1
       this.$store.commit('setIdCliente', ultimoId)   
 
-      console.log(ultimoId)
-      console.log('store', this.clienteId)
+      //console.log(ultimoId)
+      //console.log('store', this.clienteId)
     },
 
     filterList(value) { // Filtra lista do input cliente //
@@ -133,6 +150,7 @@ export default {
         return nome.match(regex) 
        
       }) 
+      this.filteredList = this.orderColumns(this.filteredList)
       
        return value
     },
@@ -149,11 +167,13 @@ export default {
       this.$store.commit('setBairroCliente', client.bairro)
       this.$store.commit('setCidadeCliente', client.cidade)
       this.$store.commit('setValorCliente', client.valor)
+
     },
 
     cleanFilds() { // Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
 
-      this.$store.commit('cleanAll')
+      this.$store.commit('cleanAllCliente')
+      this.messageActive = false
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.filterList('')
@@ -173,18 +193,44 @@ export default {
       })
       return list
     },
+
+    orderColumns(list) {
+
+      let orderedList = []
+
+      orderedList =  list.map((elem) => {
+        let newList = {}
+
+        newList.id = elem.id
+        newList.nome = elem.nome
+        newList.celular = elem.celular
+        //newList.endereco = `${elem.rua}, ${elem.rua}, ${elem.bairro}, ${elem.cidade}` 
+        newList.num = elem.num
+        newList.bairro = elem.bairro
+        newList.cidade = elem.cidade
+        newList.valor = elem.valor
+
+        return newList
+      })
+
+      return orderedList
+    },
     
     async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
         const listData = await data.searchList('clientes/')
-        this.list = listData
+        //this.list = this.orderColumns(listData)
         this.list = this.sortList(listData)
-        this.filteredList = listData
+        this.filteredList = this.orderColumns(this.list)
+        //console.log(listData)
+
+       //console.log('ordenado', this.orderColumns(listData))
+       this.listTable = this.orderColumns(this.list)
  
       } catch(error) {
         console.error(error)
       }
-
+      
     },
 
     saveBD() { // salva um novo cliente //
@@ -194,6 +240,10 @@ export default {
         const id = this.clienteId
         data.save('clientes/' + id, this.$store.state.cliente) 
         this.cleanFilds()
+
+        this.messageText = 'Cliente Salvo com sucesso!'
+        this.messageClass = '-confirmed'
+        this.messageActive = true
       }
       
        
@@ -204,6 +254,10 @@ export default {
         const id = this.clienteId
         data.update('clientes/' + id, this.$store.state.cliente)
         this.cleanFilds()
+
+        this.messageText = 'Cliente alterado com sucesso!'
+        this.messageClass = '-alert'
+        this.messageActive = true
       }
       
     },
@@ -228,32 +282,32 @@ export default {
       */
     validate() { // Validando campos obrigatórios para salvar no BD //
       if(!this.clienteNome) {
-        console.error('falta nome!')
         const input = document.getElementsByTagName('input')
         input[0].focus()
-        this.errorMessage = 'Campo nome é obrigatório.'
-        this.validateInput = false
+
+        this.messageText = 'Falta o nome do cliente!'
+        this.messageClass = '-error'
+        this.messageActive = true
+
         return false
       }
       else if(!this.clienteCelular){
-        console.error('falta celular!')
         const input = document.getElementsByTagName('input')
         input[1].focus()
-        
-        this.validateInput = false
-        console.log(this.clienteCelular.length)
-    
-        this.errorMessage = 'Campo celular é obrigatório.'
+
+        this.messageText = 'Falta o celular do cliente!'
+        this.messageClass = '-error'
+        this.messageActive = true
         
         return false
       }
       else if(this.clienteCelular.length < 15){
-        console.error('falta celular!')
         const input = document.getElementsByTagName('input')
         input[1].focus()
-        
-        //this.validateInput = false
-        this.errorMessage = 'Celular invalido, faltam números.'
+   
+        this.messageText = 'Celular invalido, faltam números.'
+        this.messageClass = '-error'
+        this.messageActive = true
 
          return false
 

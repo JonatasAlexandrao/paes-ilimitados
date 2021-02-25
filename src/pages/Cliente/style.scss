@@ -11,7 +11,7 @@
   //border-radius: 2rem 2rem 0 0;
   overflow: hidden;
   //margin: 2rem 0;
-
+  
   .backgroundDiv {
     position: relative;
     padding: 1rem 2rem 2rem;
@@ -20,8 +20,6 @@
   
     margin-top: 5rem;
     background-color: $color-background-div;
-    //background-color: $color-background-client;
-    //border-top: 3px solid rgba(255, 255, 255, 1);
   
     .id {
       margin: 0 0 .4rem 1rem;
@@ -37,10 +35,10 @@
       }
     }
   
-    fieldset {
+    fieldset { 
       position: relative;
-      margin: 1.6rem 0;
       padding: .8rem .8rem 1.6rem .8rem;
+      margin: .8rem 0 1.6rem 0;
     }
   
     fieldset > legend {
@@ -78,19 +76,16 @@
   
     .divButtons {
       width: 100%;
-      //background-color: chocolate;
       display: grid;
       grid-auto-rows: 5rem;
       gap: 8px;
       margin-bottom: 1.6rem;
-  
-  
     }
   
   }
 
   .selectList.-client {
-    color: white;
+    color: $color-white;
     @include custonScrollBar(darken($color-client, 20%), $color-client);
   
     .optionList {
@@ -99,7 +94,7 @@
     }
   }
 
-  .tbl.-cliente {
+  .tbl.-client {
     @include custonScrollBar(darken($color-client, 20%),$color-client);
   
     & > table{
@@ -107,16 +102,15 @@
   
       & > thead { background-color: $color-client; color: $color-white; }
   
+        .column.-id { min-width: 5rem; display: none; }
+        .column.-nome { min-width: 19rem; max-width: 19rem;}
+        .column.-celular { min-width: 15rem; }
+        .column.-endereco{ min-width: 21rem; max-width: 20rem;}
+        .column.-valorEntrega { min-width: 14rem; }
+
       tr {
-  
-        & > .tblId { min-width: 5rem; display: none; }
-        & > .tblNome { min-width: 18rem; max-width: 18rem;}
-        & > .tblCel { min-width: 15rem; }
-        & > .tblEndereco{ min-width: 20rem; max-width: 20rem;}
-        & > .tblValor { min-width: 13rem; }
-    
         &:nth-child(odd) { background-color: $color-table-row-odd; }
-      
+
         &:hover {
           cursor: pointer;
           background-color: lighten($color-client, 50%);
@@ -130,7 +124,7 @@
     
   }
 
-  .messagerError {
+  .message {
     margin-bottom: 1.6rem;
   }
 }

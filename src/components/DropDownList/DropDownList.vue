@@ -1,5 +1,5 @@
 <template>
-  <div class="selectList" :class="{'-active' : activeList}">
+  <div class="selectList" :class="{'-active' : activeVar}">
     <ul class="optionList" v-for="(item, index) in list" :key="index" >
       <li :for="index" @click="handleclick($event)" :value="item.id">{{ item.nome }}</li>
     </ul>     
@@ -11,19 +11,21 @@ export default {
 
   props: {
     itens: { type: Array, required: true},
-    selectClient: { type: Function}
+    select: { type: Function },
+    activeVar: { type: Boolean },
+    name: { type: String },
   },
   computed: {
-    activeList() { return this.$store.state.activeListClient },
+    //activeList() { return this.$store.state.activeListClient },
     list() { return this.itens }
   },
   methods: {
-    handleclick(event) { // pega o id do item clicado na lista, procura o cliente com esse id e envia para o evento selectClient do pai //
+    handleclick(event) { // pega o id do item clicado na lista, procura o produto com esse id e envia para o evento select do pai //
       const id = event.target.attributes.value.value
-      const client = this.list.filter(l => l.id == id)
-      this.selectClient(event,...client)
+      const iten = this.list.filter(l => l.id == id)
+      this.select(event,...iten)
 
-      this.$store.dispatch('activeListClient', 'toggle')
+      this.$store.dispatch('activeList', [this.name, 'disabled'])
     }
   },
 }

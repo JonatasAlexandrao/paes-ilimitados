@@ -18,24 +18,24 @@
 @mixin color-button($type:simple) {
   @if($type == simple){
     color: $color-white;
-    background-color: darken($color-background-div, 25%);
+    background-color: $color-clean-button;
 
   }
   @else if ($type == save){
     color: $color-white;
-    background-color: $color-save-button-bc;
+    background-color: $color-save-button;
     border: none;
   
   }
   @else if ($type == change){
     color: $color-white;
-    background-color: $color-change-button-bc;
+    background-color: $color-change-button;
     border: none;
   
   }
   @else if ($type == delete){
     color: $color-white;
-    background-color: $color-delete-button-bc;
+    background-color: $color-delete-button;
     border: none;
 
   }

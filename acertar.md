@@ -9,26 +9,29 @@ document.getElementById("meu-input").onkeypress = function(e) {
 }
 ----------------------------------------
 410x750
+
    
-  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb
+  - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
+
+
+  - criar uma tabela no banco de dados para o tipo
 
   
-  - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
-  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
-  
+
+  -->> Store
+    
+    *** no curso ver aula de modularização para mais detalhes
+
+
+--> Tela produtos:
 
 
 --> Tela cliente:
 
   --> CSS
     
-    
-    - resolver problema de ficar tendo q importar os arquivos globais .scss
 
-    
   --> Lista do Input
-    
-  
 
  --> Banco 
   - ver forma de capturar erro do banco no arquivo data
@@ -40,14 +43,41 @@ document.getElementById("meu-input").onkeypress = function(e) {
 --> Button
   
 
-
+# Problemas e bugs:
+  - quando clica em limpar funciona tudo mas da um erro no console
+  - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
+  - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
+  - No celular quando digita a primeira letra não abre a lista de pesquisa só apartir da segunda letra
+  - resolver problema de ficar tendo q importar os arquivos globais .scss
+  - quando pesquisado com acentos não filtra a lista
 
 
 # Pensamentos:
   
 
-# Problemas:
+# Problemas Resolvidos:
 
+(ok) modularizar a store para poder separar os arquivos de produto dos de cliente
+(ok) ver de criar gets para acessar as variaveis glopais
+(ok) falta vincular lista do tipo de produto ao dropdown
+(ok) Mudar o componete de mensagem de erro para alert e mostrar nele quando o item foi salvo, alterado, deletado e erro na validação (para cada um usar uma cor diferente)
+(ok) quando vc seleciona um item da lista do input tipo ele está tentando povoar os inputs igual ao nome do produto, precisa remover essa função dele e só permiter q ele povoe seu próprio input 
+(ok) filtrar a lista de produtos
+(ok) retirar o dropdown do tipo até resolver os dados q produto realmente vão precisar.
+(ok) a ativação da lista está sempre fazendo toggle
+(ok) fazer o codigo para a função de validação dos inputs
+(ok) codar a parte do banco para o produto
+(ok) os inputs com a mask letter não estão aceitando acentos
+(ok) mudar cores do dropdown para a cor do produto
+(ok) Depois da refaturação o item do dropdownlist não está sendo selecionado e passado para os inputs
+(ok) criar o store para o produtos
+(ok) nome produto deve ser um combo box
+(ok) tipo tb deve ser um combo box
+(ok) campo ingredientes tem q ser um textbox de texto mesmo
+(ok) fazer mascaras de cada input
+  (ok) peso
+(ok) refaturar o dropdown do cliente para o formato sem store
+(ok)dropdown por usar o store para saber quando abrir ou fechar a lista está fazendo isso com todos os combobox juntos.
 (ok) colocar em ordem alfabetica a lista de clientes
 (ok) colocar um efeito na caixa de erro, uma vibração pra chamar atenção pra ela.
 (ok) quando salva um cliente novo ele limpa e da foco no input e abre a lista
@@ -113,4 +143,4 @@ document.getElementById("meu-input").onkeypress = function(e) {
  
 
 
-  
+ 

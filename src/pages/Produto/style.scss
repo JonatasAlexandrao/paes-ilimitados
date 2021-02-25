@@ -1,0 +1,141 @@
+
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_fonts.scss";
+@import "@/assets/scss/_mixin.scss";
+@import "@/assets/scss/_placeholders.scss";
+
+
+
+.productPage {
+  position: relative;
+  max-width: 40rem;
+  width: 100vw;
+  overflow: hidden;
+
+  .backgroundDiv {
+    position: relative;
+    padding: 1rem 2rem 2rem;
+    border-radius: 2rem 2rem 0 0;
+  
+    margin-top: 5rem;
+    background-color: $color-background-div;
+
+    .containerInputProduct {
+      display: grid;
+      grid-template-columns: 45% 55%;
+      grid-template-areas: 
+      "produto produto"
+      "peso tipo"
+      "valor deletar"
+      ;
+      row-gap: .8rem;
+    }
+
+    .id {
+      margin: 0 0 .4rem 1rem;
+      text-align: left;
+      font-size: 1.6rem;
+    }
+
+    .divInput {
+      //margin-bottom: .8rem;
+      padding: 0 .4rem;
+
+      &.-prod { 
+        grid-area: produto;
+        & > input { padding-right: 35px }
+      }
+      &.-peso { grid-area: peso; }
+      &.-tipo { grid-area: tipo; 
+        & > input { padding-right: 35px }
+      }
+      &.-valor { grid-area: valor; }
+    }
+
+    fieldset {
+      position: relative;
+      margin: .8rem 0 1.6rem 0;
+      padding: .8rem .8rem 1.6rem .8rem;
+
+      & > legend {
+        font-size: 1.6rem;
+        padding: 0 0.8rem;
+      }
+
+      & > .ingredients {
+        @extend %inputLayout;
+        @include custonScrollBar(darken($color-product, 20%), $color-product);
+
+        resize: none; // impede o redimencionamento
+        font-family: inherit;
+        height: 11rem; //4 linhas
+
+
+        &:focus { border: 0.3rem solid $color-product; }
+      }
+    }
+  
+    .divButtons {
+      width: 100%;
+      display: grid;
+      grid-auto-rows: 5rem;
+      gap: 8px;
+      margin-bottom: 1.6rem;
+    }
+ 
+  }
+  // ==================== COMPONENTES ==================== 
+  .flatButton.-delete { 
+    grid-area: deletar; 
+    margin: 0 .4rem;
+    font-size: 1.4rem;
+   //height: 4rem;
+  }
+
+  .selectList.-productType,
+  .selectList.-productName {
+    color: $color-white;
+    @include custonScrollBar(darken($color-product, 20%), $color-product);
+
+    .optionList {
+      background-color: lighten($color-product, 10%);
+      &:hover { background-color: $color-product; }
+    }
+  }
+
+  .message {
+    margin-bottom: 1.6rem;
+  }
+
+  .tbl.-productTable {
+    @include custonScrollBar(darken($color-product, 20%),$color-product);
+
+    thead {
+      background-color: $color-product; color: $color-white;
+    }
+
+    & > table{
+      background-color: $color-white;
+
+      .column.-id { display: none; }
+      .column.-produto { min-width: 16rem; max-width: 25rem; }
+      .column.-peso { display: none; min-width: 8rem; max-width: 12rem; }
+      .column.-tipo { min-width: 10rem; max-width: 15rem; }
+      .column.-valor { min-width: 10rem; max-width: 15rem; }
+      .column.-ingredientes { min-width: 18rem; max-width: 15rem;  }
+
+      tr {
+        &:nth-child(odd) { background-color: $color-table-row-odd; }
+        
+        &:hover {
+          cursor: pointer;
+          background-color: lighten($color-product, 50%);
+      
+          &:hover:nth-child(odd) { background-color:  lighten($color-product, 40%); }
+        }
+      }
+    }
+  }
+
+}
+
