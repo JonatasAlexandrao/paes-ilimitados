@@ -53,3 +53,20 @@
   overflow: hidden;
   background-color: $color;
 }
+
+@mixin tableCustom($color, $p1:50%, $p2:40%) {
+  background-color: $color-white;
+
+  & > thead { background-color: $color; color: $color-white; }
+
+  tr {
+    &:nth-child(odd) { background-color: $color-table-row-odd; }
+    
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($color, $p1);
+  
+      &:hover:nth-child(odd) { background-color:  lighten($color, $p2); }
+    }
+  }
+}

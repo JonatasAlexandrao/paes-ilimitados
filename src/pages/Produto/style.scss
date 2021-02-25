@@ -7,19 +7,10 @@
 
 
 .productPage {
-  position: relative;
-  max-width: 40rem;
-  width: 100vw;
-  overflow: hidden;
-  background-color: $color-product;
+  @include pageCustom($color-product);
 
   .backgroundDiv {
-    position: relative;
-    padding: 1rem 2rem 2rem;
-    border-radius: 2rem 2rem 0 0;
-  
-    margin-top: 5rem;
-    background-color: $color-background-div;
+    @extend %backgroundDiv;
 
     .containerInputProduct {
       display: grid;
@@ -54,14 +45,7 @@
     }
 
     fieldset {
-      position: relative;
-      margin: .8rem 0 1.6rem 0;
-      padding: .8rem .8rem 1.6rem .8rem;
-
-      & > legend {
-        font-size: 1.6rem;
-        padding: 0 0.8rem;
-      }
+      @extend %fieldset;
 
       & > .ingredients {
         @extend %inputLayout;
@@ -76,16 +60,12 @@
       }
     }
   
-    .divButtons {
-      width: 100%;
-      display: grid;
-      grid-auto-rows: 5rem;
-      gap: 8px;
-      margin-bottom: 1.6rem;
-    }
+    .divButtons { @extend %divButtons }
  
   }
-  // ==================== COMPONENTES ==================== 
+
+
+  
   .flatButton.-delete { 
     grid-area: deletar; 
     margin: 0 .4rem;
@@ -104,38 +84,25 @@
     }
   }
 
-  .message {
-    margin-bottom: 1.6rem;
-  }
-
   .tbl.-productTable {
-    @include custonScrollBar(darken($color-product, 20%),$color-product);
+    @include custonScrollBar(darken($color-product, 20%), $color-product);
 
-    thead {
-      background-color: $color-product; color: $color-white;
-    }
-
-    & > table{
-      background-color: $color-white;
+    
+    & > table {
+      @include tableCustom($color-product);
 
       .column.-id { display: none; }
       .column.-produto { min-width: 16rem; max-width: 25rem; }
       .column.-peso { display: none; min-width: 8rem; max-width: 12rem; }
       .column.-tipo { min-width: 10rem; max-width: 15rem; }
       .column.-valor { min-width: 10rem; max-width: 15rem; }
-      .column.-ingredientes { min-width: 18rem; max-width: 15rem;  }
-
-      tr {
-        &:nth-child(odd) { background-color: $color-table-row-odd; }
-        
-        &:hover {
-          cursor: pointer;
-          background-color: lighten($color-product, 50%);
-      
-          &:hover:nth-child(odd) { background-color:  lighten($color-product, 40%); }
-        }
-      }
+      .column.-ingredientes { min-width: 36rem; max-width: 36rem;  }
+ 
     }
+  }
+
+  .message {
+    margin-bottom: 1.6rem;
   }
 
 }

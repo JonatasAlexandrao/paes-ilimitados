@@ -3,15 +3,44 @@
 %inputLayout {
   font-size: $font-standard;
 
-    width: 100%;
-    height: 4rem;
-    padding: 1rem 1rem 0rem 1rem;
-  
-    background-color: $color-white;
-    border: none;
-    border-radius: 0.4rem;
-  
-    box-sizing: border-box;
-    outline: none;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem 1rem 0rem 1rem;
+
+  background-color: $color-white;
+  border: none;
+  border-radius: 0.4rem;
+
+  box-sizing: border-box;
+  outline: none;
 
 }
+
+%backgroundDiv {
+  position: relative;
+  padding: 1rem 2rem 2rem;
+  border-radius: 2rem 2rem 0 0;
+
+  margin-top: 5rem;
+  background-color: $color-background-div;
+}
+
+%fieldset {
+  position: relative;
+  margin: .8rem 0 1.6rem 0;
+  padding: .8rem .8rem 1.6rem .8rem;
+
+  & > legend {
+    font-size: 1.6rem;
+    padding: 0 0.8rem;
+  }
+}
+
+%divButtons {
+  width: 100%;
+  display: grid;
+  grid-auto-rows: 5rem;
+  gap: 8px;
+  margin-bottom: 1.6rem;
+}
+
