@@ -40,7 +40,7 @@
 
     </form>
 
-    <TableClient classTables="-cliente" :header="['Nome', 'Celular', 'Endereço', 'Valor entrega']" :list="list" :select="selectClient"/>
+    <TableClient classTable="-client" :list="filteredList" :select="selectClient"/>
 
     
 
@@ -53,14 +53,14 @@ import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import DropDownList from '@/components/DropDownList/DropDownList'
-import TableClient from '@/components/TableClient/TableClient'
 import AlertMessage from '@/components/AlertMessage/AlertMessage'
+import TableClient from '@/components/Table/TableClient/TableClient'
 
 import data from '@/database/data'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { PageTitle, InputFild, FlatButton, DropDownList, TableClient, AlertMessage},
+  components: { PageTitle, InputFild, FlatButton, DropDownList, AlertMessage, TableClient},
 
   //created: function() { this.nextId() },
 
@@ -102,6 +102,7 @@ export default {
   data() {
     return {
       list: [],
+      listTable: [],
       filteredList: [],
       validateInput: true,
       errorMessage: '',
@@ -149,6 +150,7 @@ export default {
         return nome.match(regex) 
        
       }) 
+      this.filteredList = this.orderColumns(this.filteredList)
       
        return value
     },
@@ -191,13 +193,39 @@ export default {
       })
       return list
     },
+
+    orderColumns(list) {
+
+      let orderedList = []
+
+      orderedList =  list.map((elem) => {
+        let newList = {}
+
+        newList.id = elem.id
+        newList.nome = elem.nome
+        newList.celular = elem.celular
+        //newList.endereco = `${elem.rua}, ${elem.rua}, ${elem.bairro}, ${elem.cidade}` 
+        newList.num = elem.num
+        newList.bairro = elem.bairro
+        newList.cidade = elem.cidade
+        newList.valor = elem.valor
+
+        return newList
+      })
+
+      return orderedList
+    },
     
     async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
         const listData = await data.searchList('clientes/')
-        this.list = listData
+        //this.list = this.orderColumns(listData)
         this.list = this.sortList(listData)
-        this.filteredList = listData
+        this.filteredList = this.orderColumns(this.list)
+        //console.log(listData)
+
+       //console.log('ordenado', this.orderColumns(listData))
+       this.listTable = this.orderColumns(this.list)
  
       } catch(error) {
         console.error(error)

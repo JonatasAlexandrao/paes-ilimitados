@@ -35,7 +35,7 @@
       </div>   
     </form>
 
-    <Table classTable="-productTable" :header="['Produto', 'Tipo', 'Valor']" :list="list" :select="selectProduct"/>
+    <TableProduct classTable="-productTable" :header="['Id', 'Produto', 'Peso', 'Tipo', 'Valor']" :list="list" :select="selectProduct"/>
 
   </div>
 
@@ -53,11 +53,11 @@ import InputFild from '@/components/InputFild/InputFild.vue'
 import DropDownList from '@/components/DropDownList/DropDownList'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import AlertMessage from '@/components/AlertMessage/AlertMessage'
-import Table from '@/components/Table/Table'
+import TableProduct from '@/components/Table/TableProduct/TableProduct'
 
 export default {
 
-  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage, Table },
+  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage, TableProduct },
   data(){
     return {
       list: [],

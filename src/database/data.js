@@ -20,7 +20,6 @@ const data = (function() {
         })
 
         error ? reject('erro de conexão') : resolve(dado)
-
         // if(error)
         //   reject('erro de conexão')   
         // else

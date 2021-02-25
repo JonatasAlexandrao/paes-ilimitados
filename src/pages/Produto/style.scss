@@ -114,22 +114,27 @@
       background-color: $color-product; color: $color-white;
     }
 
-    tr {
-      .tblid { display: none; }
-      .tblnome { min-width: 15rem; max-width: 25rem; }
-      .tblpeso { display: none; min-width: 8rem; max-width: 12rem; }
-      .tbltipo { min-width: 10rem; max-width: 15rem; }
-      .tblvalor { min-width: 10rem; max-width: 15rem; }
-      .tblingredientes { display: none; }
+    & > table{
+      background-color: $color-white;
 
-      &:hover {
-        cursor: pointer;
-        background-color: lighten($color-product, 50%);
-    
-        &:hover:nth-child(odd) { background-color:  lighten($color-product, 40%); }
+      .column.-id { display: none; }
+      .column.-produto { min-width: 16rem; max-width: 25rem; }
+      .column.-peso { display: none; min-width: 8rem; max-width: 12rem; }
+      .column.-tipo { min-width: 10rem; max-width: 15rem; }
+      .column.-valor { min-width: 10rem; max-width: 15rem; }
+      .column.-ingredientes { min-width: 18rem; max-width: 15rem;  }
+
+      tr {
+        &:nth-child(odd) { background-color: $color-table-row-odd; }
+        
+        &:hover {
+          cursor: pointer;
+          background-color: lighten($color-product, 50%);
+      
+          &:hover:nth-child(odd) { background-color:  lighten($color-product, 40%); }
+        }
       }
     }
-
   }
 
 }

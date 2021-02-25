@@ -45,7 +45,7 @@ export default {
     classInput: { type: String, required: true },
     name: { type: String, required: true },
     label: { type: String, required: true },
-    value: { type: String, required: true },
+    value: { type: String, required: true, default: ''},
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 

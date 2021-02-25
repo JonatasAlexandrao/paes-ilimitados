@@ -94,24 +94,23 @@
     }
   }
 
-  .tbl.-cliente {
+  .tbl.-client {
     @include custonScrollBar(darken($color-client, 20%),$color-client);
   
     & > table{
-      //background-color: $color-white;
+      background-color: $color-white;
   
       & > thead { background-color: $color-client; color: $color-white; }
   
+        .column.-id { min-width: 5rem; display: none; }
+        .column.-nome { min-width: 19rem; max-width: 19rem;}
+        .column.-celular { min-width: 15rem; }
+        .column.-endereco{ min-width: 21rem; max-width: 20rem;}
+        .column.-valorEntrega { min-width: 14rem; }
+
       tr {
-  
-        & > .tblId { min-width: 5rem; display: none; }
-        & > .tblNome { min-width: 18rem; max-width: 18rem;}
-        & > .tblCel { min-width: 15rem; }
-        & > .tblEndereco{ min-width: 20rem; max-width: 20rem;}
-        & > .tblValor { min-width: 13rem; }
-    
-        //&:nth-child(odd) { background-color: $color-table-row-odd; }
-      
+        &:nth-child(odd) { background-color: $color-table-row-odd; }
+
         &:hover {
           cursor: pointer;
           background-color: lighten($color-client, 50%);
