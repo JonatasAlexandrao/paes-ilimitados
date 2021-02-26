@@ -10,6 +10,19 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
+
+  --->> Tela Pedidos
+
+  - criar componente comboBox para cliente e produto
+    - Ver depois se é possivel criar um componente reutilisavel para os dois
+  - criar todo o form
+  - adicionar os botões
+  - configurar o scss
+
+
+
+  ---------------------------
+
    
   - talvez filtrar a tabela quando a lista do dropdown for filtrada tb. 
 

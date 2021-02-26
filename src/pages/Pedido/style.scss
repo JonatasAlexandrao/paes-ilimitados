@@ -9,6 +9,64 @@
 
   .backgroundDiv {
     @extend %backgroundDiv;
+    .divButtons { @extend %divButtons }
+
+    .clientInf {
+      @extend %fieldset;
+      padding: .4rem .4rem .8rem .4rem;
+      //overflow: hidden;
+
+      //height: 5.7rem;
+
+      display: grid;
+      grid-template-columns: 50% 10% 10% 30%;
+      grid-template-areas: 
+        "cliente cliente cliente cliente"
+        "tel tel valor valor"
+        "rua rua rua num"
+        "bairro bairro cidade cidade"
+      ;
+      row-gap: .8rem;
+
+      .divInput {
+        padding: 0 .4rem;
+  
+        &.-nome{ grid-area: cliente; }
+        &.-tel{ grid-area: tel; }
+        &.-rua{ grid-area: rua; }
+        &.-num { grid-area: num; }
+        &.-bairro { grid-area: bairro; }
+        &.-cidade { grid-area: cidade; }
+        &.-valor { grid-area: valor; }
+      }
+    }
   }
+
+  
+
+
+  .selectList {
+    color: $color-white;
+    &.-clientName {
+      @include custonScrollBar(darken($color-client, 20%), $color-client);
+  
+      .optionList {
+        background-color: lighten($color-client, 10%);
+        &:hover { background-color: $color-client; }
+      }
+    }
+
+    &.-productName {
+      @include custonScrollBar(darken($color-product, 20%), $color-product);
+
+      .optionList {
+        background-color: lighten($color-product, 10%);
+        &:hover { background-color: $color-product; }
+      }
+    }
+  }
+
+  
+  
 
 }

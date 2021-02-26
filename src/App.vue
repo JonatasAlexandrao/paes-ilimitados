@@ -12,8 +12,8 @@
 
     <div class="desktop">
       <Pedido />
-      <Produto v-if="true"/>
-      <Cliente v-if="true"/>
+      <Produto v-if="false"/>
+      <Cliente v-if="false"/>
     </div>
 
   </div>
