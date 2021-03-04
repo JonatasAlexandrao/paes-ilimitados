@@ -42,31 +42,4 @@
     }
   }
 
-  
-
-
-  .selectList {
-    color: $color-white;
-    &.-clientName {
-      @include custonScrollBar(darken($color-client, 20%), $color-client);
-  
-      .optionList {
-        background-color: lighten($color-client, 10%);
-        &:hover { background-color: $color-client; }
-      }
-    }
-
-    &.-productName {
-      @include custonScrollBar(darken($color-product, 20%), $color-product);
-
-      .optionList {
-        background-color: lighten($color-product, 10%);
-        &:hover { background-color: $color-product; }
-      }
-    }
-  }
-
-  
-  
-
 }

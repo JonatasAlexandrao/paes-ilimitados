@@ -1,5 +1,5 @@
 <template>
-  <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
+  <InputFild classInput="-nome -search" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
     <div slot="list" class="selectList -clientName" :class="{'-active' : $store.state.activeList.clienteNome}">
       <ul class="optionList" v-for="(item, index) in filteredList" :key="index" >
         <li :for="index" @click="handleclick($event)" :value="item.id">{{ item.nome }}</li>
@@ -96,6 +96,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style src="./style.scss" lang="scss" />

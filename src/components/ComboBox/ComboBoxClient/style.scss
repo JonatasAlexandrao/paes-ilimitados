@@ -1,0 +1,14 @@
+@import "@/assets/scss/_colors.scss";
+@import "@/assets/scss/_mixin.scss";
+
+.selectList {
+  color: $color-white;
+  &.-clientName {
+    @include custonScrollBar(darken($color-client, 20%), $color-client);
+
+    .optionList {
+      background-color: lighten($color-client, 10%);
+      &:hover { background-color: $color-client; }
+    }
+  }
+}

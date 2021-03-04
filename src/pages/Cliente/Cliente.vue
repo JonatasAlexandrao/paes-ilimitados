@@ -7,14 +7,7 @@
       
       <p class="id">ID: {{clienteId}}</p>
     
-      <InputFild classInput="-nome" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
-        <DropDownList :itens="filteredList" 
-        :select="selectClient" 
-        name="clienteNome"
-        slot="list" 
-        class="-client" 
-        :activeVar="$store.state.activeList.clienteNome" />
-      </InputFild>
+      <ComboBoxClient :selectClient="selectClient"/>
 
       <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
 
@@ -51,8 +44,8 @@
 <script>
 import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
+import ComboBoxClient from '@/components/ComboBox/ComboBoxClient/ComboBoxClient'
 import FlatButton from '@/components/FlatButton/FlatButton'
-import DropDownList from '@/components/DropDownList/DropDownList'
 import AlertMessage from '@/components/AlertMessage/AlertMessage'
 import TableClient from '@/components/Table/TableClient/TableClient'
 
@@ -60,7 +53,7 @@ import data from '@/database/data'
 import mask from '@/assets/mask/mask'
 
 export default {
-  components: { PageTitle, InputFild, FlatButton, DropDownList, AlertMessage, TableClient},
+  components: { PageTitle, InputFild, ComboBoxClient, FlatButton, AlertMessage, TableClient},
 
   //created: function() { this.nextId() },
 

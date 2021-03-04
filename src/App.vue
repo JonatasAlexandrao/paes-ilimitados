@@ -11,7 +11,7 @@
     </nav>
 
     <div class="desktop">
-      <Pedido />
+      <Pedido v-if="true"/>
       <Produto v-if="false"/>
       <Cliente v-if="false"/>
     </div>

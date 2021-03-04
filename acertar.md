@@ -19,6 +19,8 @@ document.getElementById("meu-input").onkeypress = function(e) {
   - adicionar os botões
   - configurar o scss
 
+  - quando diminui o fieldset ou os elemento ficam aparecendo ou a lista do nome fica escondida junto dos elementos
+
 
 
   ---------------------------
