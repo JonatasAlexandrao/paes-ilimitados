@@ -50,7 +50,6 @@ import AlertMessage from '@/components/AlertMessage/AlertMessage'
 import TableClient from '@/components/Table/TableClient/TableClient'
 
 import data from '@/database/data'
-import mask from '@/assets/mask/mask'
 
 export default {
   components: { PageTitle, InputFild, ComboBoxClient, FlatButton, AlertMessage, TableClient},
@@ -111,14 +110,6 @@ export default {
   created() { this.getList() },
 
   methods: {
-  /*  activeList(input, action) { // Verifica qual input quer abrir a lista //
-    
-      if(input === 'clienteNome') {
-        this.$store.dispatch('activeList', input, action)
-        //this.$store.dispatch('activeListClienteNome', action)
-        //console.log('teste123')
-      }
-    },*/
     
     nextId(){ // Verifica qual o próximo id //
       const id = (this.list[this.list.length-1].id)
@@ -127,25 +118,6 @@ export default {
 
       //console.log(ultimoId)
       //console.log('store', this.clienteId)
-    },
-
-    filterList(value) { // Filtra lista do input cliente //
-
-      value = mask.maskFilter('letter', value)
-
-       this.filteredList = this.list.filter(elem => {
-        const nome = elem.nome.normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-
-        const rule = `${value}.*`
-        const regex = new RegExp(rule, "gim")
-
-        return nome.match(regex) 
-       
-      }) 
-      this.filteredList = this.orderColumns(this.filteredList)
-      
-       return value
     },
 
     selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e TableClient
@@ -169,8 +141,6 @@ export default {
       this.messageActive = false
       const input = document.getElementsByTagName('input')
       input[0].focus()
-      this.filterList('')
-      this.$store.dispatch('activeListClient', 'disabled')
       this.getList()
       this.validateInput = true
     },
@@ -197,7 +167,6 @@ export default {
         newList.id = elem.id
         newList.nome = elem.nome
         newList.celular = elem.celular
-        //newList.endereco = `${elem.rua}, ${elem.rua}, ${elem.bairro}, ${elem.cidade}` 
         newList.num = elem.num
         newList.bairro = elem.bairro
         newList.cidade = elem.cidade
@@ -212,13 +181,9 @@ export default {
     async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
         const listData = await data.searchList('clientes/')
-        //this.list = this.orderColumns(listData)
         this.list = this.sortList(listData)
         this.filteredList = this.orderColumns(this.list)
-        //console.log(listData)
-
-       //console.log('ordenado', this.orderColumns(listData))
-       this.listTable = this.orderColumns(this.list)
+        this.listTable = this.orderColumns(this.list)
  
       } catch(error) {
         console.error(error)
@@ -238,8 +203,7 @@ export default {
         this.messageClass = '-confirmed'
         this.messageActive = true
       }
-      
-       
+
     },
 
     changeBD() { // salva uma alteração de um cliente //

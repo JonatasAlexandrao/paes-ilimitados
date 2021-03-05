@@ -21,13 +21,20 @@ export default {
 
   computed: {
     produtoNome: {
-      get(){ return this.$store.getters.getProNome },
+      get(){ 
+        if(this.$store.getters.getProNome == ''){
+          this.filterList('')
+          this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
+        }
+
+        return this.$store.getters.getProNome
+      },
       set(value){ this.$store.commit('setProdutoNome', value) }
     },
   },
 
   props: {
-    selectClient: Function,
+    selectProduct: Function,
   },
 
   created() { this.getList() },
@@ -71,7 +78,7 @@ export default {
 
     async getList() { // pega a lista de clientes no banco e coloca na variavel list //
       try {
-        const listData = await data.searchList('clientes/')
+        const listData = await data.searchList('produtos/')
          this.list = this.sortList(listData)
          this.filteredList = this.list
  
@@ -83,11 +90,12 @@ export default {
 
       handleclick(event) { // pega o id do item clicado na lista, procura o produto com esse id e envia para o evento select do pai //
       const id = event.target.attributes.value.value
-      const iten = this.list.filter(l => l.id == id)
+      const item = this.list.filter(l => l.id == id)
 
-      this.selectClient(event,...iten)
+      this.selectProduct(event,...item)
+      console.log(item)
 
-      this.$store.dispatch('activeList', ['clienteNome', 'disabled'])
+      this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
 
     }
 

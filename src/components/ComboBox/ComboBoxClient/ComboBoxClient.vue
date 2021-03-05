@@ -20,7 +20,14 @@ export default {
 
   computed: {
     clienteNome: {
-      get(){ return this.$store.getters.getCliNome },
+      get(){ 
+        if(this.$store.getters.getCliNome == ''){
+          this.filterList('')
+          this.$store.dispatch('activeList', ['clienteNome', 'disabled'])
+        }
+          
+        return this.$store.getters.getCliNome 
+      },
       set(value){ this.$store.commit('setNomeCliente', value) }
     },
   },

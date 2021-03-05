@@ -5,10 +5,11 @@
   <div class="backgroundDiv">
     <form @submit="(event) => event.preventDefault()">
       <p class="id">ID: {{produtoId}}</p>
-      <div class="containerInputProduct" >     
-        <InputFild classInput="-prod" name="produtoNome" label="Produto" v-model="produtoNome" type="search" :filterList="filterList" :activeVar="$store.state.activeList.produtoNome" mask="letter">
+      <div class="containerInputProduct" > 
+        <ComboBoxProduct :selectProduct="selectProduct" />    
+        <!-- <InputFild classInput="-prod" name="produtoNome" label="Produto" v-model="produtoNome" type="search" :filterList="filterList" :activeVar="$store.state.activeList.produtoNome" mask="letter">
           <DropDownList :itens="filteredList" name="produtoNome" :select="selectProduct" slot="list" class="-productName" :activeVar="$store.state.activeList.produtoNome" />
-        </InputFild>
+        </InputFild> -->
         <InputFild classInput="-peso" name="peso" label="Peso (g)" v-model="produtoPeso" mask="weight" />
         <InputFild classInput="-tipo" name="produtoTipo" label="Tipo" v-model="produtoTipo" type="search"  :activeVar="$store.state.activeList.produtoTipo" mask="letter">
           <DropDownList :itens="typeList" name="produtoTipo" :select="selectProductType" slot="list" class="-productType" :activeVar="$store.state.activeList.produtoTipo"/>
@@ -44,18 +45,19 @@
 <script>
 
 import data from '@/database/data'
-import mask from '@/assets/mask/mask'
+//import mask from '@/assets/mask/mask'
 
 import PageTitle from '@/components/PageTitle/PageTitle'
 import InputFild from '@/components/InputFild/InputFild.vue'
 import DropDownList from '@/components/DropDownList/DropDownList'
+import ComboBoxProduct from '@/components/ComboBox/ComboBoxProduct/ComboBoxProduct'
 import FlatButton from '@/components/FlatButton/FlatButton'
 import AlertMessage from '@/components/AlertMessage/AlertMessage'
 import TableProduct from '@/components/Table/TableProduct/TableProduct'
 
 export default {
 
-  components: { PageTitle, InputFild, DropDownList, FlatButton, AlertMessage, TableProduct },
+  components: { PageTitle, InputFild, ComboBoxProduct, DropDownList, FlatButton, AlertMessage, TableProduct },
   data(){
     return {
       list: [],
@@ -143,23 +145,23 @@ export default {
 
     },
 
-    filterList(value) { // Filtra lista do input cliente //
+    // filterList(value) { // Filtra lista do input cliente //
 
-      value = mask.maskFilter('letter', value)
+    //   value = mask.maskFilter('letter', value)
 
-       this.filteredList = this.list.filter(elem => {
-        const nome = elem.nome.normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
+    //    this.filteredList = this.list.filter(elem => {
+    //     const nome = elem.nome.normalize('NFD')
+    //       .replace(/[\u0300-\u036f]/g, '')
 
-        const rule = `${value}.*`
-        const regex = new RegExp(rule, "gim")
+    //     const rule = `${value}.*`
+    //     const regex = new RegExp(rule, "gim")
 
-        return nome.match(regex) 
+    //     return nome.match(regex) 
        
-      }) 
+    //   }) 
       
-       return value
-    },
+    //    return value
+    // },
 
     selectProduct(event, product){
       event.stopPropagation();
@@ -172,6 +174,7 @@ export default {
       this.$store.commit('setProdutoIngredientes', product.ingredientes)
       /*this.activeListProduto = false
       this.activeListTipo = false*/
+
     },
 
     selectProductType(event, type) {
@@ -185,8 +188,8 @@ export default {
       this.messageActive = false
       const input = document.getElementsByTagName('input')
       input[0].focus()
-      this.filterList('')
-      this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
+      //this.filterList('')
+     // this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
       this.$store.dispatch('activeList', ['produtoTipo', 'disabled'])
     },
 

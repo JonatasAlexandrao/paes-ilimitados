@@ -5,19 +5,59 @@
       <form @submit="(event) => event.preventDefault()">
 
         
-
-        <fieldset class="clientInf">
+        <p class="id">ID: {{ clienteId }}</p>
+        <fieldset>
         <legend>Cliente</legend>
 
+          
           <ComboBoxClient :selectClient="selectClient" />
         
-          <InputFild classInput="-tel" name="celular" mask="cellPhone" label="Celular" v-model="clienteCelular" inputmode="numeric" />
-          <InputFild classInput="-rua" name="rua" label="Rua" v-model="clienteRua" />
-          <InputFild classInput="-num" name="num" label="Nº" v-model="clienteNum" />
-          <InputFild classInput="-bairro" name="bairro" label="Bairro" v-model="clienteBairro" />
-          <InputFild classInput="-cidade" name="cidade" label="Cidade" v-model="clienteCidade" />
-          <InputFild classInput="-valor" name="valor" label="Valor Entrega" mask='money' inputmode="numeric" v-model="clienteValor" />   
-          <FlatButton v-if="clienteId" classButton="-delete" :handleclick="deleteBD" title="Deletar" />  
+          <div class="clientInf" v-if="checkId">
+            <InputFild classInput="-tel" 
+              name="celular" 
+              mask="cellPhone" 
+              label="Celular" 
+              v-model="clienteCelular" 
+              inputmode="numeric" 
+            />
+
+            <InputFild classInput="-rua" 
+              name="rua" 
+              label="Rua" 
+              v-model="clienteRua" 
+            />
+
+            <InputFild classInput="-num" 
+              name="num" 
+              label="Nº" 
+              v-model="clienteNum" 
+            />
+            <InputFild classInput="-bairro" 
+              name="bairro" 
+              label="Bairro" 
+              v-model="clienteBairro" 
+            />
+            <InputFild classInput="-cidade" 
+              name="cidade" 
+              label="Cidade" 
+              v-model="clienteCidade" 
+            />
+            <InputFild classInput="-valor" 
+              name="valor" 
+              label="Valor Entrega" 
+              mask='money' 
+              inputmode="numeric" 
+              v-model="clienteValor" 
+            />
+          </div>
+           
+            
+          <div class="buttonClient" v-if="clienteId" >
+            <FlatButton classButton="-delete" :handleclick="()=>{}" title="Deletar" />
+            <FlatButton classButton="-edit" :handleclick="()=>{}" title="Editar Cliente" />
+              <FlatButton classButton="-edit" :handleclick="()=>{}" title="Editar Cliente" />
+          </div>
+             
       </fieldset>
 
 
@@ -26,7 +66,7 @@
       <div class="divButtons">
         <FlatButton classButton="-save" v-if="true" :handleclick="()=>{}" title="Gravar" />
         <FlatButton classButton="-change" v-else :handleclick="()=>{}" title="Alterar" />
-        <FlatButton classButton="-clean" :handleclick="()=>{}" title="Limpar" />    
+        <FlatButton classButton="-clean" :handleclick="cleanFilds" title="Limpar" />    
       </div> 
 
       </form>
@@ -54,6 +94,12 @@ export default {
   },
 
   computed: {
+    checkId() {
+      if(this.clienteId)
+        return true
+      else
+        return false
+    },
     clienteId() { return this.$store.getters.getCliId },
     clienteNome: {
       get(){ return this.$store.getters.getCliNome },
@@ -91,6 +137,7 @@ export default {
 
       event.stopPropagation();
 
+      this.$store.commit('setIdCliente', client.id)
       this.$store.commit('setNomeCliente', client.nome)
       this.$store.commit('setCelularCliente', client.celular)
       this.$store.commit('setRuaCliente', client.rua)
@@ -101,9 +148,11 @@ export default {
 
     },
 
-  
-
-    
+    cleanFilds() {// Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
+      this.$store.commit('cleanAllCliente')
+      const input = document.getElementsByTagName('input')
+      input[0].focus()
+    }
 
   }
 
