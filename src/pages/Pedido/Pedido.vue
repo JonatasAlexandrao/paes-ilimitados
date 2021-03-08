@@ -21,6 +21,14 @@
               inputmode="numeric" 
             />
 
+            <InputFild classInput="-valor" 
+              name="valor" 
+              label="Valor Entrega" 
+              mask='money' 
+              inputmode="numeric" 
+              v-model="clienteValor" 
+            />
+
             <InputFild classInput="-rua" 
               name="rua" 
               label="Rua" 
@@ -42,20 +50,14 @@
               label="Cidade" 
               v-model="clienteCidade" 
             />
-            <InputFild classInput="-valor" 
-              name="valor" 
-              label="Valor Entrega" 
-              mask='money' 
-              inputmode="numeric" 
-              v-model="clienteValor" 
-            />
+            
           </div>
            
             
           <div class="buttonClient" v-if="clienteId" >
             <FlatButton classButton="-delete" :handleclick="()=>{}" title="Deletar" />
-            <FlatButton classButton="-edit" :handleclick="()=>{}" title="Editar Cliente" />
-              <FlatButton classButton="-edit" :handleclick="()=>{}" title="Editar Cliente" />
+            <FlatButton classButton="-edit" v-if="checkEdit" :handleclick="checkEditFunc" title="Editar Cliente" />
+            <FlatButton classButton="-save" v-else :handleclick="checkEditFunc" title="Salvar" />
           </div>
              
       </fieldset>
@@ -90,16 +92,14 @@ export default {
       list: [],
       listTable: [],
       filteredList: [],
+      checkEdit: true,
+
     }
   },
 
   computed: {
-    checkId() {
-      if(this.clienteId)
-        return true
-      else
-        return false
-    },
+    checkId() { return this.clienteId ? true : false },
+    // ========== Cliente Store ======================
     clienteId() { return this.$store.getters.getCliId },
     clienteNome: {
       get(){ return this.$store.getters.getCliNome },
@@ -132,6 +132,10 @@ export default {
   },
 
   methods: {
+
+    checkEditFunc() {
+      this.checkEdit = !this.checkEdit
+    },
     
     selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e TableClient
 

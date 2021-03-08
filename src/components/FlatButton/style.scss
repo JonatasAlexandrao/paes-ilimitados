@@ -10,13 +10,16 @@
   font-size: $font-button;
   border-radius: .3rem;
 
+  
+
    @include color-button(simple);
 
   &.-delete{ @include color-button(delete); }
   &.-save { @include color-button(save); }
   &.-change { @include color-button(change); }
+  &.-edit { @include color-button(edit); }
 
-  &:focus{ outline: .3rem solid transparentize($color-white, .1); }
+  &:focus{ outline: .3rem solid transparentize($color-white, .1); outline: solid rgb(14, 209, 216);}
 
 }
 

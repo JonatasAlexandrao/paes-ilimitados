@@ -80,18 +80,31 @@
        //gap: .8rem;
         
         display: grid;
-        align-content: center;
+        align-items: center;
+        justify-items: center;
         justify-content: center;
-        //grid-template-columns: 1fr 1fr;
-        grid-auto-columns: 100px;
+        grid-template-columns: repeat(auto-fit, 110px);
+        margin-top: .8rem;
+        //grid-auto-columns: 1fr;
+
 
 
         & > .-delete {
-          width: 8rem;
+          width: 10rem;
+          height: 4rem;
+          
+        }
+        & > .-save {
+          width: 10rem;
+          height: 4rem;
+          
         }
         & > .-edit {
-          width: 8rem;
+          width: 10rem;
+          min-height: 4rem;
+          font-size: $font-small;
         }
+
       }
 
     }

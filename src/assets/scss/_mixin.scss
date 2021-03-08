@@ -1,4 +1,10 @@
 
+%button {
+  color: $color-white;
+  border: none;
+  padding: 0;
+}
+
 @mixin custonScrollBar($color1, $color2) {
   scrollbar-width: thin;
   scrollbar-color:$color1 $color2;
@@ -16,29 +22,33 @@
 }
 
 @mixin color-button($type:simple) {
+
   @if($type == simple){
-    color: $color-white;
+    @extend %button;
     background-color: $color-clean-button;
 
   }
   @else if ($type == save){
-    color: $color-white;
+    @extend %button;
     background-color: $color-save-button;
-    border: none;
   
   }
   @else if ($type == change){
-    color: $color-white;
+    @extend %button;
     background-color: $color-change-button;
-    border: none;
-  
-  }
-  @else if ($type == delete){
-    color: $color-white;
-    background-color: $color-delete-button;
-    border: none;
 
   }
+  @else if ($type == delete){
+    @extend %button;
+    background-color: $color-delete-button;
+
+  }
+  @else if ($type == edit){
+    @extend %button;
+    background-color: $color-edit-button;
+  }
+
+
   &:hover{
     border: 3px solid transparentize($color-white, .1);
   }

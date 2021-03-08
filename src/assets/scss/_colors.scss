@@ -1,27 +1,28 @@
 
+// ============== BACKGROUND ==================
 $color-background: #2c3e50;
 $color-background-app: #222222;
 $color-background-div: #7A7A7A;
 
 $color-tabs:  rgba(255, 255, 255, .8);
-
-$color-white: #e9e8e8;
-$color-black: #222222;
 $color-description: #3a3a3a;
-
 
 $color-confirmed: rgb(0, 216, 72);
 $color-alert: rgb(255, 174, 0);
 $color-error: rgb(182, 35, 35);
 
+// ================= FONTES ===================
+$color-white: #e9e8e8;
+$color-black: #222222;
 
+// ================= BUTTONS ==================
 $color-save-button: rgb(0, 122, 47); 
 $color-change-button:  rgb(0, 103, 163);
 $color-clean-button: darken($color-background-div, 25%);
 $color-delete-button: rgb(182, 35, 35); 
+$color-edit-button: rgb(158, 35, 182);
 
-
-
+// =============== COMPONENTES =================
 $color-client: #6211ad;
 $color-background-client: #7A7A7A;
 $color-highlight: #16DB93;
@@ -30,6 +31,7 @@ $color-product: #0a5580;
 
 $color-request: #800c2f;
 
+// ================ TABELAS ====================
 $color-table-row-odd: lighten($color-background-div, 20%);
 
 
