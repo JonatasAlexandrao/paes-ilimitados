@@ -12,7 +12,7 @@
           
           <ComboBoxClient :selectClient="selectClient" />
         
-          <div class="clientInf" v-if="checkId">
+          <div class="clientInf" v-show="checkId">
             <InputFild classInput="-tel" 
               name="celular" 
               mask="cellPhone" 
@@ -55,9 +55,8 @@
            
             
           <div class="buttonClient" v-if="clienteId" >
-            <FlatButton classButton="-delete" :handleclick="()=>{}" title="Deletar" />
             <FlatButton classButton="-edit" v-if="checkEdit" :handleclick="checkEditFunc" title="Editar Cliente" />
-            <FlatButton classButton="-save" v-else :handleclick="checkEditFunc" title="Salvar" />
+            <FlatButton classButton="-change" v-else :handleclick="changeClientBD" title="Alterar" />
           </div>
              
       </fieldset>
@@ -133,8 +132,39 @@ export default {
 
   methods: {
 
-    checkEditFunc() {
+    checkEditFunc() { //Troca o botão atual do cliente
       this.checkEdit = !this.checkEdit
+      this.readonly()
+      
+    },
+
+    readonly() { //Define se os inputs do cliente podem ser alterados ou não
+      const tel = document.querySelector('.divInput.-tel > input')
+      const valor = document.querySelector('.divInput.-valor > input')
+      const rua = document.querySelector('.divInput.-rua > input')
+      const num = document.querySelector('.divInput.-num > input')
+      const bairro = document.querySelector('.divInput.-bairro > input')
+      const cidade = document.querySelector('.divInput.-cidade > input')
+
+      if(this.checkEdit) {
+        tel.setAttribute('readonly', true)
+        valor.setAttribute('readonly', true)
+        rua.setAttribute('readonly', true)
+        num.setAttribute('readonly', true)
+        bairro.setAttribute('readonly', true)
+        cidade.setAttribute('readonly', true)
+      }
+      else {
+        tel.removeAttribute('readonly')
+        valor.removeAttribute('readonly')
+        rua.removeAttribute('readonly')
+        num.removeAttribute('readonly')
+        bairro.removeAttribute('readonly')
+        cidade.removeAttribute('readonly')
+      }
+
+      
+
     },
     
     selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e TableClient
@@ -150,13 +180,24 @@ export default {
       this.$store.commit('setCidadeCliente', client.cidade)
       this.$store.commit('setValorCliente', client.valor)
 
+      this.checkEdit = true
+      this.readonly()
+
     },
 
     cleanFilds() {// Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
       this.$store.commit('cleanAllCliente')
       const input = document.getElementsByTagName('input')
       input[0].focus()
+      this.checkEdit = true
+    },
+
+    changeClientBD() {
+      alert('alterar')
+      this.checkEdit = true
+      this.readonly()
     }
+   
 
   }
 

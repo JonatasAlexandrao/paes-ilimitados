@@ -44,66 +44,64 @@
         %inputMini {
           font-size: $font-small; 
           height: 3.5rem; 
-          background-color: darken($color-white, 10%); 
+          background-color: darken($color-white, 10%);          
+        
         }
+
          
         &.-nome{ width: 100%; }
         &.-tel{ 
           grid-area: tel; 
           & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); }
         }
         &.-rua{ 
           grid-area: rua;
           & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); }
         }
         &.-num { 
           grid-area: num;
           & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); }
         }
         &.-bairro { 
           grid-area: bairro;
           & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); }
         }
         &.-cidade { 
           grid-area: cidade;
           & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); }
         }
         &.-valor { 
           grid-area: valor;
-          & > input { @extend %inputMini } 
+          & > input { @extend %inputMini }
+          & > .-small { font-size: calc( #{$font-small} - .4rem ); } 
         }
+
+        
       }
 
       .buttonClient {
         width: 95%;
-        //height: 8rem;
-       //gap: .8rem;
-        
+
         display: grid;
         align-items: center;
         justify-items: center;
         justify-content: center;
-        grid-template-columns: repeat(auto-fit, 110px);
+        grid-template-columns: repeat(auto-fit, 150px);
         margin-top: .8rem;
         //grid-auto-columns: 1fr;
 
 
-
-        & > .-delete {
-          width: 10rem;
-          height: 4rem;
-          
-        }
-        & > .-save {
-          width: 10rem;
-          height: 4rem;
-          
-        }
-        & > .-edit {
-          width: 10rem;
-          min-height: 4rem;
+        & > .-change, & > .-edit {
+          width: 100%;
+          height: 3.5rem;
           font-size: $font-small;
         }
+
 
       }
 

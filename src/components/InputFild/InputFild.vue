@@ -49,7 +49,6 @@ export default {
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
-    //activeFunc: Function,
     activeVar: Boolean,
 
     mask: String,
