@@ -12,7 +12,7 @@
           
           <ComboBoxClient :selectClient="selectClient" />
         
-          <div class="clientInf" v-show="checkId">
+          <div class="clientInf" v-show="checkIdClient">
             <InputFild classInput="-tel" 
               name="celular" 
               mask="cellPhone" 
@@ -60,9 +60,28 @@
           </div>
              
       </fieldset>
+      <p class="id">ID: {{ produtoId }}</p>
+      <fieldset>
+        <legend>Produtos</legend>
+        <ComboBoxProduct :selectProduct="selectProduct" />
+        
+        <div class="productInf" v-show="checkIdProduct">
 
+          <div class="information">
+            <p class="peso">Peso: {{ produtoPeso }}</p>
+            <p class="tipo">Tipo: {{ produtoTipo }}</p>
+            <p class="ingredientes">Ingredientes: {{ produtoIngredientes }}</p>
+          </div>
+          <InputFild classInput="-valor" 
+            name="valor" 
+            label="Valor" 
+            mask='money' 
+            inputmode="numeric" 
+            v-model="produtoValor" 
+          />
 
-      <ComboBoxProduct :selectClient="selectClient" />
+        </div>
+      </fieldset>
         
       <div class="divButtons">
         <FlatButton classButton="-save" v-if="true" :handleclick="()=>{}" title="Gravar" />
@@ -97,7 +116,8 @@ export default {
   },
 
   computed: {
-    checkId() { return this.clienteId ? true : false },
+    checkIdClient() { return this.clienteId ? true : false },
+    checkIdProduct() { return this.produtoId ? true : false },
     // ========== Cliente Store ======================
     clienteId() { return this.$store.getters.getCliId },
     clienteNome: {
@@ -128,6 +148,33 @@ export default {
       get(){ return this.$store.getters.getCliValor },
       set(value){ this.$store.commit('setValorCliente', value) }
     },
+
+    produtoId() { return this.$store.getters.getProId },
+    produtoNome: {
+      get(){ return this.$store.getters.getProNome },
+      set(value){ this.$store.commit('setProdutoNome', value) }
+    },
+
+    produtoTipo: {
+      get(){ return this.$store.getters.getProTipo },
+      set(value){ this.$store.commit('setProdutoTipo', value) }
+    },
+    produtoPeso: {
+      get(){ return this.$store.getters.getProPeso },
+      set(value){ this.$store.commit('setProdutoPeso', value) }
+    },
+
+    produtoValor: {
+      get(){ return this.$store.getters.getProValor },
+      set(value){ this.$store.commit('setProdutoValor', value) }
+    },
+
+    produtoIngredientes: {
+      get(){ return this.$store.getters.getProIngredientes },
+      set(value){ this.$store.commit('setProdutoIngredientes', value) }
+    },
+
+
   },
 
   methods: {
@@ -185,8 +232,21 @@ export default {
 
     },
 
+    selectProduct(event, product){
+      event.stopPropagation();
+      
+      this.$store.commit('setProdutoId', product.id)
+      this.$store.commit('setProdutoNome', product.nome)
+      this.$store.commit('setProdutoPeso', product.peso)
+      this.$store.commit('setProdutoTipo', product.tipo)
+      this.$store.commit('setProdutoValor', product.valor)
+      this.$store.commit('setProdutoIngredientes', product.ingredientes)
+
+    },
+
     cleanFilds() {// Limpa o store cliente para limpar os campos do form e limpa o filtro do dropDownList//
       this.$store.commit('cleanAllCliente')
+      this.$store.commit('cleanAllProduto')
       const input = document.getElementsByTagName('input')
       input[0].focus()
       this.checkEdit = true
