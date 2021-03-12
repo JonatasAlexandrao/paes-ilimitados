@@ -1,0 +1,45 @@
+
+
+.ContainerCountButtons {
+  width: 20px;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  position: absolute;
+  padding: 0 .4rem;
+  right: 0;
+
+  & > .btn {
+    padding: 0;
+    border: none;
+    
+    box-sizing: border-box;
+
+    background-color: rgba(70, 130, 180, .4);
+
+    &.-add {
+      border-radius: 0 .4rem 0 0;
+      background-image:url('../../assets/images/icons/triangle.svg');
+      background-repeat: no-repeat;
+      background-size: 80%;
+      background-position: center;
+
+    }
+    &.-remove {
+      border-radius: .4rem 0 0 0;
+      background-image:url('../../assets/images/icons/triangle.svg');
+      background-repeat: no-repeat;
+      background-size: 80%;
+      background-position: center;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+  }
+}

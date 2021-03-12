@@ -11,6 +11,7 @@ mask: a mascara de input q será usada
     <IconOpenOrClose v-if="type=='search'"
     :activeVar="activeVar"
     :name="this.name" />
+    <NumberCountButtons/>
 
     <input 
       :id="name"
@@ -36,10 +37,11 @@ mask: a mascara de input q será usada
 
 <script>
   import IconOpenOrClose from '@/components/IconOpenOrClose/IconOpenOrClose'
+  import NumberCountButtons from '@/components/NumberCountButtons/NumberCountButtons'
   import mask from '@/assets/mask/mask'
 
 export default {
-  components: { IconOpenOrClose },
+  components: { IconOpenOrClose, NumberCountButtons },
 
   props: {
     classInput: { type: String, required: true },

@@ -67,11 +67,19 @@
         
         <div class="productInf" v-show="checkIdProduct">
 
-          <div class="information">
+          <!-- <div class="information">
             <p class="peso">Peso: {{ produtoPeso }}</p>
             <p class="tipo">Tipo: {{ produtoTipo }}</p>
             <p class="ingredientes">Ingredientes: {{ produtoIngredientes }}</p>
-          </div>
+          </div> -->
+          <InputFild classInput="-qtd" 
+            name="quantidade" 
+            label="Qtd." 
+            mask="noLetter"
+            type="number" 
+            inputmode="numeric" 
+            v-model="produtoQtd" 
+          />
           <InputFild classInput="-valor" 
             name="valor" 
             label="Valor" 
@@ -111,6 +119,8 @@ export default {
       listTable: [],
       filteredList: [],
       checkEdit: true,
+
+      produtoQtd: '1',
 
     }
   },
