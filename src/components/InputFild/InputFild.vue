@@ -8,10 +8,12 @@ mask: a mascara de input q será usada
 <template>
   <div class="divInput" :class="classInput">
 
-    <IconOpenOrClose v-if="type=='search'"
+    <IconInputFild :type="type"
     :activeVar="activeVar"
     :name="this.name" />
-    <NumberCountButtons/>
+    <!-- <NumberCountButtons v-if="type=='number'"/> -->
+    
+
 
     <input 
       :id="name"
@@ -36,12 +38,12 @@ mask: a mascara de input q será usada
 </template>
 
 <script>
-  import IconOpenOrClose from '@/components/IconOpenOrClose/IconOpenOrClose'
-  import NumberCountButtons from '@/components/NumberCountButtons/NumberCountButtons'
+  import IconInputFild from '@/components/InputFild/IconInputFild/IconInputFild'
+  //import NumberCountButtons from '@/components/InputFild/NumberCountButtons/NumberCountButtons'
   import mask from '@/assets/mask/mask'
 
 export default {
-  components: { IconOpenOrClose, NumberCountButtons },
+  components: { IconInputFild },
 
   props: {
     classInput: { type: String, required: true },

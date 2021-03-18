@@ -1,0 +1,96 @@
+@import "@/assets/scss/_colors.scss";
+
+.divIcon {
+
+  width: 2.2rem;
+  height: 100%;
+  position: absolute;
+  right: .4rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+ // border-left: solid .1rem rgba(0, 0, 0, .3);
+
+  &::before {
+    content: '';
+    border-left: solid .1rem rgba(0, 0, 0, .3);
+    height: 70%;
+    
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &.-search {
+    & > .icon {
+      width: 1.2rem;
+    }
+    &:hover {
+      background-color: transparentize($color-request, .3);
+      border-radius: 0 .4rem .4rem 0;
+    }
+  }
+  &.-text {
+    & > .icon {
+      width: 1rem;
+      fill: blue;
+    }
+  }
+
+  &.-number {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "add"
+    "remove";
+
+    background-color: rgba(0, 0, 0, .1);
+    //border-left: solid .1rem rgba(0, 0, 0, .3);
+    border-radius: 0 .4rem .4rem 0; 
+
+    & > .-add {
+      grid-area: add;
+      display: flex;
+      
+      width: 100%;
+      height: 100%;
+
+      border-bottom: 1px solid rgba(0, 0, 0, .3);
+
+      & > img {
+       margin: auto;
+       width: 1.5rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: aquamarine;
+        border-radius: 0 .4rem 0 0;
+      }
+
+    }
+    & > .-remove {
+      grid-area: remove;
+      display: flex;
+
+      
+      width: 100%;
+      height: 100%;
+      
+      
+      & > img {
+       margin: auto;
+       width: 1.5rem;
+       transform: rotate(180deg);
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: aquamarine;
+        border-radius: 0 0 .4rem 0;
+      }
+    }    
+  }
+}
+

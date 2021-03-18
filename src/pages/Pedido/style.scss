@@ -22,16 +22,7 @@
 
       padding: .4rem .4rem .8rem .4rem;    
 
-      .divInput {
-        padding: 0 .4rem;
-
-        %inputMini {
-          font-size: $font-small; 
-          height: 3.5rem; 
-          background-color: darken($color-white, 10%);          
-        
-        }       
-      }
+      .divInput { padding: 0 .4rem; }
     }
   }
   // ============== CLIENTE =========================================

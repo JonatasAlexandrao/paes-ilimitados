@@ -8,7 +8,7 @@
   box-sizing: border-box;
   width: 100%;
 
-  &.-search > input { padding-right: 35px; }
+  //&.-search > input { padding-right: 35px; }
 
   & > input {
     text-align: right;
@@ -46,4 +46,13 @@
 }
 
 
-
+/*.divIcon {
+  //background-color: violet;
+  width: 2.5rem;
+  height: 4rem;
+  position: absolute;
+  right: .4rem;
+  display: flex;
+  cursor: pointer;
+  border-left: solid .1rem rgba(0, 0, 0, .3);
+}*/

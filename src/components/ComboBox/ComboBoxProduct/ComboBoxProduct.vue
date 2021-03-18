@@ -93,7 +93,6 @@ export default {
       const item = this.list.filter(l => l.id == id)
 
       this.selectProduct(event,...item)
-      console.log(item)
 
       this.$store.dispatch('activeList', ['produtoNome', 'disabled'])
 
