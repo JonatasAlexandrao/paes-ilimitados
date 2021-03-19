@@ -1,16 +1,14 @@
 <template>
- <!-- ---- REFAZER COMPONENTE PARA TER TODOS OS ICONES DO INPUT -> O DE ABRIR A LISTA E fechar
-  -> O DE CONTADOR 
-  -> O DE 'X' PARA LIMPAR O INPUT -->
 <div>
 
-  <div class="divIcon -text" v-if="type=='text'" @click="handleclick">
-    <img class="icon" 
-      src="@/assets/images/icons/icon_x.svg" 
-      alt="icone para abrir lista de clientes"
-    >
+  <div class="divIcon -text" v-if="type=='text'" @click="handleclick('x')">
+    <svg class="icon -x" alt="icone para abrir lista de clientes"
+    viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 1L1 7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 1L7 7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
-  <div class="divIcon -search" v-if="type=='search'"  @click="comboBoxToggle($event)">
+  <div class="divIcon -search" v-if="type=='search'"  @click="handleclick('comboBoxToggle', $event)">
     <img 
       class="icon"
       v-if="activeVar"
@@ -19,7 +17,7 @@
       
     >
     <img 
-    @click="comboBoxToggle"
+    
       class="icon"
       v-else
       
@@ -27,14 +25,14 @@
       alt="icone para abrir lista de clientes"
     >
   </div>
-  <div class="divIcon -number" v-if="type=='number'" @click="handleclick">
-    <div class="icon -add"> 
+  <div class="divIcon -number" v-if="type=='number'" >
+    <div class="icon -add" @click="handleclick('counterAdd')"> 
       <img  
       src="@/assets/images/icons/triangle.svg" 
       alt="icone para abrir lista de clientes"
       >
     </div>
-    <div class="icon -remove"> 
+    <div class="icon -remove" @click="handleclick('counterRemove')" > 
       <img  
         src="@/assets/images/icons/triangle.svg" 
         alt="icone para abrir lista de clientes"
@@ -50,8 +48,13 @@
 <script>
 export default {
 
-  props: { activeVar: Boolean, 
-  name: String, type: String },
+  props: { 
+    activeVar: Boolean, 
+    name: String, 
+    type: String,
+   handleclick: Function,
+
+  },
 
   computed: {
       toggleList() {
@@ -63,13 +66,6 @@ export default {
   },
 
   methods: {
-    handleclick() {
-      console.log('click')
-    },
-    comboBoxToggle(event) { //this.$store.dispatch
-      this.$store.dispatch('activeList', [this.name])
-      event.stopPropagation();
-    }
   },
 
 }

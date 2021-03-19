@@ -10,10 +10,8 @@ mask: a mascara de input q será usada
 
     <IconInputFild :type="type"
     :activeVar="activeVar"
-    :name="this.name" />
-    <!-- <NumberCountButtons v-if="type=='number'"/> -->
-    
-
+    :name="this.name" 
+    :handleclick="handleclick" />
 
     <input 
       :id="name"
@@ -50,6 +48,7 @@ export default {
     name: { type: String, required: true },
     label: { type: String, required: true },
     value: { type: String, required: true, default: ''},
+    editable: { type: Boolean, require: true },
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
@@ -110,6 +109,35 @@ export default {
       }
         
     },
+    handleclick(click, event='') { // funçoes de cada icone do input //
+
+      const input = document.querySelector(`.${this.classInput} > input`)
+      console.log(input)
+
+      //if(input.classList == '-readonly')
+       // console.log('te4ste')
+
+      if(click === 'comboBoxToggle') {
+        this.$store.dispatch('activeList', [this.name])
+        event.stopPropagation();
+      }
+
+      if(this.editable){
+        if(click === 'x') {
+          this.localValue = ''
+          
+          input.focus()
+        }
+        else if(click === 'counterAdd') {
+          this.localValue = (parseInt(this.localValue) +1).toString()
+        }
+        else if(click === 'counterRemove') {
+          this.localValue = (parseInt(this.localValue) -1).toString()
+        }
+
+      }
+    },
+
   }
   
 }

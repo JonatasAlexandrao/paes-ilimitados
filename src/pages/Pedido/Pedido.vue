@@ -13,49 +13,55 @@
           <ComboBoxClient :selectClient="selectClient" />
         
           <div class="clientInf" v-show="checkIdClient">
-            <InputFild classInput="-tel" 
+            <InputFild classInput="client_tel" 
               name="celular" 
               mask="cellPhone" 
               label="Celular" 
               v-model="clienteCelular" 
               inputmode="numeric" 
+              :editable="editable"
             />
 
-            <InputFild classInput="-valor" 
+            <InputFild classInput="client_valor" 
               name="valor" 
               label="Valor Entrega" 
               mask='money' 
               inputmode="numeric" 
               v-model="clienteValor" 
+              :editable="editable"
             />
 
-            <InputFild classInput="-rua" 
+            <InputFild classInput="client_rua" 
               name="rua" 
               label="Rua" 
-              v-model="clienteRua" 
+              v-model="clienteRua"
+              :editable="editable" 
             />
 
-            <InputFild classInput="-num" 
+            <InputFild classInput="client_num" 
               name="num" 
               label="Nº" 
-              v-model="clienteNum" 
+              v-model="clienteNum"
+              :editable="editable" 
             />
-            <InputFild classInput="-bairro" 
+            <InputFild classInput="client_bairro" 
               name="bairro" 
               label="Bairro" 
-              v-model="clienteBairro" 
+              v-model="clienteBairro"
+              :editable="editable" 
             />
-            <InputFild classInput="-cidade" 
+            <InputFild classInput="client_cidade" 
               name="cidade" 
               label="Cidade" 
-              v-model="clienteCidade" 
+              v-model="clienteCidade"
+              :editable="editable" 
             />
             
           </div>
            
             
           <div class="buttonClient" v-if="clienteId" >
-            <FlatButton classButton="-edit" v-if="checkEdit" :handleclick="checkEditFunc" title="Editar Cliente" />
+            <FlatButton classButton="-edit" v-if="!editable" :handleclick="editableFunc" title="Editar Cliente" />
             <FlatButton classButton="-change" v-else :handleclick="changeClientBD" title="Alterar" />
           </div>
              
@@ -67,12 +73,7 @@
         
         <div class="productInf" v-show="checkIdProduct">
 
-          <!-- <div class="information">
-            <p class="peso">Peso: {{ produtoPeso }}</p>
-            <p class="tipo">Tipo: {{ produtoTipo }}</p>
-            <p class="ingredientes">Ingredientes: {{ produtoIngredientes }}</p>
-          </div> -->
-          <InputFild classInput="-qtd" 
+          <InputFild classInput="product_qtd" 
             name="quantidade" 
             label="Qtd." 
             mask="noLetter"
@@ -80,7 +81,7 @@
             inputmode="numeric" 
             v-model="produtoQtd" 
           />
-          <InputFild classInput="-valor" 
+          <InputFild classInput="product_valor" 
             name="valor" 
             label="Valor" 
             mask='money' 
@@ -118,7 +119,7 @@ export default {
       list: [],
       listTable: [],
       filteredList: [],
-      checkEdit: true,
+      editable: false,
 
       produtoQtd: '1',
 
@@ -189,37 +190,54 @@ export default {
 
   methods: {
 
-    checkEditFunc() { //Troca o botão atual do cliente
-      this.checkEdit = !this.checkEdit
+    editableFunc() { //Troca o botão atual do cliente
+      this.editable = !this.editable
       this.readonly()
       
     },
 
     readonly() { //Define se os inputs do cliente podem ser alterados ou não
-      const tel = document.querySelector('.divInput.-tel > input')
-      const valor = document.querySelector('.divInput.-valor > input')
-      const rua = document.querySelector('.divInput.-rua > input')
-      const num = document.querySelector('.divInput.-num > input')
-      const bairro = document.querySelector('.divInput.-bairro > input')
-      const cidade = document.querySelector('.divInput.-cidade > input')
+      const tel = document.querySelector('.divInput.client_tel > input')
+      const valor = document.querySelector('.divInput.client_valor > input')
+      const rua = document.querySelector('.divInput.client_rua > input')
+      const num = document.querySelector('.divInput.client_num > input')
+      const bairro = document.querySelector('.divInput.client_bairro > input')
+      const cidade = document.querySelector('.divInput.client_cidade > input')
 
-      if(this.checkEdit) {
+      if(!this.editable) {
         tel.setAttribute('readonly', true)
+        //tel.classList.toggle('-readonly')
         valor.setAttribute('readonly', true)
+        //valor.classList.toggle('-readonly')
         rua.setAttribute('readonly', true)
+        //rua.classList.toggle('-readonly')
         num.setAttribute('readonly', true)
+        //num.classList.toggle('-readonly')
         bairro.setAttribute('readonly', true)
+        //bairro.classList.toggle('-readonly')
         cidade.setAttribute('readonly', true)
+        //cidade.classList.toggle('-readonly')
       }
       else {
         tel.removeAttribute('readonly')
+       // tel.classList.toggle('-readonly')
         valor.removeAttribute('readonly')
+       // valor.classList.toggle('-readonly')
         rua.removeAttribute('readonly')
+       // rua.classList.toggle('-readonly')
         num.removeAttribute('readonly')
+       // num.classList.toggle('-readonly')
         bairro.removeAttribute('readonly')
+        //bairro.classList.toggle('-readonly')
         cidade.removeAttribute('readonly')
+        //cidade.classList.toggle('-readonly')
       }
-
+      tel.classList.toggle('-readonly')
+      valor.classList.toggle('-readonly')
+      rua.classList.toggle('-readonly')
+      num.classList.toggle('-readonly')
+      bairro.classList.toggle('-readonly')
+      cidade.classList.toggle('-readonly')
       
 
     },
@@ -237,7 +255,7 @@ export default {
       this.$store.commit('setCidadeCliente', client.cidade)
       this.$store.commit('setValorCliente', client.valor)
 
-      this.checkEdit = true
+      this.editable = false
       this.readonly()
 
     },
@@ -259,12 +277,12 @@ export default {
       this.$store.commit('cleanAllProduto')
       const input = document.getElementsByTagName('input')
       input[0].focus()
-      this.checkEdit = true
+      this.editable = false
     },
 
     changeClientBD() {
       alert('alterar')
-      this.checkEdit = true
+      this.editable = true
       this.readonly()
     }
    

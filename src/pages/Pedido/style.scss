@@ -40,32 +40,33 @@
     row-gap: .8rem;
 
     .divInput {
-      &.-tel{ 
+      & > input.-readonly { background-color: darken($color-white, 15%) }
+      &.client_tel{ 
         grid-area: tel; 
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); }
       }
-      &.-rua{ 
+      &.client_rua{ 
         grid-area: rua;
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); }
       }
-      &.-num { 
+      &.client_num { 
         grid-area: num;
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); }
       }
-      &.-bairro { 
+      &.client_bairro { 
         grid-area: bairro;
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); }
       }
-      &.-cidade { 
+      &.client_cidade { 
         grid-area: cidade;
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); }
       }
-      &.-valor { 
+      &.client_valor { 
         grid-area: valor;
         & > input { @extend %inputMini }
         & > .-small { font-size: calc( #{$font-small} - .4rem ); } 
@@ -114,9 +115,9 @@
     "ingredientes ingredientes"
     ;
 
-    & > .peso { margin: 0; grid-area: peso; }
-    & > .tipo { margin: 0; grid-area: tipo; }
-    & > .ingredientes { margin: 0; grid-area: ingredientes; }
+    & > .product_peso { margin: 0; grid-area: peso; }
+    & > .product_tipo { margin: 0; grid-area: tipo; }
+    & > .product_ingredientes { margin: 0; grid-area: ingredientes; }
   }
   
 }
