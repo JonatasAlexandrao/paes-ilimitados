@@ -115,9 +115,6 @@ export default {
       const id = (this.list[this.list.length-1].id)
       const ultimoId = parseInt(id) + 1
       this.$store.commit('setIdCliente', ultimoId)   
-
-      //console.log(ultimoId)
-      //console.log('store', this.clienteId)
     },
 
     selectClient(event, client) { // Preenche o form com os dados do item selecionado // repassado para DropDownList e TableClient
@@ -157,7 +154,7 @@ export default {
       return list
     },
 
-    orderColumns(list) {
+    orderColumns(list) { // acerta a ordem das colunas para a tabela //
 
       let orderedList = []
 

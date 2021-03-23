@@ -10,16 +10,17 @@ document.getElementById("meu-input").onkeypress = function(e) {
 ----------------------------------------
 410x750
 
+  --->> GERAL
+    -> Input
+      
+
+    
+
 
   --->> Tela Pedidos
-
-  - criar componente comboBox para cliente e produto
-    - Ver depois se é possivel criar um componente reutilisavel para os dois
-  - criar todo o form
-  - adicionar os botões
-  - configurar o scss
-
-  - quando diminui o fieldset ou os elemento ficam aparecendo ou a lista do nome fica escondida junto dos elementos
+    - fazer a função de alterar dados do cliente selecionado e salvar no BD
+    - Criar a tabela dos pedidos?
+  
 
 
 
@@ -59,6 +60,7 @@ document.getElementById("meu-input").onkeypress = function(e) {
   
 
 # Problemas e bugs:
+  - o colum-gab do display: grid está emburando os elementos para fora do pai quando se usa o template coluns para escolher o tamanho de cada coluna do grid.
   - quando clica em limpar funciona tudo mas da um erro no console
   - quando é clicado no botão do dropdown clicar fora não está fechando a lista.
   - Pesquisar como separar palavras da string e de algum jeito fazer a pesquisa por palavra
@@ -72,6 +74,18 @@ document.getElementById("meu-input").onkeypress = function(e) {
 
 # Problemas Resolvidos:
 
+(ok) corrigir layout da tela cliente
+(ok) corrigir layout da tela pedidos
+(ok) acertar posicionamento dos icones
+(ok) a função do icone X não está funcionando
+(ok) a função de ingremento e decremento tb não funciona
+
+(ok) criar componente comboBox para cliente e produto
+(ok) Ver depois se é possivel criar um componente reutilisavel para os dois
+(ok) criar todo o form
+(ok) adicionar os botões
+(ok) configurar o scss
+(ok) quando diminui o fieldset ou os elemento ficam aparecendo ou a lista do nome fica escondida junto dos elementos
 (ok) modularizar a store para poder separar os arquivos de produto dos de cliente
 (ok) ver de criar gets para acessar as variaveis glopais
 (ok) falta vincular lista do tipo de produto ao dropdown

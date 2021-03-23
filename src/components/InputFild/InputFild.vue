@@ -48,7 +48,7 @@ export default {
     name: { type: String, required: true },
     label: { type: String, required: true },
     value: { type: String, required: true, default: ''},
-    editable: { type: Boolean, require: true },
+    editable: { type: Boolean, default: true },
     type: { type: String, default: 'text'},
     filterList: { type: Function, default: ()=>{}},
 
@@ -81,6 +81,8 @@ export default {
     // focus e deFocus intercalam a classe da label //
     focus() { 
       this.smallLabel = true
+      console.log(this.$refs.fileInput)
+     // console.log(document.querySelector('.product_valor > #valor').select())
       //this.updateData(this.localValue)
     },
     deFocus() {
@@ -112,7 +114,7 @@ export default {
     handleclick(click, event='') { // funçoes de cada icone do input //
 
       const input = document.querySelector(`.${this.classInput} > input`)
-      console.log(input)
+      //console.log(input)
 
       //if(input.classList == '-readonly')
        // console.log('te4ste')
@@ -121,6 +123,8 @@ export default {
         this.$store.dispatch('activeList', [this.name])
         event.stopPropagation();
       }
+
+      console.log(this.editable)
 
       if(this.editable){
         if(click === 'x') {
@@ -137,6 +141,9 @@ export default {
 
       }
     },
+    select() {
+      console.log('teste')
+    }
 
   }
   

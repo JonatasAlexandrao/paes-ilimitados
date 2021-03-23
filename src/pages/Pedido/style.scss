@@ -21,8 +21,6 @@
       align-items: center;
 
       padding: .4rem .4rem .8rem .4rem;    
-
-      .divInput { padding: 0 .4rem; }
     }
   }
   // ============== CLIENTE =========================================
@@ -30,7 +28,7 @@
     //right: 0;
     width: 95%;
     display: grid;
-    grid-template-columns: 50% 10% 10% 30%;
+    grid-template-columns: 45% 10% 10% 28%;
     grid-template-areas: 
       "cliente cliente cliente cliente"
       "tel tel valor valor"
@@ -38,6 +36,7 @@
       "bairro bairro cidade cidade"
     ;
     row-gap: .8rem;
+    column-gap: .8rem;
 
     .divInput {
       & > input.-readonly { background-color: darken($color-white, 15%) }
@@ -94,16 +93,15 @@
   .productInf {
     width: 95%;
     display: grid;
-    justify-content: center;
     grid-template-columns: 1fr 1fr;
     row-gap: .8rem;
+    column-gap: .8rem;
     margin-top: .8rem;
   }
   .information {
     width: 100%;
     background-color: $color-white;
     border-radius: .5rem;
-    //margin: .8rem .4rem 0 .4rem;
     padding: .8rem;
     box-sizing: border-box;
     font-size: $font-small;

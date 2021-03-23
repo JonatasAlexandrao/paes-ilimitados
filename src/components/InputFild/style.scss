@@ -44,6 +44,10 @@
   input:focus { border-bottom: 0.4rem solid $color-product; }
   label.-small { color: $color-product; }
 }
+.requestPage {
+  input:focus { border-bottom: 0.4rem solid lighten($color-request, 10%); }
+  label.-small { color: $color-request; }
+}
 
 
 /*.divIcon {
