@@ -14,7 +14,6 @@ mask: a mascara de input q será usada
     :handleclick="handleclick" />
 
     <input 
-      :id="name"
       :name="name"  
       :inputmode="inputmode"
       

@@ -1,5 +1,5 @@
 <template>
-  <InputFild classInput="client_nome -search" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
+  <InputFild classInput="cliente_nome -search" name="clienteNome" label="Nome" v-model="clienteNome" type="search" :filterList="filterList" mask="letter" :activeVar="$store.state.activeList.clienteNome">
     <div slot="list" class="selectList -clientName" :class="{'-active' : $store.state.activeList.clienteNome}">
       <ul class="optionList" v-for="(item, index) in filteredList" :key="index" >
         <li :for="index" @click="handleclick($event)" :value="item.id">{{ item.nome }}</li>
@@ -50,7 +50,7 @@ export default {
 
       value = mask.maskFilter('letter', value)
 
-       this.filteredList = this.list.filter(elem => {
+     this.filteredList = this.list.filter(elem => {
         const nome = elem.nome.normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
 
@@ -59,7 +59,7 @@ export default {
 
         return nome.match(regex) 
        
-      })       
+      })      
       return value
     },
 

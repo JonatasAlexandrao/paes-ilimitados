@@ -14,12 +14,16 @@ document.getElementById("meu-input").onkeypress = function(e) {
     -> Input
       
 
-    
+    ---> Talvez seja necessário acertar todas as intereções com o BD depois da separação dos arquivos do Store.
 
 
   --->> Tela Pedidos
     - fazer a função de alterar dados do cliente selecionado e salvar no BD
     - Criar a tabela dos pedidos?
+
+    (ok) Fica trocando o input bloqueado e não bloqueado 
+    (ok) não tá alterando o cliente
+    
   
 
 

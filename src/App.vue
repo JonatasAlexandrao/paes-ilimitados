@@ -13,7 +13,7 @@
     <div class="desktop">
       <Pedido v-if="true"/>
       <Produto v-if="false"/>
-      <Cliente v-if="false"/>
+      <Cliente v-if="true"/>
     </div>
 
   </div>

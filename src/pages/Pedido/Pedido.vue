@@ -5,7 +5,7 @@
       <form @submit="(event) => event.preventDefault()">
 
         
-        <p class="id">ID: {{ clienteId }}</p>
+        <p>ID: {{ clienteId }}</p>
         <fieldset>
         <legend>Cliente</legend>
 
@@ -111,7 +111,9 @@
   import InputFild from '@/components/InputFild/InputFild'
   import FlatButton from '@/components/FlatButton/FlatButton'
 
-export default {
+  import data from '@/database/data'
+
+  export default {
   components: { PageTitle, ComboBoxClient, ComboBoxProduct, InputFild, FlatButton },
 
   data() {
@@ -191,6 +193,7 @@ export default {
   methods: {
 
     editableFunc() { //Troca o botão atual do cliente
+
       this.editable = !this.editable
       this.readonly()
       
@@ -206,38 +209,35 @@ export default {
 
       if(!this.editable) {
         tel.setAttribute('readonly', true)
-        //tel.classList.toggle('-readonly')
         valor.setAttribute('readonly', true)
-        //valor.classList.toggle('-readonly')
         rua.setAttribute('readonly', true)
-        //rua.classList.toggle('-readonly')
         num.setAttribute('readonly', true)
-        //num.classList.toggle('-readonly')
         bairro.setAttribute('readonly', true)
-        //bairro.classList.toggle('-readonly')
         cidade.setAttribute('readonly', true)
-        //cidade.classList.toggle('-readonly')
+
+        tel.classList.add('-readonly')
+        valor.classList.add('-readonly')
+        rua.classList.add('-readonly')
+        num.classList.add('-readonly')
+        bairro.classList.add('-readonly')
+        cidade.classList.add('-readonly')
       }
       else {
         tel.removeAttribute('readonly')
-       // tel.classList.toggle('-readonly')
         valor.removeAttribute('readonly')
-       // valor.classList.toggle('-readonly')
         rua.removeAttribute('readonly')
-       // rua.classList.toggle('-readonly')
         num.removeAttribute('readonly')
-       // num.classList.toggle('-readonly')
         bairro.removeAttribute('readonly')
-        //bairro.classList.toggle('-readonly')
         cidade.removeAttribute('readonly')
-        //cidade.classList.toggle('-readonly')
+
+        tel.classList.remove('-readonly')
+        valor.classList.remove('-readonly')
+        rua.classList.remove('-readonly')
+        num.classList.remove('-readonly')
+        bairro.classList.remove('-readonly')
+        cidade.classList.remove('-readonly')
       }
-      tel.classList.toggle('-readonly')
-      valor.classList.toggle('-readonly')
-      rua.classList.toggle('-readonly')
-      num.classList.toggle('-readonly')
-      bairro.classList.toggle('-readonly')
-      cidade.classList.toggle('-readonly')
+      
       
 
     },
@@ -280,11 +280,28 @@ export default {
       this.editable = false
     },
 
-    changeClientBD() {
-      alert('alterar')
-      this.editable = true
-      this.readonly()
-    }
+    changeClientBD() { // salva uma alteração de um cliente //
+      if(this.clienteId){
+        const id = this.clienteId
+        data.update('clientes/' + id, this.$store.getters.getClient)
+
+        console.log('cliente:', this.$store.getters.getClient)
+        this.cleanFilds()
+
+        this.editable = true
+        this.readonly()
+
+
+        
+        //alert('Foi alterado')
+      }  
+       /* this.messageText = 'Cliente alterado com sucesso!'
+        this.messageClass = '-alert'
+        this.messageActive = true*/
+
+      
+      
+    },
    
 
   }

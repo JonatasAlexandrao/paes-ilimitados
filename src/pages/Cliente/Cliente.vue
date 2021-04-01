@@ -206,7 +206,7 @@ export default {
     changeBD() { // salva uma alteração de um cliente //
       if(this.validate()){
         const id = this.clienteId
-        data.update('clientes/' + id, this.$store.state.cliente)
+        data.update('clientes/' + id, this.$store.getters.getClient)
         this.cleanFilds()
 
         this.messageText = 'Cliente alterado com sucesso!'
