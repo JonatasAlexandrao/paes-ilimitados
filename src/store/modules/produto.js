@@ -2,23 +2,34 @@
 export default {
   state: {
     produto: {
-      proId: 0,
-      proNome: '',
-      proPeso: '',
-      proTipo: '',
-      proValor: '',
-      proIngredientes: '',
+      id: 0,
+      nome: '',
+      peso: '',
+      tipo: '',
+      valor: '',
+      ingredientes: '',
     },
 
   },
   
   getters: {
-    getProId(state){ return state.produto.proId },
-    getProNome(state){ return state.produto.proNome },
-    getProPeso(state){ return state.produto.proPeso },
-    getProTipo(state){ return state.produto.proTipo },
-    getProValor(state){ return state.produto.proValor },
-    getProIngredientes(state){ return state.produto.proIngredientes },
+    getProId(state){ return state.produto.id },
+    getProNome(state){ return state.produto.nome },
+    getProPeso(state){ return state.produto.peso },
+    getProTipo(state){ return state.produto.tipo },
+    getProValor(state){ return state.produto.valor },
+    getProIngredientes(state){ return state.produto.ingredientes },
+    getProduct(state) {
+      const product = {
+        id: state.produto.id,
+        nome: state.produto.nome,
+        peso: state.produto.peso,
+        tipo: state.produto.tipo,
+        valor: state.produto.valor,
+        ingredientes: state.produto.ingredientes,
+      }
+      return product
+    }
   },
 
   //seters
@@ -30,19 +41,19 @@ export default {
       state.activeList.produtoTipo = active
     },
 
-    setProdutoId(state, id) { state.produto.proId = id },
-    setProdutoNome(state, nome) { state.produto.proNome = nome },
-    setProdutoPeso(state, peso) { state.produto.proPeso = peso },
-    setProdutoTipo(state, tipo) { state.produto.proTipo = tipo },
-    setProdutoValor(state, valor) { state.produto.proValor = valor },
-    setProdutoIngredientes(state, ingredientes) { state.produto.proIngredientes = ingredientes },
+    setProdutoId(state, id) { state.produto.id = id },
+    setProdutoNome(state, nome) { state.produto.nome = nome },
+    setProdutoPeso(state, peso) { state.produto.peso = peso },
+    setProdutoTipo(state, tipo) { state.produto.tipo = tipo },
+    setProdutoValor(state, valor) { state.produto.valor = valor },
+    setProdutoIngredientes(state, ingredientes) { state.produto.ingredientes = ingredientes },
     cleanAllProduto(state) {
-      state.produto.proId = 0
-      state.produto.proNome = ''
-      state.produto.proTipo = ''
-      state.produto.proPeso = ''
-      state.produto.proValor = '0,00'
-      state.produto.proIngredientes = ''
+      state.produto.id = 0
+      state.produto.nome = ''
+      state.produto.tipo = ''
+      state.produto.peso = ''
+      state.produto.valor = '0,00'
+      state.produto.ingredientes = ''
     },
     
 

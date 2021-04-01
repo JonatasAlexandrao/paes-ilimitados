@@ -209,7 +209,7 @@ export default {
     changeBD(){ // salva uma alteração de um produto //
       if(this.validate()){
         const id = this.produtoId
-        data.update('produtos/' + id, this.$store.state.produto)
+        data.update('produtos/' + id, this.$store.getters.getProduct)
         this.cleanFilds()
 
         this.messageText = 'Produto alterado com sucesso!'

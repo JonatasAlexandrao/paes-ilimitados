@@ -268,7 +268,7 @@
       this.$store.commit('setProdutoPeso', product.peso)
       this.$store.commit('setProdutoTipo', product.tipo)
       this.$store.commit('setProdutoValor', product.valor)
-      this.$store.commit('setProdutoIngredientes', product.ingredientes)
+      this.$store.commit('setProdutoIngredientes', product.ingredientes)      
 
     },
 

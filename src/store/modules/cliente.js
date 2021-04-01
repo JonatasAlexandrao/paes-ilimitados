@@ -25,7 +25,7 @@ export default {
     getCliCidade(state){ return state.cliente.cidade },
     getCliValor(state){ return state.cliente.valor },
     getClient(state) {
-      let client = {
+      const client = {
         id: state.cliente.id, 
         nome: state.cliente.nome,
         celular: state.cliente.celular,
